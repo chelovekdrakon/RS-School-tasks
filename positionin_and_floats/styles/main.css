@@ -21,14 +21,13 @@ nav div:hover{
 h1 {
   float: left;
   margin-left: 52px;
-  margin-top: 13px;
+  margin-top: 16px;
 }
 .orange-font {
   font: 300 37px "Calibri";
   color: #fb9c06;
   text-shadow: 1px 1px rgba(254,231,210,0.7);
   position: relative;
-  top: 2px;
   left: 3px;
   letter-spacing: 0.9px;
 }
@@ -36,9 +35,9 @@ h1 {
   font: 600 37px "Bebas";
   color: #6e6d6b;
   position: relative;
-  letter-spacing: 1.6px;
+  letter-spacing: 1px;
   text-shadow: -1px -1px rgba(222,222,222,0.7);
-  top: -2px;
+  top: -4px;
   left: -1px;
 }
 .logo {
@@ -150,7 +149,7 @@ body>header:after{
 nav {
   display: inline-block;
   width: 570px;
-  margin-left: 351px;
+  margin-left: 353px;
   margin-top: 15px;
   font-size: 0;
 }
@@ -183,9 +182,10 @@ nav div {
   left: 225px;
   text-shadow: -1px 1px rgba(135, 102, 64, 1);
   padding-left: 30px;
-  letter-spacing: 0.9px;
-  padding-top: 5px;
+  letter-spacing: 0.6px;
+  padding-top: 6px;
   box-shadow: 1px 0px rgba(0,0,0,0.4);
+  text-transform: uppercase;
 }
 .oranges-question{
   background-color: rgba(255, 175, 18, 0.7);
@@ -197,7 +197,8 @@ nav div {
   text-shadow: 0px 1px rgba(222, 178, 93, 1), -1px 1px rgba(222, 178, 93, 1);
   padding-left: 31px;
   padding-top: 9px;
-  letter-spacing: 0.9px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 .articles-wrap div {
   font: italic 300 17px "Calibri";
@@ -298,6 +299,7 @@ h2 {
   cursor: pointer;
 }
 .team-members figure p {
+  color: rgba(0,0,0,0.6);
   font: 300 22px "Calibri";
   padding-left: 60px;
   padding-top: 1px;
@@ -365,16 +367,16 @@ figure:nth-child(2){
 /* ----------------- Section contuct-us STARTS ----------------- */
 .form{
   width: 1205px;
-  margin: auto;
+  margin: 0 auto -3px;
 }
 h3 {
   font: 100 40px/43px "St Marie";
   color: rgb(255, 156, 0);
-  border-bottom: 2px solid rgb(255, 156, 0);
+  border-bottom: 3px solid rgb(255, 156, 0);
   display: inline-block;
   margin-left: 425px;
   margin-top: 44px;
-  letter-spacing: 1px;
+  letter-spacing: 1.1px;
   position: relative;
   top: -3px;
 }
@@ -424,12 +426,12 @@ input{
   width: 176px;
   height: 46px;
   margin-left: 995px;
-  margin-top: 18px;
+  margin-top: 16px;
   width: 175px;
   color: rgba(255, 255, 255, 0.9);
   text-align: left;
   padding-left: 34px;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
   letter-spacing: 1px;
 }
 footer p {
@@ -463,9 +465,6 @@ body > footer {
   background-color: rgb(251, 156, 6);
   width: 1634px;
   height: 73px;
-  position: absolute;
-  left: -7px;
-  top: 1840px;
   border-bottom: 3px solid rgb(204, 131, 15);
 }
 .footer_border {
@@ -483,7 +482,14 @@ body > footer {
   color: rgba(255, 255, 255, 0.9);
   line-height: 21px;
   position: relative;
-  top: 23px;
+  top: 24px;
   letter-spacing: 0.9px;
-  margin-left: 325px;
+  margin-left: 318px;
+  text-transform: uppercase;
+}
+
+@-moz-document url-prefix(){
+  .rabbit-font {
+    letter-spacing: 0px;
+  }
 }
