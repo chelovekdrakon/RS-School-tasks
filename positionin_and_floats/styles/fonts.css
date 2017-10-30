@@ -1,0 +1,47 @@
+@font-face {
+	font-family: 'St Marie';
+	src: url('../fonts/St_marie_thin/StMarie-Thin.eot');
+	src: url('../fonts/St_marie_thin/StMarie-Thin.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/St_marie_thin/StMarie-Thin.woff') format('woff'),
+		url('../fonts/St_marie_thin/StMarie-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Calibri';
+	src: url('../fonts/Calibri/Calibri.eot');
+	src: url('../fonts/Calibri/Calibri.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Calibri/calibri.woff2') format('woff2'),
+    url('../fonts/Calibri/Calibri.woff') format('woff'),
+    url('../fonts/Calibri/Calibri.otf') format('opentype'),
+		url('../fonts/Calibri/Calibri.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Calibri Light';
+	src: url('../fonts/Calibri_light/Calibri-Light.eot');
+	src: url('../fonts/Calibri_light/Calibri-Light.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Calibri_light/Calibri-Light.woff') format('woff'),
+		url('../fonts/Calibri_light/Calibri-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Calibri Light Italic';
+	src: url('../fonts/Calibri_light_italic/Calibri-LightItalic.eot');
+	src: url('../fonts/Calibri_light_italic/Calibri-LightItalic.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Calibri_light_italic/Calibri-LightItalic.woff') format('woff'),
+		url('../fonts/Calibri_light_italic/Calibri-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+@font-face {
+    font-family: 'Bebas';
+    src: url('../fonts/Bebas/Bebas.eot');
+    src: url('../fonts/Bebas/Bebas.eot') format('embedded-opentype'),
+         url('../fonts/Bebas/Bebas.woff2') format('woff2'),
+         url('../fonts/Bebas/Bebas.woff') format('woff'),
+         url('../fonts/Bebas/Bebas.ttf') format('truetype'),
+         url('../fonts/Bebas/Bebas.svg#Bebas') format('svg');
+}
