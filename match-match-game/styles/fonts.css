@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Gretoon';
+    src: url('../fonts/Gretoon.eot');
+    src: local('Gretoon'),
+        url('../fonts/Gretoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gretoon.woff2') format('woff2'),
+        url('../fonts/Gretoon.woff') format('woff'),
+        url('../fonts/Gretoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gretoon Highlight';
+    src: url('../fonts/GretoonHighlight.eot');
+    src: local('Gretoon Highlight'), local('GretoonHighlight'),
+        url('../fonts/GretoonHighlight.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/GretoonHighlight.woff2') format('woff2'),
+        url('../fonts/GretoonHighlight.woff') format('woff'),
+        url('../fonts/GretoonHighlight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeuzeitGroT';
+    src: url('../fonts/NeuzeitGroT-Bold.eot');
+    src: local('NeuzeitGroT Bold'), local('NeuzeitGroT-Bold'),
+        url('../fonts/NeuzeitGroT-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/NeuzeitGroT-Bold.woff2') format('woff2'),
+        url('../fonts/NeuzeitGroT-Bold.woff') format('woff'),
+        url('../fonts/NeuzeitGroT-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
