@@ -1,0 +1,150 @@
+.game {
+  background-color: #12262f;
+  width: 1020px;
+  margin: 50px auto;
+  border-radius: 1%;
+  border: 3px solid rgba(68, 233, 253, 0.2);
+}
+body{
+  background-color: rgba(68, 233, 253, 0.2);
+}
+h1 {
+  font-family: "Gretoon";
+  font-size: 40px;
+  color: #2bc0e5;
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+header > a {
+  margin: 40px auto 40px;
+  display: inline-block;
+}
+main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0 20px;
+}
+.block1, .block3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 35%;
+  background-color: rgba(68, 233, 253, 0.2);
+  border-radius: 10%;
+  padding: 10px;
+}
+.block2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 20%;
+}
+.content-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.skirts-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.options {
+  display: inline-block;
+  font-size: 20px;
+  font-family: "NeuzeitGroT";
+  font-weight: bold;
+  color: #67ddef;
+  border: 1px solid #67ddef;
+  border-radius: 15px;
+  padding: 3px 8px;
+  align-self: flex-start;
+}
+.skirt1, .skirt2{
+  display: inline-block;
+  width: 40%;
+  margin: auto;
+  height: 180px;
+  background: #ffffff;
+  border-radius: 15%;
+}
+.skirt1 > img {
+  display: inline-block;
+  width: 80%;
+  margin-top: 40px;
+  margin-left: 15px;
+}
+.skirt2 {
+  background: linear-gradient(to bottom, #44e9fd, #1092ca);
+}
+.button {
+  display: inline-block;
+}
+
+.rules {
+  font-family: "NeuzeitGroT";
+  font-size: 10px;
+  list-style: decimal;
+}
+.block2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  color: white;
+  font-family: "NeuzeitGroT";
+}
+.block2 > h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #44e9fd;
+
+}
+.difficulty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.difficulty > img {
+  width: 30%;
+  display: inline-block;
+}
+.difficulty > figcaption{
+  text-transform: uppercase;
+  font-family: "Gretoon";
+  font-size: 26px;
+  display: inline-block;
+  color: #db1c08;
+  position: relative;
+}
+.difficulty > figcaption:after {
+  content: "hard as hell";
+  font-family: "Gretoon Highlight";
+  font-size: 26px;
+  position: absolute;
+  text-transform: uppercase;
+  right: 0px;
+}
+.difficulty > p {
+  font-size: 14px;
+  font-family: "NeuzeitGroT";
+  font-weight: bold;
+  color: #db2b18;
+  margin-bottom: 5px;
+}
+.button {
+  margin: auto;
+  background-color: #26d240;
+  padding: 10px;
+  border-radius: 15px;
+  font-family: "NeuzeitGroT";
+  font-size: 20px;
+  color: white;
+}
