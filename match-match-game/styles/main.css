@@ -13,6 +13,10 @@ h1 {
   font-size: 40px;
   color: #2bc0e5;
 }
+h1:hover{
+  text-shadow: 1px 1px 7px rgba(255,255,255,0.7),
+               -1px -1px 7px rgba(255,255,255,0.7);
+}
 header {
   display: flex;
   justify-content: center;
@@ -31,28 +35,27 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 35%;
+  width: 31%;
   background-color: rgba(68, 233, 253, 0.2);
   border-radius: 10%;
   padding: 10px;
+  position: relative;
 }
-.block2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 20%;
-}
+/*.block1:hover, .block3:hover {
+  background: #226572;
+}*/
 .content-wrapper{
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.skirts-wrapper{
+.optional-cards{
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
 }
-.options {
+.option-buttons {
   display: inline-block;
   font-size: 20px;
   font-family: "NeuzeitGroT";
@@ -63,31 +66,42 @@ main {
   padding: 3px 8px;
   align-self: flex-start;
 }
-.skirt1, .skirt2{
+.option-buttons:hover {
+  cursor: pointer;
+  background: #44e9fd;
+  color: #1c3947;
+}
+.option1, .option2{
   display: inline-block;
-  width: 40%;
-  margin: auto;
+  width: 127px;
+  margin: 5px 15px;
   height: 180px;
   background: #ffffff;
   border-radius: 15%;
 }
-.skirt1 > img {
+.option1, .option2 {
+  cursor: pointer;
+}
+.chosen{
+  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+}
+.card-hover:hover{
+  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+}
+.option1 > img {
   display: inline-block;
   width: 80%;
   margin-top: 40px;
-  margin-left: 15px;
+  margin-left: 13px;
 }
-.skirt2 {
+.option2 {
   background: linear-gradient(to bottom, #44e9fd, #1092ca);
 }
-.button {
-  display: inline-block;
-}
-
-.rules {
+.block2 > ol {
   font-family: "NeuzeitGroT";
-  font-size: 10px;
-  list-style: decimal;
+  font-size: 12px;
+  list-style: decimal inside;
+  line-height: 21px;
 }
 .block2 {
   display: flex;
@@ -95,56 +109,132 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-left: 5px;
   color: white;
   font-family: "NeuzeitGroT";
+  width: 28%;
+  margin-bottom: 25px;
 }
 .block2 > h2 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 10px;
   color: #44e9fd;
-
 }
-.difficulty {
+.right-arrow{
+  position: absolute;
+  top: 20px;
+  right: -22px;
+  border-style: solid;
+  border-width: 100px 0 100px 20px;
+  border-color: transparent transparent transparent rgba(68, 233, 253, 0.2);
+}
+.right-arrow:hover{
+  border-color: transparent transparent transparent rgba(103,221,239,0.9);
+  cursor: pointer;
+}
+.left-arrow{
+  position: absolute;
+  top: 20px;
+  left: -22px;
+  border-style: solid;
+  border-width: 100px 20px 100px 0;
+  border-color: transparent rgba(68, 233, 253, 0.2) transparent transparent;
+}
+.left-arrow:hover {
+  border-color: transparent rgba(103,221,239,0.9) transparent transparent;
+  cursor: pointer;
+}
+.card {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
+  position: relative;
 }
-.difficulty > img {
+.card > img {
   width: 30%;
   display: inline-block;
 }
-.difficulty > figcaption{
+.card > figcaption{
   text-transform: uppercase;
-  font-family: "Gretoon";
+  font-family: "Gretoon Highlight";
   font-size: 26px;
   display: inline-block;
   color: #db1c08;
   position: relative;
 }
-.difficulty > figcaption:after {
-  content: "hard as hell";
-  font-family: "Gretoon Highlight";
-  font-size: 26px;
-  position: absolute;
-  text-transform: uppercase;
-  right: 0px;
-}
-.difficulty > p {
+.card > p {
   font-size: 14px;
   font-family: "NeuzeitGroT";
   font-weight: bold;
   color: #db2b18;
   margin-bottom: 5px;
 }
-.button {
-  margin: auto;
+.card:hover{
+  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+}
+.new-game {
+  margin: 30px auto 0;
   background-color: #26d240;
   padding: 10px;
   border-radius: 15px;
   font-family: "NeuzeitGroT";
   font-size: 20px;
-  color: white;
+  color: rgba(255,255,255,0.9);
+  display: inline-block;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5), -1px -1px 3px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 3px rgba(255,255,255,0.2);
 }
+.new-game:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 10px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  color: rgba(255,255,255,1);
+}
+.none{
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+}
+.rotate {
+  animation: rotate 1s;
+}
+
+
+/*@keyframes rotateCard {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  20% {
+    transform: rotate3d(0, 1, 0, 60deg);
+  }
+  40% {
+    transform: rotate3d(0, 1, 0, 120deg);
+  }
+  60% {
+    transform: rotate3d(0, 1, 0, 180deg);
+    background-image: url("../images/1.png");
+  }
+  80% {
+    transform: rotate3d(0, 1, 0, 240deg);
+  }
+  90% {
+    transform: rotate3d(0, 1, 0, 300deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}*/
