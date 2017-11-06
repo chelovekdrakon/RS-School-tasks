@@ -76,7 +76,7 @@ main {
   width: 127px;
   margin: 5px 15px;
   height: 180px;
-  background: #ffffff;
+  background: pink;
   border-radius: 15%;
 }
 .option1, .option2 {
@@ -88,7 +88,7 @@ main {
 .card-hover:hover{
   box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
 }
-.option1 > img {
+.option1 > img, .option2 > img {
   display: inline-block;
   width: 80%;
   margin-top: 40px;
@@ -212,9 +212,15 @@ main {
 .rotate {
   animation: rotate 1s;
 }
-
-
-/*@keyframes rotateCard {
+.rotation {
+  visibility: visible;
+  background: white;
+  animation: full-rotation 3s linear infinite;
+}
+.hide {
+  visibility: hidden;
+}
+@keyframes full-rotation {
   0% {
     transform: rotate3d(0, 1, 0, 0deg);
   }
@@ -226,7 +232,6 @@ main {
   }
   60% {
     transform: rotate3d(0, 1, 0, 180deg);
-    background-image: url("../images/1.png");
   }
   80% {
     transform: rotate3d(0, 1, 0, 240deg);
@@ -237,4 +242,15 @@ main {
   100% {
     transform: rotate3d(0, 1, 0, 360deg);
   }
-}*/
+}
+
+.result {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.result p {
+  font-family: "Gretoon highlight";
+  font-size: 60px;
+  margin: 30px 10px 0px;
+}
