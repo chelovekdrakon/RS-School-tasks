@@ -8,6 +8,9 @@ class Game {
         this.currentCard;
         this.timer;
         this.screen = 'initial';
+        this.stack = [];
+        this.imageInside = false;
+        this.freeze = 0;
     }
 
     // Здесь задаются изначальные обработчики событий
@@ -36,15 +39,18 @@ class Game {
             target.classList.add('chosen');
             skirt1.classList.remove('chosen');
             this.skirt = skirt2;
+            this.imageInside = false;
         } else if (target === skirt1) {
             target.classList.add('chosen');
             skirt2.classList.remove('chosen');
             this.skirt = skirt1;
+            this.imageInside = true;
         }
         if (target === skirt2img) {
             skirt1.classList.add('chosen');
             skirt2.classList.remove('chosen');
             this.skirt = skirt1;
+            this.imageInside = true;
         }
     }
 
@@ -119,22 +125,17 @@ class Game {
             return arr;
         };
 
-        //Добавление карт в массив, в зависимости от сложности игры, и реализовать метод, который будет делать рандомную сортировку этого массива.
+        //Добавление карт в массив, в зависимости от сложности игры, и перемешиваем наши карты
         this.cards = makeCards(this.difficulty);
-
-        // Перемешиваем наши карты
         this.shuffleCards(this.cards);
 
-        /*this.gameSection.removeEventListener('click', this.onGameProcess.bind(this));*/
         this.currentCard = null; // Обнуление текущей карты, на всякий случай
         this.cardsInScreen = this.difficulty;
-
         const card = this.skirt;
-        if (this.screen === 'initial'){
+        if (this.screen === 'initial') {
             card.classList.toggle('chosen');
             card.classList.toggle('card-hover');
         }
-
         this.gameSection.innerHTML = '';
 
         for (let i = 0; i < this.cards.length; i++) {
@@ -144,10 +145,13 @@ class Game {
             cardClone.classList.add('rotate');
         }
 
-        const cardArr = Array.from(this.gameSection.children);
-        cardArr.forEach(e => {
-            e.classList.remove('rotate');
-        });
+        setTimeout(() => {
+            const cardArr = Array.from(this.gameSection.children);
+            cardArr.forEach(e => {
+                e.classList.remove('rotate');
+            });
+        }, 1000);
+
 
         /*
             this.timer = setTimeout(this.onPlayerLose.bind(this), 60000);
@@ -157,49 +161,118 @@ class Game {
             this.gameSection.addEventListener('click', this.onGameProcess.bind(this));
         }
         this.screen = 'game';
+
+        // Если рестарт после проигрыша
+        this.freeze = 0;
+        if (document.querySelector('.result')){
+            document.querySelector('.result').remove();
+        }
     }
 
     onRestart(e) {
         this.screen = 'initial';
+        this.freeze = 0;
         this.gameSection.removeEventListener('click', this.onGameProcess.bind(this));
     }
 
     // Обработчик события, в котором проходит основной игровой процесс (удаляются карты и проходят проверки на окончание игры)
     onGameProcess(e) {
 
-        const target = e.target;
-        const gameSection = document.querySelector('#game');
+        let target = e.target;
+        const gameSection = this.gameSection;
+
+        if (target.parentElement.parentElement === gameSection) {
+            target = target.parentElement;
+        }
+        if (target === this.currentCard || this.freeze === 1) {
+            return;
+        }
 
         if (target.parentElement === gameSection) {
             target.classList.add('rotate');
-            const cardData = target.dataset.card;
-            console.log(cardData);
-        }
-        /*
-          	if (this.currentCard) {
-            	// проверка на то, что в this.currentCard то же, что и в текущей карте
-              // Если карты совпадают, то они удаляются из DOM (с запуском анимации) и уменьшается this.cardsInScreen на 2, то есть удаляются 2 карты из нашего объекта, для того чтобы можно было проверить, когда окончание игры
+            setTimeout(() => {
+                target.classList.remove('rotate');
+            }, 1000);
+
+            if (this.imageInside) {
+                target.firstElementChild.remove();
+            }
+
+            target.style = 'background: white';
+            const img = document.createElement('img');
+            img.setAttribute('src', `images/${target.dataset.card}.png`);
+            target.appendChild(img);
+
+            if (!this.currentCard) {
+                this.currentCard = target;
+                return;
+            } else if (target.dataset.card === this.currentCard.dataset.card) {
+                target.classList.add('rotate');
+                this.freeze = 1;
+                setTimeout(() => {
+                    target.classList.add('hide');
+                    this.currentCard.classList.add('hide');
+                    this.currentCard = null;
+                    this.freeze = 0;
+                }, 1000);
+                this.cardsInScreen -= 2;
+            } else {
+                setTimeout(this.onPlayerLose.bind(this), 1500);
+                this.freeze = 1;
             }
 
             // Когда закончились карты, запускается метод окончания игры
-            if (!this.cardsInScreen) {
-            	this.onPlayerWin();
-                clearTimeout(this.timer);
+            if (this.cardsInScreen == 0) {
+                setTimeout(this.onPlayerWin.bind(this), 1500);
+                // clearTimeout(this.timer);
             }
-        */
+        }
     }
 
 
 
     // Запускается, когда player выиграл
     onPlayerWin() {
-        this.gameSection.innerHTML = '<div style="font-size:100px">congratulations</div>';
+        const cardArr = Array.from(this.gameSection.children);
+        cardArr.forEach(e => {
+            e.classList.remove('hide');
+            e.classList.add('rotation');
+        });
+
+        const textBlock = document.createElement('div');
+        textBlock.classList.add('result');
+
+        const text = 'congratulations';
+        const textArr = text.split('').reverse();
+
+        for (let i = textArr.length; i>=0; i--) {
+            const p = document.createElement('p');
+            p.textContent = textArr[i];
+            p.style = 'color: #26d240';
+            textBlock.appendChild(p);
+        }
+
+        this.gameSection.appendChild(textBlock);
+
     }
 
 
     // Запускается, когда player проиграл
     onPlayerLose() {
-        this.gameSection.innerHTML = '<div style="font-size:100px">HA-HA-HA</div>';
+        const textBlock = document.createElement('div');
+        textBlock.classList.add('result');
+
+        const text = 'HA-HA-HA';
+        const textArr = text.split('').reverse();
+
+        for (let i = textArr.length; i>=0; i--) {
+            const p = document.createElement('p');
+            p.textContent = textArr[i];
+            textBlock.appendChild(p);
+            p.style = 'color: red';
+        }
+
+        this.gameSection.parentElement.insertBefore(textBlock, this.gameSection.nextElementSibling);
     }
 
 
