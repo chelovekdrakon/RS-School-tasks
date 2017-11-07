@@ -93,6 +93,7 @@ main {
   width: 80%;
   margin-top: 40px;
   margin-left: 13px;
+  user-select: none;
 }
 .option2 {
   background: linear-gradient(to bottom, #44e9fd, #1092ca);
@@ -121,7 +122,7 @@ main {
 }
 .right-arrow{
   position: absolute;
-  top: 20px;
+  top: 24px;
   right: -22px;
   border-style: solid;
   border-width: 100px 0 100px 20px;
@@ -133,7 +134,7 @@ main {
 }
 .left-arrow{
   position: absolute;
-  top: 20px;
+  top: 24px;
   left: -22px;
   border-style: solid;
   border-width: 100px 20px 100px 0;
@@ -209,8 +210,22 @@ main {
     transform: rotate3d(0, 1, 0, 180deg);
   }
 }
+@keyframes rotateBack {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, -90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, -180deg);
+  }
+}
+.rotateBack {
+  animation: rotateBack linear 0.4s;
+}
 .rotate {
-  animation: rotate 1s;
+  animation: rotate linear 0.4s;
 }
 .rotation {
   visibility: visible;
@@ -253,4 +268,17 @@ main {
   font-family: "Gretoon highlight";
   font-size: 60px;
   margin: 30px 10px 0px;
+}
+.timer-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 0px;
+}
+.timer-block > span {
+  font-family: "Gretoon highlight";
+  font-size: 60px;
+}
+.card-shadow-lose {
+  box-shadow: 0px 0px 10px 8px rgba(167,22,1,0.5);
 }
