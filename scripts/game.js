@@ -5,10 +5,11 @@ class Game {
         this.skirt = document.querySelector('#skirt2');
         this.cardsInScreen;
         this.cards = [];
-        this.currentCard;
-        this.timer;
+        this.cardsSkirts = [];
+        this.previousCard;
+        this.timer = 60;
+        this.timerId;
         this.screen = 'initial';
-        this.stack = [];
         this.imageInside = false;
         this.freeze = 0;
     }
@@ -59,18 +60,13 @@ class Game {
     onAddDificulty(e) {
         const target = e.target;
 
-        const rightArrow = document.querySelector('#diff-higher');
-        const leftArrow = document.querySelector('#diff-lower');
-
-        const div = document.querySelector('.card');
-        const actualLevel = div.getAttribute('id');
-
-        const switchCard = (figcText, pText, url, level) => {
+        // Выполняет
+        const switchCard = (levelDescription, numberOfCards, url, level) => {
             const figure = document.querySelector('.card');
             const figcaption = document.querySelector('.card > figcaption');
-            figcaption.textContent = figcText;
+            figcaption.textContent = levelDescription;
             const p = document.querySelector('.card > p');
-            p.textContent = pText;
+            p.textContent = numberOfCards;
             const img = document.querySelector('.card > img');
             img.setAttribute('src', url);
             figure.setAttribute('id', level);
@@ -82,6 +78,12 @@ class Game {
                 this.difficulty = '6';
             }
         };
+
+        const rightArrow = document.querySelector('#diff-higher');
+        const leftArrow = document.querySelector('#diff-lower');
+
+        const cardOfDifficulty = document.querySelector('.card');
+        const actualLevel = cardOfDifficulty.getAttribute('id');
 
         if (target === rightArrow) {
             switch (actualLevel) {
@@ -110,11 +112,16 @@ class Game {
                     break;
             }
         }
+
     }
 
 
     // Обработчик события на клик по кнопке start game
     onStartGame(e) {
+        // Если рестарт
+        this.timer = 60;
+        clearInterval(this.timerId);
+
         // function для создания массива для card.dataset
         const makeCards = (difficulty) => {
             const arr = [];
@@ -129,19 +136,41 @@ class Game {
         this.cards = makeCards(this.difficulty);
         this.shuffleCards(this.cards);
 
-        this.currentCard = null; // Обнуление текущей карты, на всякий случай
-        this.cardsInScreen = this.difficulty;
+        // Creating cards array
         const card = this.skirt;
+        for (let i = 0; i < this.cards.length; i++) {
+            let cardClone = card.cloneNode(true);
+            cardClone.setAttribute('data-card', this.cards[i]);
+            cardClone.setAttribute('data-number', i);
+
+            if (this.imageInside) {
+                cardClone.firstElementChild.remove();
+            }
+
+            cardClone.style = 'background: white';
+            const img = document.createElement('img');
+            img.setAttribute('src', `images/${cardClone.dataset.card}.png`);
+            cardClone.appendChild(img);
+            this.cards[i] = cardClone;
+        }
+
+        this.previousCard = null; // Обнуление текущей карты, на всякий случай
+        this.cardsInScreen = this.difficulty;
+
         if (this.screen === 'initial') {
-            card.classList.toggle('chosen');
-            card.classList.toggle('card-hover');
+            const arr = Array.from(this.gameSection.children);
+            arr.forEach(card => {
+                card.classList.toggle('chosen');
+                card.classList.toggle('card-hover');
+            });
         }
         this.gameSection.innerHTML = '';
 
         for (let i = 0; i < this.cards.length; i++) {
-            let cardClone = card.cloneNode(true);
-            cardClone.setAttribute('data-card', this.cards[i]);
+            const cardClone = this.skirt.cloneNode(true);
+            cardClone.setAttribute('data-number', i);
             this.gameSection.appendChild(cardClone);
+            this.cardsSkirts.push(cardClone);
             cardClone.classList.add('rotate');
         }
 
@@ -150,12 +179,8 @@ class Game {
             cardArr.forEach(e => {
                 e.classList.remove('rotate');
             });
-        }, 1000);
+        }, 700);
 
-
-        /*
-            this.timer = setTimeout(this.onPlayerLose.bind(this), 60000);
-        */
         this.cardsInScreen = this.difficulty;
         if (this.screen === 'initial') {
             this.gameSection.addEventListener('click', this.onGameProcess.bind(this));
@@ -164,15 +189,42 @@ class Game {
 
         // Если рестарт после проигрыша
         this.freeze = 0;
-        if (document.querySelector('.result')){
-            document.querySelector('.result').remove();
+        if (document.querySelector('.result')) {
+            const results = document.querySelectorAll('.result');
+            const resArr = Array.from(results);
+            resArr.forEach(e => {
+                e.remove();
+            });
         }
+
+
+        const timerBlock = document.createElement('div');
+        const span = document.createElement('span');
+        span.textContent = this.timer;
+        timerBlock.appendChild(span);
+        timerBlock.classList.add('timer-block');
+        this.gameSection.appendChild(timerBlock);
+
+        this.timerId = setInterval(() => {
+            this.timer--;
+            span.textContent = this.timer;
+            if (this.timer === 0){
+                this.onPlayerLose();
+                clearInterval(this.timerId);
+                this.freeze = 1;
+            }
+            if (this.timer < 10){
+                span.style = 'color: red';
+            }
+        }, 1000);
     }
 
     onRestart(e) {
         this.screen = 'initial';
         this.freeze = 0;
         this.gameSection.removeEventListener('click', this.onGameProcess.bind(this));
+        this.timer = 60;
+        clearInterval(this.timerId);
     }
 
     // Обработчик события, в котором проходит основной игровой процесс (удаляются карты и проходят проверки на окончание игры)
@@ -184,40 +236,61 @@ class Game {
         if (target.parentElement.parentElement === gameSection) {
             target = target.parentElement;
         }
-        if (target === this.currentCard || this.freeze === 1) {
+        if (this.previousCard) {
+            if (target.dataset.number === this.previousCard.dataset.number) {
+                return;
+            }
+        }
+        if (this.freeze === 1) {
             return;
         }
 
         if (target.parentElement === gameSection) {
+
+            const cardNumber = target.dataset.number;
+            target.outerHTML = this.cards[cardNumber].outerHTML;
+            target = gameSection.children[cardNumber];
+
             target.classList.add('rotate');
             setTimeout(() => {
                 target.classList.remove('rotate');
-            }, 1000);
+            }, 600);
 
-            if (this.imageInside) {
-                target.firstElementChild.remove();
-            }
-
-            target.style = 'background: white';
-            const img = document.createElement('img');
-            img.setAttribute('src', `images/${target.dataset.card}.png`);
-            target.appendChild(img);
-
-            if (!this.currentCard) {
-                this.currentCard = target;
-                return;
-            } else if (target.dataset.card === this.currentCard.dataset.card) {
-                target.classList.add('rotate');
+            if (!this.previousCard) {
+                this.previousCard = target;
+            } else if (this.cards[target.dataset.number].dataset.card === this.cards[this.previousCard.dataset.number].dataset.card) {
+                // target.classList.add('rotate');
                 this.freeze = 1;
                 setTimeout(() => {
                     target.classList.add('hide');
-                    this.currentCard.classList.add('hide');
-                    this.currentCard = null;
+                    this.previousCard.classList.add('hide');
+                    this.previousCard = null;
                     this.freeze = 0;
                 }, 1000);
                 this.cardsInScreen -= 2;
             } else {
-                setTimeout(this.onPlayerLose.bind(this), 1500);
+                const previousNumber = this.previousCard.dataset.number;
+                const targetNumber = target.dataset.number;
+
+                setTimeout(() => {
+                    target.classList.add('rotateBack');
+                    this.previousCard.classList.add('rotateBack');
+
+                    target.style = 'background: red';
+                    this.previousCard.style = 'background: red';
+
+                }, 700);
+                setTimeout(() => {
+                    const previousNumber = this.previousCard.dataset.number;
+                    gameSection.children[previousNumber].outerHTML = this.cardsSkirts[previousNumber].outerHTML;
+
+                    const targetNumber = target.dataset.number;
+                    gameSection.children[targetNumber].outerHTML = this.cardsSkirts[targetNumber].outerHTML;
+
+                    this.previousCard = null;
+                    this.freeze = 0;
+                }, 1000);
+
                 this.freeze = 1;
             }
 
@@ -233,6 +306,9 @@ class Game {
 
     // Запускается, когда player выиграл
     onPlayerWin() {
+        clearInterval(this.timerId);
+        this.gameSection.lastChild.remove();
+
         const cardArr = Array.from(this.gameSection.children);
         cardArr.forEach(e => {
             e.classList.remove('hide');
@@ -245,7 +321,7 @@ class Game {
         const text = 'congratulations';
         const textArr = text.split('').reverse();
 
-        for (let i = textArr.length; i>=0; i--) {
+        for (let i = textArr.length; i >= 0; i--) {
             const p = document.createElement('p');
             p.textContent = textArr[i];
             p.style = 'color: #26d240';
@@ -253,7 +329,6 @@ class Game {
         }
 
         this.gameSection.appendChild(textBlock);
-
     }
 
 
@@ -265,14 +340,20 @@ class Game {
         const text = 'HA-HA-HA';
         const textArr = text.split('').reverse();
 
-        for (let i = textArr.length; i>=0; i--) {
+        for (let i = textArr.length; i >= 0; i--) {
             const p = document.createElement('p');
             p.textContent = textArr[i];
             textBlock.appendChild(p);
             p.style = 'color: red';
         }
 
-        this.gameSection.parentElement.insertBefore(textBlock, this.gameSection.nextElementSibling);
+        for (let i = 0; i<this.cards.length; i++){
+            this.gameSection.children[i].classList.add('card-shadow-lose');
+            setTimeout(()=>{
+                this.gameSection.children[i].classList.remove('card-shadow-lose');
+            },1000);
+        }
+        this.gameSection.appendChild(textBlock);
     }
 
 
