@@ -52,14 +52,14 @@ main {
   background: #226572;
 }*/
 
-.content-wrapper {
+.game-panel {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.optional-cards {
+.optional-cards-panel {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
