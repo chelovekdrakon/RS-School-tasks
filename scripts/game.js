@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.gameSection = document.querySelector('#game-panel');
         this.difficulty = '12';
-        this.skirt = document.querySelector('#skirt2');
+        this.skirt = document.querySelector('#skirt-1');
         this.cardsInScreen;
         this.cards = []; // created array with data
         this.cardsSkirts = []; // created array of skirts
@@ -32,9 +32,9 @@ class Game {
     // Обработчик события для записи вида рубашки в this.skirt
     onAddskirt(e) {
         const target = e.target;
-        const skirt1 = document.querySelector('#skirt1');
-        const skirt2 = document.querySelector('#skirt2');
-        const skirt2img = document.querySelector('.option1 > img');
+        const skirt1 = document.querySelector('#skirt-1');
+        const skirt2 = document.querySelector('#skirt-2');
+        const skirt2img = document.querySelector('.option-1 > img');
 
         if (target === skirt2) {
             target.classList.add('chosen');
@@ -189,7 +189,6 @@ class Game {
         this.screen = 'game';
 
         // Если рестарт после проигрыша/победы снимаем block и удаляем добавленный div с поздравлением
-        this.freeze = 0;
         if (document.querySelector('.result')) {
             const results = document.querySelectorAll('.result');
             const resArr = Array.from(results);
@@ -223,7 +222,6 @@ class Game {
     // Если пользователь делает рестарт через logo
     onRestart(e) {
         this.screen = 'initial';
-        this.freeze = 0;
         this.gameSection.removeEventListener('click', this.onGameProcess.bind(this));
         this.timer = 60;
         clearInterval(this.timerId);
