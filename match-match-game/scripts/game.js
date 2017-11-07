@@ -1,17 +1,17 @@
 class Game {
     constructor() {
-        this.gameSection = document.querySelector('#game');
+        this.gameSection = document.querySelector('#game-panel');
         this.difficulty = '12';
         this.skirt = document.querySelector('#skirt2');
         this.cardsInScreen;
-        this.cards = [];
-        this.cardsSkirts = [];
+        this.cards = []; // created array with data
+        this.cardsSkirts = []; // created array of skirts
         this.previousCard;
         this.timer = 60;
         this.timerId;
-        this.screen = 'initial';
+        this.screen = 'initial'; // Если начинаем игру с первого экрана - 'initial', если рестарт - 'game'
         this.imageInside = false;
-        this.freeze = 0;
+        this.freeze = 0; // freezing interface during animation etc.
     }
 
     // Здесь задаются изначальные обработчики событий
@@ -60,7 +60,7 @@ class Game {
     onAddDificulty(e) {
         const target = e.target;
 
-        // Выполняет
+        // Выполняет диномическое создание карты сложности при её переключении
         const switchCard = (levelDescription, numberOfCards, url, level) => {
             const figure = document.querySelector('.card');
             const figcaption = document.querySelector('.card > figcaption');
@@ -122,7 +122,7 @@ class Game {
         this.timer = 60;
         clearInterval(this.timerId);
 
-        // function для создания массива для card.dataset
+        // function для создания массива данных для card.dataset
         const makeCards = (difficulty) => {
             const arr = [];
             for (let i = difficulty / 2; i > 0; i--) {
@@ -132,11 +132,11 @@ class Game {
             return arr;
         };
 
-        //Добавление карт в массив, в зависимости от сложности игры, и перемешиваем наши карты
+        //Добавляем массив данных для карт, и перемешиваем наши карты
         this.cards = makeCards(this.difficulty);
         this.shuffleCards(this.cards);
 
-        // Creating cards array
+        // Создаем карты в соответствии с data, которую мы записали в this.cards и заменяем data на карту
         const card = this.skirt;
         for (let i = 0; i < this.cards.length; i++) {
             let cardClone = card.cloneNode(true);
@@ -157,13 +157,6 @@ class Game {
         this.previousCard = null; // Обнуление текущей карты, на всякий случай
         this.cardsInScreen = this.difficulty;
 
-        if (this.screen === 'initial') {
-            const arr = Array.from(this.gameSection.children);
-            arr.forEach(card => {
-                card.classList.toggle('chosen');
-                card.classList.toggle('card-hover');
-            });
-        }
         this.gameSection.innerHTML = '';
 
         for (let i = 0; i < this.cards.length; i++) {
@@ -173,13 +166,21 @@ class Game {
             this.cardsSkirts.push(cardClone);
             cardClone.classList.add('rotate');
         }
-
+        this.freeze = 1;
         setTimeout(() => {
             const cardArr = Array.from(this.gameSection.children);
             cardArr.forEach(e => {
                 e.classList.remove('rotate');
             });
+            this.freeze = 0;
         }, 700);
+
+        // Снимаем класс chosen, который присуствовал на карте-родителе и добавляем hover
+        const arr = Array.from(this.gameSection.children);
+        arr.forEach(card => {
+            card.classList.toggle('chosen');
+            card.classList.toggle('card-hover');
+        });
 
         this.cardsInScreen = this.difficulty;
         if (this.screen === 'initial') {
@@ -187,7 +188,7 @@ class Game {
         }
         this.screen = 'game';
 
-        // Если рестарт после проигрыша
+        // Если рестарт после проигрыша/победы снимаем block и удаляем добавленный div с поздравлением
         this.freeze = 0;
         if (document.querySelector('.result')) {
             const results = document.querySelectorAll('.result');
@@ -197,7 +198,7 @@ class Game {
             });
         }
 
-
+        // Создаем таймер
         const timerBlock = document.createElement('div');
         const span = document.createElement('span');
         span.textContent = this.timer;
@@ -208,17 +209,18 @@ class Game {
         this.timerId = setInterval(() => {
             this.timer--;
             span.textContent = this.timer;
-            if (this.timer === 0){
+            if (this.timer === 0) {
                 this.onPlayerLose();
                 clearInterval(this.timerId);
                 this.freeze = 1;
             }
-            if (this.timer < 10){
+            if (this.timer < 10) {
                 span.style = 'color: red';
             }
         }, 1000);
     }
 
+    // Если пользователь делает рестарт через logo
     onRestart(e) {
         this.screen = 'initial';
         this.freeze = 0;
@@ -229,28 +231,31 @@ class Game {
 
     // Обработчик события, в котором проходит основной игровой процесс (удаляются карты и проходят проверки на окончание игры)
     onGameProcess(e) {
-
         let target = e.target;
         const gameSection = this.gameSection;
 
+        // Если нажимает на img внутри карты -> таргет переопределяется на родителя
         if (target.parentElement.parentElement === gameSection) {
             target = target.parentElement;
         }
+        // Если нажимает на одну и ту же карту дважды -> выкидываем
         if (this.previousCard) {
             if (target.dataset.number === this.previousCard.dataset.number) {
                 return;
             }
         }
+        // Если стоит блок блок -> выкидываем
         if (this.freeze === 1) {
             return;
         }
-
+        // Если таргет - карта -> выполняем проверку
         if (target.parentElement === gameSection) {
-
+            // Перерисовывем карту в зависимостри от её номера и переопределяем таргет на неё
             const cardNumber = target.dataset.number;
             target.outerHTML = this.cards[cardNumber].outerHTML;
             target = gameSection.children[cardNumber];
 
+            // Анимация переворота
             target.classList.add('rotate');
             setTimeout(() => {
                 target.classList.remove('rotate');
@@ -258,110 +263,104 @@ class Game {
 
             if (!this.previousCard) {
                 this.previousCard = target;
-            } else if (this.cards[target.dataset.number].dataset.card === this.cards[this.previousCard.dataset.number].dataset.card) {
-                // target.classList.add('rotate');
-                this.freeze = 1;
-                setTimeout(() => {
-                    target.classList.add('hide');
-                    this.previousCard.classList.add('hide');
-                    this.previousCard = null;
-                    this.freeze = 0;
-                }, 1000);
-                this.cardsInScreen -= 2;
             } else {
+                // При старте мы создали два массива, в одном хронятся карты которые будут отрисовываться при перевороте,
+                // в другом рубашки. В обоих мосивах номер соответсвтует. Сравниваю по номерам, чтобы не показывать дату, которая в картах массива this.cards.
+                // Ну и при использовании outerHTML возникли проблемы ;D
                 const previousNumber = this.previousCard.dataset.number;
                 const targetNumber = target.dataset.number;
 
-                setTimeout(() => {
-                    target.classList.add('rotateBack');
-                    this.previousCard.classList.add('rotateBack');
-
-                    target.style = 'background: red';
-                    this.previousCard.style = 'background: red';
-
-                }, 700);
-                setTimeout(() => {
-                    const previousNumber = this.previousCard.dataset.number;
-                    gameSection.children[previousNumber].outerHTML = this.cardsSkirts[previousNumber].outerHTML;
-
-                    const targetNumber = target.dataset.number;
-                    gameSection.children[targetNumber].outerHTML = this.cardsSkirts[targetNumber].outerHTML;
-
-                    this.previousCard = null;
-                    this.freeze = 0;
-                }, 1000);
-
-                this.freeze = 1;
+                if (this.cards[targetNumber].dataset.card === this.cards[previousNumber].dataset.card) {
+                    this.freeze = 1;
+                    setTimeout(() => {
+                        target.classList.add('hide');
+                        this.previousCard.classList.add('hide');
+                        this.previousCard = null;
+                        this.freeze = 0;
+                    }, 1000);
+                    this.cardsInScreen -= 2;
+                } else {
+                    this.freeze = 1;
+                    setTimeout(() => {
+                        target.classList.add('rotateBack');
+                        target.style = 'background: red';
+                        this.previousCard.style = 'background: red';
+                        this.previousCard.classList.add('rotateBack');
+                    }, 700);
+                    setTimeout(() => {
+                        gameSection.children[previousNumber].outerHTML = this.cardsSkirts[previousNumber].outerHTML;
+                        gameSection.children[targetNumber].outerHTML = this.cardsSkirts[targetNumber].outerHTML;
+                        this.previousCard = null;
+                        this.freeze = 0;
+                    }, 1000);
+                }
             }
-
             // Когда закончились карты, запускается метод окончания игры
             if (this.cardsInScreen == 0) {
                 setTimeout(this.onPlayerWin.bind(this), 1500);
-                // clearTimeout(this.timer);
             }
         }
     }
 
-
-
     // Запускается, когда player выиграл
     onPlayerWin() {
         clearInterval(this.timerId);
-        this.gameSection.lastChild.remove();
+        this.gameSection.lastChild.remove(); // Удаляем таймер
 
+        // Показываем карты и заставляем крутится
         const cardArr = Array.from(this.gameSection.children);
         cardArr.forEach(e => {
             e.classList.remove('hide');
             e.classList.add('rotation');
         });
 
+        // Формируем блок с поздравлением
         const textBlock = document.createElement('div');
-        textBlock.classList.add('result');
-
         const text = 'congratulations';
-        const textArr = text.split('').reverse();
+        const textArr = text.split('');
 
-        for (let i = textArr.length; i >= 0; i--) {
+        textArr.forEach(letter => {
             const p = document.createElement('p');
-            p.textContent = textArr[i];
+            p.textContent = letter;
             p.style = 'color: #26d240';
             textBlock.appendChild(p);
-        }
+        });
 
+        textBlock.classList.add('result');
         this.gameSection.appendChild(textBlock);
     }
-
 
     // Запускается, когда player проиграл
     onPlayerLose() {
         const textBlock = document.createElement('div');
-        textBlock.classList.add('result');
-
         const text = 'HA-HA-HA';
-        const textArr = text.split('').reverse();
+        const textArr = text.split('');
 
-        for (let i = textArr.length; i >= 0; i--) {
+        textArr.forEach(letter => {
             const p = document.createElement('p');
-            p.textContent = textArr[i];
+            p.textContent = letter;
             textBlock.appendChild(p);
             p.style = 'color: red';
-        }
+        });
 
-        for (let i = 0; i<this.cards.length; i++){
-            this.gameSection.children[i].classList.add('card-shadow-lose');
-            setTimeout(()=>{
-                this.gameSection.children[i].classList.remove('card-shadow-lose');
-            },1000);
-        }
+        textBlock.classList.add('result');
         this.gameSection.appendChild(textBlock);
-    }
 
+        // Добавляем красную подсветку картам
+        const cardAmount = this.cards.length;
+        for (let i = 0; i < cardAmount; i++) {
+            this.gameSection.children[i].classList.add('card-shadow-lose');
+            setTimeout(() => {
+                this.gameSection.children[i].classList.remove('card-shadow-lose');
+            }, 1000);
+        }
+    }
 
     // Метод для сортировки карт
     shuffleCards(arr) {
         let input = arr;
 
-        for (var i = input.length - 1; i >= 0; i--) {
+        for (let i = input.length - 1; i >= 0; i--) {
             let randomIndex = Math.floor(Math.random() * (i + 1));
             let itemAtIndex = input[randomIndex];
 

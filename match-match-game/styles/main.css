@@ -5,32 +5,38 @@
   border-radius: 1%;
   border: 3px solid rgba(68, 233, 253, 0.2);
 }
-body{
+
+body {
   background-color: rgba(68, 233, 253, 0.2);
 }
+
 h1 {
   font-family: "Gretoon";
   font-size: 40px;
   color: #2bc0e5;
 }
-h1:hover{
-  text-shadow: 1px 1px 7px rgba(255,255,255,0.7),
-               -1px -1px 7px rgba(255,255,255,0.7);
+
+h1:hover {
+  text-shadow: 1px 1px 7px rgba(255, 255, 255, 0.7), -1px -1px 7px rgba(255, 255, 255, 0.7);
 }
+
 header {
   display: flex;
   justify-content: center;
   align-content: center;
 }
-header > a {
+
+header>a {
   margin: 40px auto 40px;
   display: inline-block;
 }
+
 main {
   display: flex;
   flex-wrap: wrap;
   padding: 20px 0 20px;
 }
+
 .block1, .block3 {
   display: flex;
   flex-wrap: wrap;
@@ -41,20 +47,24 @@ main {
   padding: 10px;
   position: relative;
 }
+
 /*.block1:hover, .block3:hover {
   background: #226572;
 }*/
-.content-wrapper{
+
+.content-wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.optional-cards{
+
+.optional-cards {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
 }
+
 .option-buttons {
   display: inline-block;
   font-size: 20px;
@@ -66,12 +76,14 @@ main {
   padding: 3px 8px;
   align-self: flex-start;
 }
+
 .option-buttons:hover {
   cursor: pointer;
   background: #44e9fd;
   color: #1c3947;
 }
-.option1, .option2{
+
+.option1, .option2 {
   display: inline-block;
   width: 127px;
   margin: 5px 15px;
@@ -79,31 +91,38 @@ main {
   background: pink;
   border-radius: 15%;
 }
+
 .option1, .option2 {
   cursor: pointer;
 }
-.chosen{
-  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+
+.chosen {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
 }
-.card-hover:hover{
-  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+
+.card-hover:hover {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
 }
-.option1 > img, .option2 > img {
+
+.option1>img, .option2>img {
   display: inline-block;
   width: 80%;
   margin-top: 40px;
   margin-left: 13px;
   user-select: none;
 }
+
 .option2 {
   background: linear-gradient(to bottom, #44e9fd, #1092ca);
 }
-.block2 > ol {
+
+.block2>ol {
   font-family: "NeuzeitGroT";
   font-size: 12px;
   list-style: decimal inside;
   line-height: 21px;
 }
+
 .block2 {
   display: flex;
   flex-direction: column;
@@ -115,12 +134,14 @@ main {
   width: 28%;
   margin-bottom: 25px;
 }
-.block2 > h2 {
+
+.block2>h2 {
   font-size: 18px;
   margin-bottom: 10px;
   color: #44e9fd;
 }
-.right-arrow{
+
+.right-arrow {
   position: absolute;
   top: 24px;
   right: -22px;
@@ -128,11 +149,13 @@ main {
   border-width: 100px 0 100px 20px;
   border-color: transparent transparent transparent rgba(68, 233, 253, 0.2);
 }
-.right-arrow:hover{
-  border-color: transparent transparent transparent rgba(103,221,239,0.9);
+
+.right-arrow:hover {
+  border-color: transparent transparent transparent rgba(103, 221, 239, 0.9);
   cursor: pointer;
 }
-.left-arrow{
+
+.left-arrow {
   position: absolute;
   top: 24px;
   left: -22px;
@@ -140,10 +163,12 @@ main {
   border-width: 100px 20px 100px 0;
   border-color: transparent rgba(68, 233, 253, 0.2) transparent transparent;
 }
+
 .left-arrow:hover {
-  border-color: transparent rgba(103,221,239,0.9) transparent transparent;
+  border-color: transparent rgba(103, 221, 239, 0.9) transparent transparent;
   cursor: pointer;
 }
+
 .card {
   display: flex;
   justify-content: center;
@@ -152,11 +177,13 @@ main {
   width: 100%;
   position: relative;
 }
-.card > img {
+
+.card>img {
   width: 30%;
   display: inline-block;
 }
-.card > figcaption{
+
+.card>figcaption {
   text-transform: uppercase;
   font-family: "Gretoon Highlight";
   font-size: 26px;
@@ -164,38 +191,43 @@ main {
   color: #db1c08;
   position: relative;
 }
-.card > p {
+
+.card>p {
   font-size: 14px;
   font-family: "NeuzeitGroT";
   font-weight: bold;
   color: #db2b18;
   margin-bottom: 5px;
 }
-.card:hover{
-  box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+
+.card:hover {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   cursor: pointer;
 }
-.new-game {
+
+.new-game-button {
   margin: 30px auto 0;
   background-color: #26d240;
   padding: 10px;
   border-radius: 15px;
   font-family: "NeuzeitGroT";
   font-size: 20px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   display: inline-block;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5), -1px -1px 3px rgba(0,0,0,0.5);
-  box-shadow: 1px 1px 3px rgba(255,255,255,0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), -1px -1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2);
 }
-.new-game:hover {
+
+.new-game-button:hover {
   cursor: pointer;
-  box-shadow: inset 0px 0px 10px 3px rgba(0,0,0,0.2);
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  color: rgba(255,255,255,1);
+  box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 1);
 }
-.none{
+
+.none {
   display: none;
 }
 
@@ -210,6 +242,7 @@ main {
     transform: rotate3d(0, 1, 0, 180deg);
   }
 }
+
 @keyframes rotateBack {
   0% {
     transform: rotate3d(0, 1, 0, 0deg);
@@ -221,20 +254,25 @@ main {
     transform: rotate3d(0, 1, 0, -180deg);
   }
 }
+
 .rotateBack {
   animation: rotateBack linear 0.4s;
 }
+
 .rotate {
   animation: rotate linear 0.4s;
 }
+
 .rotation {
   visibility: visible;
   background: white;
   animation: full-rotation 3s linear infinite;
 }
+
 .hide {
   visibility: hidden;
 }
+
 @keyframes full-rotation {
   0% {
     transform: rotate3d(0, 1, 0, 0deg);
@@ -264,21 +302,25 @@ main {
   width: 100%;
   justify-content: center;
 }
+
 .result p {
   font-family: "Gretoon highlight";
   font-size: 60px;
   margin: 30px 10px 0px;
 }
+
 .timer-block {
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 30px auto 0px;
 }
-.timer-block > span {
+
+.timer-block>span {
   font-family: "Gretoon highlight";
   font-size: 60px;
 }
+
 .card-shadow-lose {
-  box-shadow: 0px 0px 10px 8px rgba(167,22,1,0.5);
+  box-shadow: 0px 0px 10px 8px rgba(167, 22, 1, 0.5);
 }
