@@ -1,0 +1,272 @@
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 639px;
+  min-width: 320px;
+  margin: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  font: {
+    size: 30px;
+    family: "Arial", sans-serif;
+  }
+}
+
+%header {
+  min-width: 100%;
+  min-height: 96px;
+  text-transform: uppercase;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.header__contact {
+  @extend %flex-center;
+  align-items: center;
+  background: #fafafa;
+  color: #838383;
+  @extend %header;
+}
+
+.header__usability {
+  @extend %flex-center;
+  flex-wrap: wrap;
+  align-items: center;
+  @extend %header;
+
+  :nth-child(1) {
+    width: 24%;
+    position: relative;
+    @extend %flex-center;
+
+    &:before {
+      content: "$";
+    }
+
+    &:after {
+      content: "";
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: #ffffff transparent transparent transparent;
+    }
+  }
+
+  :nth-child(2) {
+    @extend %flex-center;
+    width: 60%;
+  }
+
+  :nth-child(3) {
+    @extend %flex-center;
+    width: 16%;
+    position: relative;
+
+    &:after {
+      content: "";
+      border: 5px solid white;
+      box-sizing: border-box;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
+
+    &:before {
+      content: "";
+      width: 11px;
+      height: 6px;
+      border: 3px solid white;
+      box-sizing: border-box;
+      border-radius: 40% 0 0 40%;
+      transform: rotateZ(-47deg);
+      position: absolute;
+      top: 27px;
+      left: 32px;
+    }
+  }
+  background: #000000;
+  color: #ffffff;
+}
+
+.header__logo {
+  min-height: 105px;
+  @extend %flex-center;
+  align-items: center;
+
+  img {
+    height: 70px;
+  }
+}
+
+.header__basket {
+  @extend %flex-center;
+  @extend %header;
+  background: #fafafa;
+  color: #838383;
+  border: 1px solid #838383;
+
+  :nth-child(1) {
+    @extend %flex-center;
+    min-height: 105px;
+    align-items: center;
+    width: 17%;
+  }
+
+  :nth-child(2) {
+    @extend %flex-center;
+    align-items: center;
+    width: 45%;
+    min-height: 105px;
+  }
+
+  :nth-child(3) {
+    @extend %flex-center;
+    align-items: center;
+    width: 24%;
+    min-height: 105px;
+  }
+
+  :nth-child(4) {
+    @extend %flex-center;
+    align-items: center;
+    width: 14%;
+    min-height: 105px;
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 3px;
+      height: 28px;
+      border-left: 3px solid #838383;
+      position: absolute;
+      left: 0;
+      top: 40px;
+    }
+  }
+}
+
+.header__menu {
+  background: #fd926d;
+
+  ul {
+    max-height: 96px;
+    visibility: hidden;
+    width: 50%;
+  }
+  @extend %header;
+  @extend %flex-center;
+  flex-wrap: wrap;
+
+  div:first-child {
+    align-self: center;
+    text-transform: uppercase;
+    width: 25%;
+  }
+
+  div:last-child {
+    align-self: center;
+  }
+}
+
+.header__slider {
+  display: none;
+}
+
+.content,
+.content__header {
+  @extend %flex-center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.content__header {
+  @extend %header;
+}
+
+.contacts--form {
+  @extend %flex-center;
+  width: 100%;
+  @extend %header;
+
+  label {
+    /* FOR DESKTOP
+     font: {
+       size: 12px;
+       family: "Arial";
+     }
+     color: #6b6b6b;
+    */
+    display: none;
+  }
+
+  :nth-child(2) {
+    font: {
+      family: "Arial", sans-serif;
+      style: italic;
+      size: 30px;
+    }
+    border: none;
+    color: #b4b4b4;
+    width: 84%;
+  }
+
+  :last-child {
+    background: #fd926d;
+    border: 1px solid #fd926d;
+    width: 16%;
+    position: relative;
+
+    &:after {
+      content: "";
+      width: 37px;
+      height: 11px;
+      border: 1px solid white;
+      background: red;
+      position: absolute;
+    }
+
+    &:before {}
+  }
+}
+
+.contacts--smm {
+  @extend %flex-center;
+  @extend %header;
+  flex-wrap: wrap;
+
+  h2 {
+    font: {
+      family: "Arial", sans-serif;
+      size: 26px;
+    }
+    width: 50%;
+    color: #6c6c6c;
+    text-transform: none;
+    align-self: center;
+  }
+  div {
+    width: 12.5%;
+    margin: 4px 0;
+  }
+  :nth-child(2){
+    background: #f7f7f7;
+  }
+  :nth-child(3){
+    background: #ededed;
+  }
+  :nth-child(4){
+    background: #f7f7f7;
+  }
+}
