@@ -5,137 +5,149 @@
   <meta charset="utf-8">
   <title>lookshop</title>
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="styles/Fonts_Desktop.css">
-  <!-- <script async src="https://use.fontawesome.com/4ea5dca589.js"></script> -->
+  <!-- <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <script async src="https://use.fontawesome.com/4ea5dca589.js"></script> -->
 </head>
 
 <body>
   <header class="header">
-    <div class="header__contact">custom care: 123 456 789</div>
-    <div class="header__usability">
-      <div>us</div>
-      <div>  my account</div>
-      <div></div>
-    </div>
-    <div class="header__logo">
-      <img src="images/logo-mobile.png" alt="">
-    </div>
-    <div class="header__basket">
-      <div></div>
-      <div></div>
-      <div>0 items</div>
-      <div>$ 0</div>
-    </div>
-    <nav class="header__menu">
-      <div>menu</div>
-      <ul>
-        <a href="#"> <li> new       </li> </a>
-        <a href="#"> <li> designers </li> </a>
-        <a href="#"> <li> women     </li> </a>
-        <a href="#"> <li> men       </li> </a>
-        <a href="#"> <li> clearence </li> </a>
-      </ul>
-      <div>-</div>
-    </nav>
+
+    <section class="header__usability">
+      <h2 class="usability--contact">custom care: 123 456 789</h2>
+      <div class="usability--account">
+        <div>us</div>
+        <div><i class="fa fa-user fa-lg" aria-hidden="true"></i>my account</div>
+        <div><i class="fa fa-search fa-lg" aria-hidden="true"></i></div>
+      </div>
+    </section>
+
+    <section class="header__navigation">
+      <h2 class="header--logo">
+        <img src="images/logo-mobile.png" alt="">
+      </h2>
+
+      <div class="header--basket">
+        <div><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i></div>
+        <div></div>
+        <div>0 items</div>
+        <div>$ 0</div>
+      </div>
+
+      <nav class="header--menu">
+        <div>menu</div>
+        <ul>
+          <a href="#"> <li> new       </li> </a>
+          <a href="#"> <li> designers </li> </a>
+          <a href="#"> <li> women     </li> </a>
+          <a href="#"> <li> men       </li> </a>
+          <a href="#"> <li> clearence </li> </a>
+        </ul>
+        <div><i class="fa fa-bars fa-lg" aria-hidden="true"></i></div>
+      </nav>
+    </section>
+
     <section class="header__slider"></section>
+
   </header>
 
   <section class="content">
 
     <header class="content__header">
+
       <div class="content__contacts">
         <form class="contacts--form" action="#" method="post">
           <label for="email">Stay updated</label>
-          <input type="email" id="email" value="Your email adress">
-          <input type="submit" value="">
+          <input type="email" id="email" value="Your email address">
+          <div><input type="submit" value=""></div>
         </form>
+
         <figure class="contacts--smm">
           <h2>Find us here</h2>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div>
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+            <i class="fa fa-pinterest fa-lg" aria-hidden="true"></i>
+          </div>
         </figure>
       </div>
+
       <figure class="main__advertising"></figure>
+
     </header>
 
     <main class="content__main">
-
       <section class="main__slider">
-        <nav class="slider--menu">
+        <nav>
           <ul>
             <a href=""> <li>what's hot?</li> </a>
             <a href=""> <li>designers</li>  </a>
             <a href=""> <li>featured</li>   </a>
             <a href=""> <li>latest</li>     </a>
           </ul>
-          <div class="slider--next"></div>
-          <div class="slider--previous"></div>
+          <div>previous</div>
+          <div>next</div>
         </nav>
-
-
         <div class="slider__block1">
+          <figure class="block1--section1">
+            <img src="images/mimosa.png" alt="#">
+            <figcaption>
+              <p>mimosa lace dress</p>
+              <p>$76.95</p>
+              <div>add to card<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
 
-            <figure class="block1--section1">
-              <img src="images/mimosa.png" alt="#">
-              <figcaption>
-                <p>momisa lace dress</p>
-                <p>$76.95</p>
-                <div>add to card</div>
-              </figcaption>
-            </figure>
+          <figure class="block1--section2">
+            <img src="" alt="#">
+            <figcaption>
+              <p>#NAME#</p>
+              <p>PRICE</p>
+              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
 
-            <figure class="block1--section2">
-              <img src="" alt="#">
-              <figcaption>
-                <p>#NAME#</p>
-                <p>PRICE</p>
-                <div>BUTTON</div>
-              </figcaption>
-            </figure>
+          <figure class="block1--section3">
+            <img src="" alt="#">
+            <figcaption>
+              <p>#NAME#</p>
+              <p>PRICE</p>
+              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
 
-            <figure class="block1--section3">
-              <img src="" alt="#">
-              <figcaption>
-                <p>#NAME#</p>
-                <p>PRICE</p>
-                <div>BUTTON</div>
-              </figcaption>
+          </figure>
 
-            </figure>
+          <figure class="block1--section4">
+            <img src="" alt="#">
+            <figcaption>
+              <p>#NAME#</p>
+              <p>PRICE</p>
+              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
 
-            <figure class="block1--section4">
-              <img src="" alt="#">
-              <figcaption>
-                <p>#NAME#</p>
-                <p>PRICE</p>
-                <div>BUTTON</div>
-              </figcaption>
-            </figure>
+          <figure class="block1--section5">
+            <img src="" alt="#">
+            <figcaption>
+              <p>#NAME#</p>
+              <p>PRICE</p>
+              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
 
-            <figure class="block1--section5">
-              <img src="" alt="#">
-              <figcaption>
-                <p>#NAME#</p>
-                <p>PRICE</p>
-                <div>BUTTON</div>
-              </figcaption>
-            </figure>
-
-            <figure class="block1--section6">
-              <img src="images/wishvitalise.png" alt="#">
-              <figcaption>
-                <p>wishvitalise dress</p>
-                <p>$96.55</p>
-                <div>add to card</div>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="slider__block2"></div>
-          <div class="slider__block3"></div>
-          <div class="slider__block4"></div>
+          <figure class="block1--section6">
+            <img src="images/wishvitalise.png" alt="#">
+            <figcaption>
+              <p>wishvitalise dress</p>
+              <p>$96.55</p>
+              <div>add to card<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="slider__block2"></div>
+        <div class="slider__block3"></div>
+        <div class="slider__block4"></div>
 
         <div class="slider--more">
           <p>load more</p>
@@ -143,85 +155,79 @@
       </section>
 
       <section class="main__stock">
-
-      <figure class="stock--picture">
-        <img src="images/50off-mobile.png" alt="Flowers">
-        <figcaption>
-          <h2>clearance</h2>
-          <p>50</p>
-          <div>
-            <p>%</p>
-            <p>off</p>
-          </div>
-        </figcaption>
-      </figure>
-
-      <div class="stock--slider">
-
-        <figure class="stock--position1">
-          <img src="images/orange-bag.png" alt="#">
+        <figure>
+          <img src="images/50off-mobile.png" alt="Flowers">
           <figcaption>
-            <p>atmos&"here shopper</p>
-            <p>$49.95</p>
-            <div>add to card</div>
+            <h2>clearance</h2>
+            <p>50</p>
+            <div>
+              <p>%</p>
+              <p>off</p>
+            </div>
           </figcaption>
         </figure>
 
-        <figure class="stock--position2">
-          <img src="images/black-bag.png" alt="#">
-          <figcaption>
-            <p>wishvitalise dress</p>
-            <p>$96.55</p>
-            <div>add to card</div>
-          </figcaption>
-        </figure>
+        <div class="stock--slider">
+          <figure>
+            <img src="images/orange-bag.png" alt="#">
+            <figcaption>
+              <p>atmos&"here shopper</p>
+              <p>$49.95</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
+          <figure>
+            <img src="images/black-bag.png" alt="#">
+            <figcaption>
+              <p>wishvitalise dress</p>
+              <p>$96.55</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
-        <figure class="stock--position3">
-          <img src="" alt="#">
-          <figcaption>
-            <p>name</p>
-            <p>price</p>
-            <div>add to card</div>
-          </figcaption>
-        </figure>
+          <figure>
+            <img src="" alt="#">
+            <figcaption>
+              <p>name</p>
+              <p>price</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
+          <figure>
+            <img src="" alt="#">
+            <figcaption>
+              <p>name</p>
+              <p>price</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
-        <figure class="stock--position4">
-          <img src="" alt="#">
-          <figcaption>
-            <p>name</p>
-            <p>price</p>
-            <div>add to card</div>
-          </figcaption>
-        </figure>
+          <figure>
+            <img src="" alt="#">
+            <figcaption>
+              <p>name</p>
+              <p>price</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
+          <figure>
+            <img src="" alt="#">
+            <figcaption>
+              <p>name</p>
+              <p>price</p>
+              <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
+            </figcaption>
+          </figure>
 
-        <figure class="stock--position5">
-          <img src="" alt="#">
-          <figcaption>
-            <p>name</p>
-            <p>price</p>
-            <div>add to card</div>
-          </figcaption>
-        </figure>
+        </div>
 
-
-        <figure class="stock--position6">
-          <img src="" alt="#">
-          <figcaption>
-            <p>name</p>
-            <p>price</p>
-            <div>add to card</div>
-          </figcaption>
-        </figure>
-
-      </div>
-
-      <div class="stock--more">
-        <p>LOAD MORE</p>
-      </div>
-    </section>
+        <div class="stock--more">
+          <p>LOAD MORE</p>
+        </div>
+      </section>
 
     </main>
 
@@ -246,10 +252,10 @@
         </article>
       </section>
     </footer>
-
   </section>
 
   <footer class="footer">
+
     <section class="footer__accept">
       <h3>we accept</h3>
       <figure class="accept__images">
@@ -266,6 +272,7 @@
         <div class="accept--image11"></div>
       </figure>
     </section>
+
     <nav class="footer__menu">
       <a href="#" class="footer--burger"></a>
       <section class="footer__menu--block1">
@@ -320,6 +327,7 @@
       </section>
       <div></div>
     </nav>
+
     <div class="footer__links">
       <div class="links">
         <a href="#">Privacy & Cookies</a>
@@ -328,8 +336,9 @@
         <a href="#">Store Directory</a>
         <a href="#">About Us</a>
       </div>
+      <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
       <div>
-        <a href="#">LookShop.com</a>
+        <a href="#">© LookShop.com</a>
         <p>All Rights Reserved</p>
       </div>
     </div>
