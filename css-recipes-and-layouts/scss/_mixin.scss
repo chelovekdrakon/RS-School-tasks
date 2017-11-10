@@ -1,0 +1,7 @@
+@mixin flex-container($align-main:center, $direction:row, $align-secondary:stretch, $align-content:stretch){
+  display: flex;
+  flex-flow: $direction wrap;
+  justify-content: $align-main;
+  align-items: $align-secondary;
+  align-content: $align-content;
+};

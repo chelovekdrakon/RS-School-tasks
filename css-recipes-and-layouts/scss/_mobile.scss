@@ -3,7 +3,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  max-width: 639px;
+  max-width: 640px;
   min-width: 320px;
   margin: auto;
 }
@@ -20,17 +20,6 @@ header {
     size: 30px;
     family: "Arial", sans-serif;
   }
-}
-
-%header {
-  min-width: 100%;
-  min-height: 96px;
-  text-transform: uppercase;
-}
-
-%flex-center {
-  display: flex;
-  justify-content: center;
 }
 
 .header__contact {
@@ -220,6 +209,7 @@ header {
     border: none;
     color: #b4b4b4;
     width: 84%;
+    background: #ededed;
   }
 
   :last-child {
@@ -227,6 +217,7 @@ header {
     border: 1px solid #fd926d;
     width: 16%;
     position: relative;
+    border-radius: 0;
 
     &:after {
       content: "";
@@ -247,6 +238,7 @@ header {
   flex-wrap: wrap;
 
   h2 {
+    @extend %flex-center;
     font: {
       family: "Arial", sans-serif;
       size: 26px;
@@ -256,17 +248,310 @@ header {
     text-transform: none;
     align-self: center;
   }
+
   div {
-    width: 12.5%;
+    width: 13.8%;
     margin: 4px 0;
   }
-  :nth-child(2){
+
+  :nth-child(2) {
     background: #f7f7f7;
   }
-  :nth-child(3){
+
+  :nth-child(3) {
     background: #ededed;
   }
-  :nth-child(4){
+
+  :nth-child(4) {
     background: #f7f7f7;
+  }
+}
+
+.content__main,
+.main__slider,
+.slider--menu {
+  @extend %flex-center;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.slider--next,
+.slider--previous {
+  display: none;
+}
+
+.main__slider {
+  background-color: #f4845d;
+}
+
+.slider--menu {
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 88px;
+  position: relative;
+
+  ul {
+    a {
+      text-decoration: none;
+    }
+
+    a:not(:first-child) {
+      display: none;
+    }
+  }
+
+  ul {
+    a:first-child {
+      @extend %header;
+      font: {
+        family: "Arial", sans-serif;
+        size: 30px;
+      }
+      color: white;
+    }
+  }
+  background-color: #f4845d;
+
+  &:after {
+    content: "";
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: white transparent transparent transparent;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.slider__block1 {
+  @include flex-container;
+
+  figure:not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  figure {
+    @include flex-container(center, column);
+    background: #f7f7f7;
+    width: 48%;
+
+    figcaption {
+      @include flex-container(center, column, center);
+      width: 100%;
+      color: #373737;
+      text-transform: uppercase;
+    }
+
+    figcaption {
+      :first-child {
+        font: {
+          family: "Arial", sans-serif;
+          size: 18px;
+        }
+      }
+
+      :nth-child(2) {
+        font: {
+          family: "Arial", sans-serif;
+          size: 27.5px;
+        }
+      }
+
+      div {
+        @include flex-container(center, row, center);
+        align-self: center;
+        width: 80%;
+        height: 66px;
+        background: $light-peach;
+        border-bottom: 7px solid #dd6b44;
+        font: {
+          family: "Helvetica Neue LT Std", sans-serif;
+          size: 20px;
+          font-weight: 300;
+        }
+        text-transform: uppercase;
+        color: white;
+      }
+    }
+  }
+}
+
+.slider__block2,
+.slider__block3,
+.slider_block4 {
+  display: none;
+}
+
+.slider--more {
+  min-height: 120px;
+  width: 100%;
+  @include flex-container(center, row, center);
+
+  p {
+    @include flex-container(center, row, center);
+    background: black;
+    min-height: 60px;
+    width: 34%;
+    font: {
+      family: "Helvetica Neue LT Std", sans-serif;
+      size: 20px;
+      weight: 300;
+    }
+    text-transform: uppercase;
+    color: white;
+  }
+}
+
+.main__stock,
+.stock--slider {
+  width: 100%;
+  @include flex-container(center, column, center);
+}
+
+.stock--picture {
+  position: relative;
+  @include flex-container(center, row, center);
+  width: 100%;
+
+  figcaption {
+    position: absolute;
+    font: {
+      family: "a_Empirial", sans-serif;
+      size: 36px;
+    }
+    color: white;
+
+    div {
+      @include flex-container(center, column, center);
+      position: absolute;
+      right: 0;
+      top: 43px;
+    }
+
+    > p:nth-child(2) {
+      font-size: 88px;
+    }
+  }
+
+  &:after {
+    content: "";
+    width: 35%;
+    height: 1px;
+    background: #d8d8d8;
+    position: absolute;
+    right: 0;
+  }
+
+  &:before {
+    content: "";
+    width: 35%;
+    height: 1px;
+    background: #d8d8d8;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.stock--slider {
+  @include flex-container(center, row, center);
+
+  figure:not(:nth-child(1)):not(:nth-child(2)) {
+    display: none;
+  }
+
+  figure {
+    @include flex-container(center, column, center);
+
+    figcaption {
+      @include flex-container(center, column, center);
+      text-transform: uppercase;
+      width: 100%;
+      background: #f7f7f7;
+
+      :first-child {
+        font: {
+          family: "Arial", sans-serif;
+          size: 18px;
+        }
+      }
+
+      :nth-child(2) {
+        font: {
+          family: "Arial", sans-serif;
+          size: 28px;
+        }
+      }
+
+      div {
+        @include flex-container(center, row, center);
+        align-self: center;
+        width: 80%;
+        height: 66px;
+        background: $light-peach;
+        border-bottom: 7px solid #dd6b44;
+        font: {
+          family: "Helvetica Neue LT Std", sans-serif;
+          size: 20px;
+          weight: 300;
+        }
+        text-transform: uppercase;
+        color: white;
+      }
+    }
+  }
+}
+
+.stock--more {
+  min-height: 120px;
+  width: 100%;
+  @include flex-container(center, row, center);
+
+  p {
+    @include flex-container(center, row, center);
+    background: black;
+    min-height: 60px;
+    width: 34%;
+    font: {
+      family: "Helvetica Neue LT Std", sans-serif;
+      size: 20px;
+      weight: 300;
+    }
+    text-transform: uppercase;
+    color: white;
+  }
+}
+
+.footer {
+  @include flex-container(center, column, center);
+}
+
+.content__footer,
+.footer__accept,
+.footer__menu {
+  display: none;
+}
+
+.footer__links {
+  @include flex-container(space-around, row, center);
+  width: 100%;
+
+  > div:first-child {
+    display: none;
+  }
+
+  > div:last-child {
+    @include flex-container(center, column, flex-end);
+
+    color: #8d8d8d;
+    font: {
+      family: "Arial", sans-serif;
+      size: 26px;
+    }
+
+    a {
+      color: #8d8d8d;
+      text-decoration: none;
+    }
   }
 }
