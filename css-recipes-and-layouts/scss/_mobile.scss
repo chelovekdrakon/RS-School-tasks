@@ -5,8 +5,6 @@ body {
   flex-direction: column;
   max-width: 640px;
   min-width: 320px;
-  // margin: auto;
-  // border: 1px solid lighten(black, 60%);
 }
 
 * {
@@ -14,48 +12,50 @@ body {
 }
 
 header {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  @include flex-box(stretch, column, stretch, nowrap);
   font: {
     size: 30px;
     family: "Arial", sans-serif;
   }
 }
-
+/* fo all headers */
 .header__usability {
-  @include flex-container(center, column, center);
-  margin-bottom: 12px;
-}
+  @include flex-box(stretch, column, stretch, nowrap);
 
-.usability--contact {
-  @include flex-container(center, row, center);
-  align-items: center;
-  background: #fafafa;
-  color: #838383;
-  @extend %header;
+  > h2 {
+    @include flex-box(center, row, center);
+    background: #fafafa;
+    color: #838383;
+    text-transform: uppercase;
+    padding: 5.7% 0 5.2%;
+
+    &:hover {
+      color: white;
+      background-color: grey;
+      cursor: pointer;
+    }
+  }
 }
 
 .usability--account {
-  @include flex-container(space-around, row, stretch);
+  @include flex-box(space-around, row, stretch);
   background: #000000;
   color: #ffffff;
-  @extend %header;
+  text-transform: uppercase;
 
   > div {
-    @include flex-container(center, row, center);
+    @include flex-box(center, row, center, nowrap);
   }
 
   > div:nth-child(1) {
     position: relative;
     width: 24%;
-    padding-top: 7px;
-    padding-right: 0px;
+    padding: 5.7% 1% 5.5% 0;
 
     &:before {
       content: "$";
       position: absolute;
-      left: 30px;
+      left: 19%;
     }
 
     &:after {
@@ -64,8 +64,17 @@ header {
       border-width: 10px 10px 0 10px;
       border-color: #ffffff transparent transparent transparent;
       position: absolute;
-      right: 25px;
-      top: 45px;
+      right: 17%;
+      top: 45%;
+    }
+
+    &:hover:after {
+      border-color: grey transparent transparent transparent;
+    }
+
+    &:hover {
+      color: grey;
+      cursor: pointer;
     }
   }
 
@@ -73,13 +82,19 @@ header {
     width: 60.5%;
     border-left: 2px solid #444444;
     border-right: 2px solid #444444;
-    padding-top: 7px;
-    padding-right: 7px;
+    padding-right: 2%;
+    letter-spacing: -0.3px;
+    padding-top: 0.8%;
 
     i {
       color: grey;
       margin-right: 25px;
-    margin-left: 17px;
+      margin-left: 17px;
+    }
+
+    &:hover {
+      color: grey;
+      cursor: pointer;
     }
   }
 
@@ -90,88 +105,113 @@ header {
     i {
       transform: rotateZ(90deg);
     }
+
+    &:hover {
+      color: grey;
+      cursor: pointer;
+    }
   }
 }
 
 .header__navigation {
-  @include flex-container(center, column, stretch);
-  margin: auto 15px;
+  @include flex-box(center, column, stretch, nowrap);
+  margin: 0 2%;
 
-  > * {
-    margin: 11px 0;
-  }
-}
+  > h2 {
+    @include flex-box(center, column, center);
+    padding: 9.8% 21% 9%;
 
-.header--logo {
-  min-height: 105px;
-  @include flex-container(center, column, center);
-  margin: 37px 0 35px;
+    img {
+      width: 100%;
+      height: auto;
+    }
 
-  img {
-    height: 88px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
 .header--basket {
-  @extend %header;
-  @include flex-container(center, row, stretch);
+  @include flex-box(space-between, row, stretch);
   background: #fafafa;
-  color: #838383;
   border: 1px solid #d6d6d6;
+  color: #838383;
+  text-transform: uppercase;
+  padding: 1% 5%;
+
+  &:hover {
+    cursor: default;
+  }
 
   :nth-child(1) {
-    @include flex-container(center, row, center);
-    width: 20%;
+    @include flex-box(flex-start, row, center);
+    flex-grow: 1;
+    padding: 5% 0 3.5%;
+
+    &:hover {
+      cursor: pointer;
+      background: grey;
+      color: white;
+    }
   }
 
   :nth-child(2) {
-    @include flex-container(center, row, center);
-    width: 40%;
+    @include flex-box(flex-end, row, center);
+    flex-grow: 2;
+    padding-right: 7%;
+
+    &:hover {
+      cursor: pointer;
+      background: grey;
+      color: white;
+    }
   }
 
   :nth-child(3) {
-    @include flex-container(center, row, center);
-    width: 24%;
-  }
-
-  :nth-child(4) {
-    @include flex-container(center, row, center);
-    width: 16%;
+    @include flex-box(flex-end, row, center);
     position: relative;
+    flex-grow: 0;
 
     &:before {
       content: "";
-      width: 3px;
-      height: 28px;
+      width: 3%;
+      height: 34%;
       border-left: 2px solid #838383;
       position: absolute;
-      left: 5px;
-      top: 37px;
+      left: -51%;
+      top: 37%;
     }
   }
 }
 
 .header--menu {
-  @include flex-container(space-around, row, stretch);
+  @include flex-box(space-between, row, stretch);
   background: #fd926d;
   color: white;
-  padding: 0px 10px;
+  padding: 6% 4.6% 5.3%;
+  margin-top: 3.7%;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: default;
+  }
 
   ul {
-    max-height: 96px;
-    visibility: hidden;
-    width: 50%;
+    display: none;
   }
-  @extend %header;
 
-
-  div:first-child {
-    @include flex-container(flex-start, row, center);
-    width: 25%;
+  > h2 {
+    @include flex-box(flex-start, row, center);
   }
 
   div:last-child {
-    @include flex-container(flex-end, row, center);
+    @include flex-box(flex-end, row, center);
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
   }
 }
 
@@ -180,30 +220,21 @@ header {
 }
 
 .content {
-  @include flex-container(center, column, center);
+  @include flex-box(stretch, column, stretch, nowrap);
 }
 
 .content__header {
-  @include flex-container(center, column, stretch);
-  width: 100%;
-}
-
-.content__contacts {
-  margin: 15px 15px;
+  padding: 0 2.3%;
+  margin: 4% 0 0.2%;
+  @include flex-box(stretch, row, center, wrap);
 }
 
 .contacts--form {
-  @include flex-container(center, row, stretch);
-  @extend %header;
+  @include flex-box(stretch, row, stretch, nowrap);
+  text-transform: uppercase;
+  width: 100%;
 
   > label {
-    /* FOR DESKTOP
-     font: {
-       size: 12px;
-       family: "Arial";
-     }
-     color: #6b6b6b;
-    */
     display: none;
   }
 
@@ -215,109 +246,144 @@ header {
     }
     border: none;
     color: #b4b4b4;
-    width: 84%;
+    flex-grow: 5;
     background: #ededed;
-    padding-left: 24px;
-    padding-top: 7px;
+    padding: 5.3% 4% 4.7%;
+  }
+
+  > div {
+    @include flex-box(center, row, stretch);
+    position: relative;
+    flex-grow: 2.6;
+    border-bottom: 7px solid #dd6b44;
+
+    &:after {
+      content: "";
+      width: 39%;
+      height: 12%;
+      background: white;
+      position: absolute;
+      left: 31%;
+      top: 45%;
+    }
+
+    &:before {
+      content: "";
+      width: 11%;
+      height: 42%;
+      background: white;
+      position: absolute;
+      left: 45%;
+      top: 30%;
+      z-index: 1;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      cursor: pointer;
+      background-color: grey;
+    }
   }
 
   > div > input {
     background: #fd926d;
     border: none;
     width: 100%;
-    height: 100%;
     position: relative;
     border-radius: 0;
-  }
 
-  > div {
-    position: relative;
-    width: 16%;
-    border-bottom: 7px solid #dd6b44;
-
-    &:after {
-      content: "";
-      width: 37px;
-      height: 11px;
-      background: white;
-      position: absolute;
-      left: 33px;
-      top: 43px;
-    }
-
-    &:before {
-      content: "";
-      width: 11px;
-      height: 37px;
-      background: white;
-      position: absolute;
-      left: 45px;
-      top: 29px;
-      z-index: 1;
+    &:hover {
+      cursor: pointer;
     }
   }
 }
 
 .contacts--smm {
-  @include flex-container(center, row, stretch);
-  @extend %header;
-  margin: 22px 0 6px;
+  @include flex-box(stretch, row, center, nowrap);
+  text-transform: uppercase;
+  width: 100%;
+  padding: 4% 14% 4% 13%;
 
   > h2 {
-    @include flex-container(flex-start, row, center);
-    width: 29%;
-    margin-left: -7px;
+    @include flex-box(flex-start, row, center);
+    width: 40%;
     font: {
       family: "Arial", sans-serif;
       size: 26px;
     }
     color: #6c6c6c;
     text-transform: none;
+    cursor: default;
   }
 
   > div {
-    margin: 4px 0;
-    @include flex-container(space-between, row, stretch);
+    @include flex-box(stretch, row, stretch, nowrap);
     color: #6b6b6b;
-    width: 44%;
+    width: 60%;
 
-    >i:nth-child(1) {
-        background: #f7f7f7;
-        @include flex-container(center, row, center);
-        width: 33.3%;
-      }
+    &:hover {
+      cursor: pointer;
+    }
 
-    >i:nth-child(2) {
-        background: #ededed;
-        @include flex-container(center, row, center);
-        width: 33.3%;
-      }
+    > i:nth-child(1) {
+      @include flex-box(center, row, center);
+      padding: 10.9% 0;
+      width: 33.3%;
+      background: #f7f7f7;
 
-    >i:nth-child(3) {
-        background: #f7f7f7;
-        @include flex-container(center, row, center);
-        width: 33.3%;
+      &:hover {
+        background-color: $light-peach;
+        color: white;
       }
+    }
+
+    > i:nth-child(2) {
+      @include flex-box(center, row, center);
+      background: #ededed;
+      width: 33.3%;
+
+      &:hover {
+        background-color: $light-peach;
+        color: white;
+      }
+    }
+
+    > i:nth-child(3) {
+      @include flex-box(center, row, center);
+      background: #f7f7f7;
+      width: 33.3%;
+
+      &:hover {
+        background-color: $light-peach;
+        color: white;
+      }
+    }
   }
 }
 
 .content__main {
-  @include flex-container(stretch, column, center);
-  width: 100%;
+  @include flex-box(stretch, column, center, nowrap);
 }
 
 .main__slider {
-  @include flex-container(center, column, center);
-  background: $light-peach;
+  @include flex-box(center, column, center, nowrap);
   width: 100%;
+  background: $light-peach;
 
   > nav {
-    @include flex-container(flex-start, row, center);
+    @include flex-box(flex-start, row, center);
     background-color: #f4845d;
     width: 100%;
-    min-height: 89px;
     position: relative;
-    padding: 0 13px;
+    padding: 5% 2% 4.2%;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+      border-color: grey;
+      border: 1px solid grey;
+    }
 
     > div {
       display: none;
@@ -331,13 +397,15 @@ header {
       }
 
       a {
-        @extend %header;
+        // @extend %header;
+        width: 100%;
+        text-transform: uppercase;
         text-decoration: none;
+        color: inherit;
         font: {
           family: "Arial", sans-serif;
           size: 30px;
         }
-        color: white;
       }
     }
 
@@ -347,13 +415,18 @@ header {
       border-width: 10px 10px 0 10px;
       border-color: white transparent transparent transparent;
       position: absolute;
-      right: 30px;
+      right: 4.8%;
+      top: 44%;
+    }
+
+    &:hover:after {
+      border-color: grey transparent transparent transparent;
     }
   }
 }
 
 .slider__block1 {
-  @include flex-container;
+  @include flex-box (center, row, center, nowrap);
   background: #fd926d;
   width: 100%;
 
@@ -362,17 +435,20 @@ header {
   }
 
   figure {
-    @include flex-container(center, column);
+    @include flex-box(center, column, stretch, nowrap);
     background: white;
-    margin: 33px 16px 0;
+    margin: 5% 2.6% 0.9%;
+
+    img {
+      max-width: 100%;
+    }
 
     figcaption {
-      @include flex-container(space-around, column, center);
-      min-height: 160px;
+      @include flex-box(stretch, column, center, nowrap);
       color: #373737;
       background: #f7f7f7;
       text-transform: uppercase;
-      padding-bottom: 10px;
+      padding: 4% 0 6%;
 
       > :first-child {
         font: {
@@ -382,6 +458,7 @@ header {
       }
 
       > :nth-child(2) {
+        padding: 4%;
         font: {
           family: "Arial", sans-serif;
           size: 27.5px;
@@ -389,14 +466,13 @@ header {
       }
 
       > div {
-        @include flex-container(center, row, center);
+        @include flex-box(center, row, center);
         align-self: center;
         width: 80%;
-        height: 66px;
         background: $light-peach;
         border-bottom: 7px solid #dd6b44;
-        padding-left: 10px;
-        padding-top: 8px;
+        margin-top: 1%;
+        padding: 7% 1% 5% 5%;
         font: {
           family: "Helvetica Neue LT Std", sans-serif;
           size: 20px;
@@ -406,10 +482,13 @@ header {
         color: white;
 
         i {
-          margin-left: 23px;
-          margin-bottom: 5px;
+          margin-left: 10%;
+          margin-bottom: 3%;
         }
       }
+    }
+    &:hover {
+      border: 10px solid $peach;
     }
   }
 }
@@ -421,18 +500,16 @@ header {
 }
 
 .slider--more {
-  min-height: 117px;
   width: 100%;
   background: $light-peach;
-  @include flex-container(center, row, center);
+  @include flex-box(center, row, center);
+  padding: 3.3% 0 5%;
 
   p {
-    @include flex-container(center, row, center);
+    @include flex-box(center, row, center);
     background: black;
-    min-height: 60px;
     width: 34.5%;
-    padding-top: 3px;
-    padding-right: 5px;
+    padding: 3.7% 1% 2.6% 0;
     font: {
       family: "Helvetica Neue LT Std", sans-serif;
       size: 20px;
@@ -444,19 +521,22 @@ header {
 }
 
 .main__stock {
-  @include flex-container(center, column, center);
+  @include flex-box(center, column, center);
   width: 100%;
 
   > figure {
-    @include flex-container(center, row, center);
+    @include flex-box(center, row, center);
     position: relative;
     width: 100%;
-    margin-top: 25px;
+    margin-top: 4%;
+
+    > img {
+      width: 24%;
+    }
 
     figcaption {
-      @include flex-container(center, row, center);
+      @include flex-box(center, row, center);
       position: absolute;
-      height: 65%;
       font: {
         family: "a_Empirial", sans-serif;
         size: 36px;
@@ -464,12 +544,15 @@ header {
       }
       color: white;
 
-      h2{
-        @include flex-container(center, row, center);
+      > h2 {
+        @include flex-box(center, row, center);
         width: 100%;
+        padding-top: 10%;
+        padding-right: 4%;
       }
+
       div {
-        @include flex-container(center, column, flex-start);
+        @include flex-box(center, column, flex-start);
       }
 
       > p:nth-child(2) {
@@ -487,6 +570,7 @@ header {
       background: #d8d8d8;
       position: absolute;
       right: 0;
+      top: 51%;
     }
 
     &:before {
@@ -496,30 +580,35 @@ header {
       background: #d8d8d8;
       position: absolute;
       left: 0;
+      top: 51%;
     }
   }
 }
 
 .stock--slider {
-  @include flex-container(center, row, center);
+  @include flex-box(center, row, stretch, nowrap);
+  width: 100%;
 
   figure:not(:nth-child(1)):not(:nth-child(2)) {
     display: none;
   }
 
   figure {
-    @include flex-container(center, column, center);
-    margin: -4px 16px;
+    @include flex-box(center, column, stretch, nowrap);
+    background: white;
+    margin: 0 2.6%;
+    max-width: 50%;
+
+    img {
+      max-width: 100%;
+    }
 
     figcaption {
-      @include flex-container(space-around, column, center);
-      min-height: 160px;
+      @include flex-box(stretch, column, center, nowrap);
       color: #373737;
       background: #f7f7f7;
       text-transform: uppercase;
-      padding-bottom: 10px;
-      padding-top: 4px;
-      width: 100%;
+      padding: 2% 0 6%;
 
       > :first-child {
         font: {
@@ -529,6 +618,7 @@ header {
       }
 
       > :nth-child(2) {
+        padding: 4%;
         font: {
           family: "Arial", sans-serif;
           size: 27.5px;
@@ -536,14 +626,13 @@ header {
       }
 
       > div {
-        @include flex-container(center, row, center);
+        @include flex-box(center, row, center);
         align-self: center;
         width: 80%;
-        height: 66px;
         background: $light-peach;
         border-bottom: 7px solid #dd6b44;
-        padding-left: 10px;
-        padding-top: 8px;
+        margin-top: 1%;
+        padding: 7% 1% 5% 5%;
         font: {
           family: "Helvetica Neue LT Std", sans-serif;
           size: 20px;
@@ -562,17 +651,15 @@ header {
 }
 
 .stock--more {
-  min-height: 120px;
   width: 100%;
-  @include flex-container(center, row, center);
+  @include flex-box(center, row, center);
+  padding: 4.5% 0 5.6%;
 
   p {
-    @include flex-container(center, row, center);
+    @include flex-box(center, row, center);
     background: black;
-    min-height: 60px;
     width: 34.5%;
-    padding-top: 10px;
-    padding-right: 5px;
+    padding: 3.7% 1% 2.6% 0;
     font: {
       family: "Helvetica Neue LT Std", sans-serif;
       size: 20px;
@@ -584,10 +671,9 @@ header {
 }
 
 .footer {
-  @include flex-container(center, column, center);
-  padding: 0 15px;
+  @include flex-box(center, column, center);
+  padding: 0 2.5%;
   background: black;
-  margin-top: 8px;
 }
 
 .content__footer,
@@ -597,10 +683,9 @@ header {
 }
 
 .footer__links {
-  @include flex-container(center, column, flex-end);
+  @include flex-box(center, column, flex-end);
   width: 100%;
-  min-height: 108px;
-  padding: 0 15px;
+  padding: 8.7% 2.2%;
   position: relative;
 
   > i {
@@ -614,9 +699,7 @@ header {
   }
 
   > div:last-child {
-    @include flex-container(space-around, column, flex-end);
-    min-height: 60px;
-
+    @include flex-box(space-around, column, flex-end, nowrap);
     color: #8d8d8d;
     font: {
       family: "Arial", sans-serif;
