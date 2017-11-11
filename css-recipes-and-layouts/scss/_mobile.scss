@@ -392,7 +392,7 @@ header {
     ul {
       margin: auto 15px;
 
-      a:not(:first-child) {
+      > li:not(:first-child) {
         display: none;
       }
 
@@ -455,6 +455,10 @@ header {
           family: "Arial", sans-serif;
           size: 18px;
         }
+
+        &:hover{
+          cursor: default;
+        }
       }
 
       > :nth-child(2) {
@@ -462,6 +466,10 @@ header {
         font: {
           family: "Arial", sans-serif;
           size: 27.5px;
+        }
+
+        &:hover{
+          cursor: default;
         }
       }
 
@@ -485,10 +493,12 @@ header {
           margin-left: 10%;
           margin-bottom: 3%;
         }
+
+        &:hover {
+          color: grey;
+          cursor: pointer;
+        }
       }
-    }
-    &:hover {
-      border: 10px solid $peach;
     }
   }
 }
@@ -517,6 +527,11 @@ header {
     }
     text-transform: uppercase;
     color: white;
+
+    &:hover {
+      color: grey;
+      cursor: pointer;
+    }
   }
 }
 
@@ -555,6 +570,11 @@ header {
         @include flex-box(center, column, flex-start);
       }
 
+      &:hover {
+        color: $peach;
+        cursor: pointer;
+      }
+
       > p:nth-child(2) {
         font: {
           family: "a_Empirial", sans-serif;
@@ -570,7 +590,6 @@ header {
       background: #d8d8d8;
       position: absolute;
       right: 0;
-      top: 51%;
     }
 
     &:before {
@@ -580,7 +599,6 @@ header {
       background: #d8d8d8;
       position: absolute;
       left: 0;
-      top: 51%;
     }
   }
 }
@@ -615,6 +633,10 @@ header {
           family: "Arial", sans-serif;
           size: 18px;
         }
+
+        &:hover{
+          cursor: default;
+        }
       }
 
       > :nth-child(2) {
@@ -622,6 +644,10 @@ header {
         font: {
           family: "Arial", sans-serif;
           size: 27.5px;
+        }
+
+        &:hover{
+          cursor: default;
         }
       }
 
@@ -645,6 +671,11 @@ header {
           margin-left: 23px;
           margin-bottom: 5px;
         }
+
+        &:hover{
+          cursor: pointer;
+          color: grey;
+        }
       }
     }
   }
@@ -667,6 +698,11 @@ header {
     }
     text-transform: uppercase;
     color: white;
+
+    &:hover{
+      cursor: pointer;
+      color: grey;
+    }
   }
 }
 
@@ -692,6 +728,11 @@ header {
     align-self: flex-start;
     color: white;
     position: absolute;
+
+    &:hover{
+      cursor: pointer;
+      color: grey;
+    }
   }
 
   > div:first-child {

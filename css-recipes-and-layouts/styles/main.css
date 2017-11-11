@@ -387,7 +387,7 @@ header {
       display: none; }
     .main__slider > nav ul {
       margin: auto 15px; }
-      .main__slider > nav ul a:not(:first-child) {
+      .main__slider > nav ul > li:not(:first-child) {
         display: none; }
       .main__slider > nav ul a {
         width: 100%;
@@ -437,10 +437,14 @@ header {
       .slider__block1 figure figcaption > :first-child {
         font-family: "Arial", sans-serif;
         font-size: 18px; }
+        .slider__block1 figure figcaption > :first-child:hover {
+          cursor: default; }
       .slider__block1 figure figcaption > :nth-child(2) {
         padding: 4%;
         font-family: "Arial", sans-serif;
         font-size: 27.5px; }
+        .slider__block1 figure figcaption > :nth-child(2):hover {
+          cursor: default; }
       .slider__block1 figure figcaption > div {
         display: flex;
         flex-flow: row wrap;
@@ -460,8 +464,9 @@ header {
         .slider__block1 figure figcaption > div i {
           margin-left: 10%;
           margin-bottom: 3%; }
-    .slider__block1 figure:hover {
-      border: 10px solid #f4845d; }
+        .slider__block1 figure figcaption > div:hover {
+          color: grey;
+          cursor: pointer; }
 
 .slider__block2,
 .slider__block3,
@@ -489,6 +494,9 @@ header {
     font-weight: 300;
     text-transform: uppercase;
     color: white; }
+    .slider--more p:hover {
+      color: grey;
+      cursor: pointer; }
 
 .main__stock {
   display: flex;
@@ -529,6 +537,9 @@ header {
         flex-flow: column wrap;
         justify-content: center;
         align-items: flex-start; }
+      .main__stock > figure figcaption:hover {
+        color: #f4845d;
+        cursor: pointer; }
       .main__stock > figure figcaption > p:nth-child(2) {
         font-family: "a_Empirial", sans-serif;
         font-size: 81px; }
@@ -538,16 +549,14 @@ header {
       height: 1px;
       background: #d8d8d8;
       position: absolute;
-      right: 0;
-      top: 51%; }
+      right: 0; }
     .main__stock > figure:before {
       content: "";
       width: 35%;
       height: 1px;
       background: #d8d8d8;
       position: absolute;
-      left: 0;
-      top: 51%; }
+      left: 0; }
 
 .stock--slider {
   display: flex;
@@ -579,10 +588,14 @@ header {
       .stock--slider figure figcaption > :first-child {
         font-family: "Arial", sans-serif;
         font-size: 18px; }
+        .stock--slider figure figcaption > :first-child:hover {
+          cursor: default; }
       .stock--slider figure figcaption > :nth-child(2) {
         padding: 4%;
         font-family: "Arial", sans-serif;
         font-size: 27.5px; }
+        .stock--slider figure figcaption > :nth-child(2):hover {
+          cursor: default; }
       .stock--slider figure figcaption > div {
         display: flex;
         flex-flow: row wrap;
@@ -602,6 +615,9 @@ header {
         .stock--slider figure figcaption > div i {
           margin-left: 23px;
           margin-bottom: 5px; }
+        .stock--slider figure figcaption > div:hover {
+          cursor: pointer;
+          color: grey; }
 
 .stock--more {
   width: 100%;
@@ -623,6 +639,9 @@ header {
     font-weight: 300;
     text-transform: uppercase;
     color: white; }
+    .stock--more p:hover {
+      cursor: pointer;
+      color: grey; }
 
 .footer {
   display: flex;
@@ -649,6 +668,9 @@ header {
     align-self: flex-start;
     color: white;
     position: absolute; }
+    .footer__links > i:hover {
+      cursor: pointer;
+      color: grey; }
   .footer__links > div:first-child {
     display: none; }
   .footer__links > div:last-child {
