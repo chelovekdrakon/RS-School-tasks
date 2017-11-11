@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Match-Match-Game</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/fonts.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  <section class="game">
+    <header>
+      <a href="index.html">
+        <h1>Stickers Match-match</h1> </a>
+    </header>
+    <main>
+      <div class="game-panel" id="game-panel">
+        <section class="block-1" id="skirts">
+          <h2 class="option-buttons">Card Skirt</h2>
+          <figure class="optional-cards-panel">
+            <div class="option-2 chosen" id="skirt-2"></div>
+            <div class="option-1" id="skirt-1">
+              <img src="images/cry.png" alt="skirt of something crying">
+            </div>
+          </figure>
+        </section>
+        <section class="block-2">
+          <h2>to Play</h2>
+          <ol>
+            <li>Select 2 cards to try to match the pictures</li>
+            <li>If you match pictures you can go again</li>
+            <li>If they don’t match it means HA-HA-HA</li>
+            <li>The player that finds all pairs win!</li>
+            <li>Have fun!</li>
+          </ol>
+        </section>
+        <section class="block-3" id="difficulty">
+          <div class="right-arrow" id="diff-higher"></div>
+          <h2 class="option-buttons diff">Difficulty</h2>
+          <div class="left-arrow" id="diff-lower"></div>
+          <figure class="card" id="hard">
+            <figcaption>hard as hell</figcaption>
+            <p>12 cards</p>
+            <img src="images/hard.png" alt="">
+          </figure>
+        </section>
+      </div>
+      <div class="new-game-button" id="start-button">
+        <p>New Game</p>
+      </div>
+    </main>
+  </section>
+</body>
+<script type="text/javascript" src="scripts/game.js"></script>
+
+</html>

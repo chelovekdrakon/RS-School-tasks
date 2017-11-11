@@ -1,0 +1,326 @@
+.game {
+  background-color: #12262f;
+  width: 1020px;
+  margin: 50px auto;
+  border-radius: 1%;
+  border: 3px solid rgba(68, 233, 253, 0.2);
+}
+
+body {
+  background-color: rgba(68, 233, 253, 0.2);
+}
+
+h1 {
+  font-family: "Gretoon";
+  font-size: 40px;
+  color: #2bc0e5;
+}
+
+h1:hover {
+  text-shadow: 1px 1px 7px rgba(255, 255, 255, 0.7), -1px -1px 7px rgba(255, 255, 255, 0.7);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+header>a {
+  margin: 40px auto 40px;
+  display: inline-block;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0 20px;
+}
+
+.block-1, .block-3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 31%;
+  background-color: rgba(68, 233, 253, 0.2);
+  border-radius: 10%;
+  padding: 10px;
+  position: relative;
+}
+
+/*.block-1:hover, .block-3:hover {
+  background: #226572;
+}*/
+
+.game-panel {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.optional-cards-panel {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.option-buttons {
+  display: inline-block;
+  font-size: 20px;
+  font-family: "NeuzeitGroT";
+  font-weight: bold;
+  color: #67ddef;
+  border: 1px solid #67ddef;
+  border-radius: 15px;
+  padding: 3px 8px;
+  align-self: flex-start;
+}
+
+.option-buttons:hover {
+  cursor: pointer;
+  background: #44e9fd;
+  color: #1c3947;
+}
+
+.option-1, .option-2 {
+  display: inline-block;
+  width: 127px;
+  margin: 5px 15px;
+  height: 180px;
+  background: pink;
+  border-radius: 15%;
+}
+
+.option-1, .option-2 {
+  cursor: pointer;
+}
+
+.chosen {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card-hover:hover {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
+}
+
+.option-1>img, .option-2>img {
+  display: inline-block;
+  width: 80%;
+  margin-top: 40px;
+  margin-left: 13px;
+  user-select: none;
+}
+
+.option-2 {
+  background: linear-gradient(to bottom, #44e9fd, #1092ca);
+}
+
+.block-2>ol {
+  font-family: "NeuzeitGroT";
+  font-size: 12px;
+  list-style: decimal inside;
+  line-height: 21px;
+}
+
+.block-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  font-family: "NeuzeitGroT";
+  width: 28%;
+  margin-bottom: 25px;
+}
+
+.block-2>h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #44e9fd;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 24px;
+  right: -22px;
+  border-style: solid;
+  border-width: 100px 0 100px 20px;
+  border-color: transparent transparent transparent rgba(68, 233, 253, 0.2);
+}
+
+.right-arrow:hover {
+  border-color: transparent transparent transparent rgba(103, 221, 239, 0.9);
+  cursor: pointer;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 24px;
+  left: -22px;
+  border-style: solid;
+  border-width: 100px 20px 100px 0;
+  border-color: transparent rgba(68, 233, 253, 0.2) transparent transparent;
+}
+
+.left-arrow:hover {
+  border-color: transparent rgba(103, 221, 239, 0.9) transparent transparent;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.card>img {
+  width: 30%;
+  display: inline-block;
+}
+
+.card>figcaption {
+  text-transform: uppercase;
+  font-family: "Gretoon Highlight";
+  font-size: 26px;
+  display: inline-block;
+  color: #db1c08;
+  position: relative;
+}
+
+.card>p {
+  font-size: 14px;
+  font-family: "NeuzeitGroT";
+  font-weight: bold;
+  color: #db2b18;
+  margin-bottom: 5px;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.new-game-button {
+  margin: 30px auto 0;
+  background-color: #26d240;
+  padding: 10px;
+  border-radius: 15px;
+  font-family: "NeuzeitGroT";
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), -1px -1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+.new-game-button:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 1);
+}
+
+.none {
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+@keyframes rotateBack {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, -90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, -180deg);
+  }
+}
+
+.rotateBack {
+  animation: rotateBack linear 0.4s;
+}
+
+.rotate {
+  animation: rotate linear 0.4s;
+}
+
+.rotation {
+  visibility: visible;
+  background: white;
+  animation: full-rotation 3s linear infinite;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+@keyframes full-rotation {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  20% {
+    transform: rotate3d(0, 1, 0, 60deg);
+  }
+  40% {
+    transform: rotate3d(0, 1, 0, 120deg);
+  }
+  60% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  80% {
+    transform: rotate3d(0, 1, 0, 240deg);
+  }
+  90% {
+    transform: rotate3d(0, 1, 0, 300deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}
+
+.result {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.result p {
+  font-family: "Gretoon highlight";
+  font-size: 60px;
+  margin: 30px 10px 0px;
+}
+
+.timer-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 0px;
+}
+
+.timer-block>span {
+  font-family: "Gretoon highlight";
+  font-size: 60px;
+}
+
+.card-shadow-lose {
+  box-shadow: 0px 0px 10px 8px rgba(167, 22, 1, 0.5);
+}
