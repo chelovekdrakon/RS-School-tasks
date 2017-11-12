@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="styles/Fonts_Desktop.css">
-  <!-- <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <script async src="https://use.fontawesome.com/4ea5dca589.js"></script> -->
 </head>
 
 <body>
@@ -29,13 +27,13 @@
         <img src="images/logo-mobile.png" alt="">
       </h2>
 
-      <div class="header--basket">
+      <div class="header__navigation--basket">
         <div><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i></div>
         <div>0 items</div>
         <div>$ 0</div>
       </div>
 
-      <nav class="header--menu">
+      <nav class="header__navigation--menu">
         <h2>menu</h2>
         <ul>
           <li><a href="#"> new       </a></li>
@@ -56,22 +54,22 @@
 
     <header class="content__header">
 
-        <form class="contacts--form" action="#" method="post">
-          <label for="email">Stay updated</label>
-          <input type="email" id="email" value="Your email address" onfocus="value=''">
-          <div><input type="submit" value=""></div>
-        </form>
+      <form class="content__header--form" action="#" method="post">
+        <label for="email">Stay updated</label>
+        <input type="email" id="email" value="Your email address" onfocus="value=''">
+        <div><input type="submit" value=""></div>
+      </form>
 
-        <figure class="contacts--smm">
-          <h2>Find us here</h2>
-          <div>
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
-            <i class="fa fa-pinterest fa-lg" aria-hidden="true"></i>
-          </div>
-        </figure>
+      <figure class="content__header--smm">
+        <h2>Find us here</h2>
+        <div>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+          <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+          <i class="fa fa-pinterest fa-lg" aria-hidden="true"></i>
+        </div>
+      </figure>
 
-      <figure class="main__advertising"></figure>
+      <figure class="content__header--advertising"></figure>
 
     </header>
 
@@ -87,8 +85,9 @@
           <div>previous</div>
           <div>next</div>
         </nav>
-        <div class="slider__block1">
-          <figure class="block1--section1">
+
+        <div class="slider--block1">
+          <figure>
             <img src="images/mimosa.png" alt="#">
             <figcaption>
               <p>mimosa lace dress</p>
@@ -97,7 +96,7 @@
             </figcaption>
           </figure>
 
-          <figure class="block1--section2">
+          <figure>
             <img src="" alt="#">
             <figcaption>
               <p>#NAME#</p>
@@ -106,17 +105,7 @@
             </figcaption>
           </figure>
 
-          <figure class="block1--section3">
-            <img src="" alt="#">
-            <figcaption>
-              <p>#NAME#</p>
-              <p>PRICE</p>
-              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
-            </figcaption>
-
-          </figure>
-
-          <figure class="block1--section4">
+          <figure>
             <img src="" alt="#">
             <figcaption>
               <p>#NAME#</p>
@@ -125,7 +114,7 @@
             </figcaption>
           </figure>
 
-          <figure class="block1--section5">
+          <figure>
             <img src="" alt="#">
             <figcaption>
               <p>#NAME#</p>
@@ -134,7 +123,16 @@
             </figcaption>
           </figure>
 
-          <figure class="block1--section6">
+          <figure>
+            <img src="" alt="#">
+            <figcaption>
+              <p>#NAME#</p>
+              <p>PRICE</p>
+              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+          </figure>
+
+          <figure>
             <img src="images/wishvitalise.png" alt="#">
             <figcaption>
               <p>wishvitalise dress</p>
@@ -143,9 +141,9 @@
             </figcaption>
           </figure>
         </div>
-        <div class="slider__block2"></div>
-        <div class="slider__block3"></div>
-        <div class="slider__block4"></div>
+        <div class="slider--block2"></div>
+        <div class="slider--block3"></div>
+        <div class="slider--block4"></div>
 
         <div class="slider--more">
           <p>load more</p>
@@ -244,7 +242,7 @@
         </figure>
       </section>
       <section class="content__footer--lookshop">
-        <article class="loookshop__about">
+        <article>
           <h2>About LookShop</h2>
           <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. </p>
         </article>
@@ -256,23 +254,23 @@
 
     <section class="footer__accept">
       <h3>we accept</h3>
-      <figure class="accept__images">
-        <div class="accept--image1"></div>
-        <div class="accept--image2"></div>
-        <div class="accept--image3"></div>
-        <div class="accept--image4"></div>
-        <div class="accept--image5"></div>
-        <div class="accept--image6"></div>
-        <div class="accept--image7"></div>
-        <div class="accept--image8"></div>
-        <div class="accept--image9"></div>
-        <div class="accept--image10"></div>
-        <div class="accept--image11"></div>
+      <figure class="accept--images">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </figure>
     </section>
 
     <nav class="footer__menu">
-      <a href="#" class="footer--burger"></a>
+      <a href="#"></a>
       <section class="footer__menu--block1">
         <h3>Customer Service</h3>
         <ul>

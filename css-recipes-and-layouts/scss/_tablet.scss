@@ -1,6 +1,9 @@
 body {
   @include flex-box(stretch, column, stretch, nowrap);
   min-height: 100vh;
+  max-width: 768px;
+  min-width: 641px;
+  margin: 0 auto;
 }
 
 * {
