@@ -14,7 +14,7 @@
   <header class="header">
 
     <section class="header__usability">
-      <h2>custom care: 123 456 789</h2>
+      <h2>custom care: <span>&nbsp;123 456 789</span><span>&nbsp;888-23-4567</span></h2>
       <div class="usability--account">
         <div>us</div>
         <div><i class="fa fa-user fa-lg" aria-hidden="true"></i>my account</div>
@@ -24,10 +24,18 @@
 
     <section class="header__navigation">
       <h2>
-        <img src="images/logo-mobile.png" alt="">
+        <picture>
+         <source srcset="images/logo-tablet.png" media="(min-width: 760px)">
+         <img src="images/logo-mobile.png" alt="">
+        </picture>
       </h2>
 
       <div class="header__navigation--basket">
+        <form id="card" action="#" method="post">
+          <select name="" form="card">
+            <option value="card">Your card</option>
+          </select>
+        </form>
         <div><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i></div>
         <div>0 items</div>
         <div>$ 0</div>
@@ -45,14 +53,31 @@
         <div><i class="fa fa-bars fa-lg" aria-hidden="true"></i></div>
       </nav>
     </section>
-
-    <section class="header__slider"></section>
-
   </header>
 
   <section class="content">
 
     <header class="content__header">
+
+      <figure class="content__header--slider">
+        <div><div></div></div>
+        <figcaption>
+          <span>Crazy</span>
+          <span>crazy summer</span>
+          <span>women collection</span>
+          <button type="button"><p>shop now</p></button>
+        </figcaption>
+        <div><div></div></div>
+        <img src="images/legs-bg.png" alt="nice legs">
+
+        <ul>
+          <li> <a href="#">&#13;</a> </li>
+          <li> <a href="#">&#13;</a> </li>
+          <li> <a href="#">&#13;</a> </li>
+          <li> <a href="#">&#13;</a> </li>
+          <li> <a href="#">&#13;</a> </li>
+        </ul>
+      </figure>
 
       <form class="content__header--form" action="#" method="post">
         <label for="email">Stay updated</label>

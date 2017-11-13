@@ -1,45 +1,56 @@
 body {
   @include flex-box(stretch, column, stretch, nowrap);
   min-height: 100vh;
-  max-width: 768px;
+  max-width: 760px;
   min-width: 641px;
-  margin: 0 auto;
 }
 
 * {
   box-sizing: border-box;
 }
 
-header {
+.header {
   @include flex-box(stretch, column, stretch, nowrap);
   font: {
-    size: 30px;
+    size: 11px;
     family: "Arial", sans-serif;
   }
 }
-/* fo all headers */
+
 .header__usability {
-  @include flex-box(stretch, column, stretch, nowrap);
+  @include flex-box(stretch, row, stretch, nowrap);
+  padding: 0 2%;
+  background: black;
 
   > h2 {
-    @include flex-box(center, row, center);
-    background: #fafafa;
-    color: #838383;
+    @include flex-box(flex-start, row, center);
+    background: black;
+    color: white;
     text-transform: uppercase;
-    padding: 5.7% 0 4.8%;
+    padding: 1.25% 0;
+    width: 68%;
 
     &:hover {
       color: white;
       background-color: grey;
       cursor: pointer;
     }
-  }
 
-  > div:nth-child(2) {}
+    span:nth-child(1){
+      display: none;
+    }
+
+    span:nth-child(2){
+      font-size: 12px;
+      line-height: 12px;
+      padding-left: 0.4%;
+    }
+  }
 }
 
 .usability--account {
   @include flex-box(space-around, row, stretch);
+  width: 32%;
   background: #000000;
   color: #ffffff;
   text-transform: uppercase;
@@ -50,22 +61,23 @@ header {
 
   > div:nth-child(1) {
     position: relative;
-    width: 24%;
-    padding: 5.7% 1% 4.6% 0;
+    width: 30%;
+    padding-right: 2.5%;
+    border-left: 1px solid #444444;
 
     &:before {
       content: "$";
       position: absolute;
-      left: 19%;
+      left: 22%;
     }
 
     &:after {
       content: "";
       border-style: solid;
-      border-width: 10px 10px 0 10px;
+      border-width: 4px 3.5px 0 3.5px;
       border-color: #ffffff transparent transparent transparent;
       position: absolute;
-      right: 17%;
+      right: 20%;
       top: 45%;
     }
 
@@ -80,17 +92,15 @@ header {
   }
 
   > div:nth-child(2) {
-    width: 60.5%;
-    border-left: 2px solid #444444;
-    border-right: 2px solid #444444;
-    padding-right: 2%;
-    letter-spacing: -0.3px;
-    padding-top: 0.8%;
+    width: 55%;
+    padding-left: 1%;
+    border-left: 1px solid #444444;
+    border-right: 1px solid #444444;
+    letter-spacing: -0.1px;
 
     i {
       color: grey;
-      margin-right: 25px;
-      margin-left: 17px;
+      padding-right: 9%;
     }
 
     &:hover {
@@ -100,8 +110,9 @@ header {
   }
 
   > div:nth-child(3) {
-    width: 15.5%;
+    width: 15%;
     position: relative;
+    border-right: 1px solid #444444;
 
     i {
       transform: rotateZ(90deg);
@@ -115,12 +126,13 @@ header {
 }
 
 .header__navigation {
-  @include flex-box(center, column, stretch, nowrap);
-  margin: 0 2.3%;
+  @include flex-box(stretch, row, stretch, wrap);
+  margin: 0 2%;
 
   > h2 {
-    @include flex-box(center, column, center);
-    padding: 9.7% 20.5% 8.7% 21%;
+    @include flex-box(flex-start, row, center);
+    width: 70.7%;
+    padding: 5.8% 0 2.1%;
 
     img {
       width: 100%;
@@ -139,28 +151,47 @@ header {
   border: 1px solid #d6d6d6;
   color: #838383;
   text-transform: uppercase;
-  padding: 1% 5% 0.3%;
+  width: 29.3%;
+  margin-top: 2.9%;
+  // padding: 1% 5% 0.3%;
 
   &:hover {
     cursor: default;
   }
 
-  :nth-child(1) {
-    @include flex-box(flex-start, row, center);
-    flex-grow: 1;
-    padding: 5% 0 3.5%;
+  > form {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #d6d6d6;
+    padding: 1.2% 4% 1.2%;
 
-    &:hover {
-      cursor: pointer;
-      background: grey;
-      color: white;
+    > select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border-radius: 0;
+      border: none;
+      width:100%;
+      height:100%;
+      font-size: 12px;
+      letter-spacing: -1px;
+      color: #d6d6d6;
+    }
+
+    &:after {
+      content: "";
+      border-style: solid;
+      border-width: 4px 3.5px 0 3.5px;
+      border-color: #d6d6d6 transparent transparent transparent;
+      position: absolute;
+      right: 5%;
+      top: 45%;
     }
   }
 
   :nth-child(2) {
-    @include flex-box(flex-end, row, center);
-    flex-grow: 2;
-    padding-right: 7%;
+    @include flex-box(flex-start, row, center);
+    flex-grow: 1;
+    padding: 2% 5.5% 0;
 
     &:hover {
       cursor: pointer;
@@ -171,28 +202,47 @@ header {
 
   :nth-child(3) {
     @include flex-box(flex-end, row, center);
+    flex-grow: 34;
+    padding-top: 1%;
+
+    &:hover {
+      cursor: pointer;
+      background: grey;
+      color: white;
+    }
+  }
+
+  :nth-child(4) {
+    @include flex-box(flex-end, row, center);
     position: relative;
-    flex-grow: 0;
+    padding: 3% 5% 2% 0;
+    flex-grow: 6;
 
     &:before {
       content: "";
       width: 3%;
-      height: 34%;
+      height: 32%;
       border-left: 2px solid #838383;
       position: absolute;
-      left: -51%;
-      top: 37%;
+      left: 16%;
+      top: 41%;
     }
   }
 }
 
 .header__navigation--menu {
   @include flex-box(space-between, row, stretch);
+  width: 100%;
   background: #fd926d;
   color: white;
-  padding: 5.5% 4.6% 5.3%;
-  margin-top: 3.7%;
+  padding: 2.3% 2.3% 2%;
+  margin-top: 2.8%;
   text-transform: uppercase;
+
+  font: {
+    family: "Arial", sans-serif;
+    size: 18px;
+  }
 
   &:hover {
     cursor: default;
@@ -216,72 +266,314 @@ header {
   }
 }
 
-.header__slider {
-  display: none;
-}
-
 .content {
   @include flex-box(stretch, column, stretch, nowrap);
   flex: 1;
 }
 
 .content__header {
-  padding: 0 2.3%;
-  margin: 4% 0 0.2%;
+  // padding: 0 2.3%;
+  // margin: 4% 0 0.2%;
   @include flex-box(stretch, row, center, wrap);
 }
 
-.content__header--advertising {
-  display: none;
+.content__header--slider {
+  @include flex-box(space-between, row, center, wrap);
+  width: 100%;
+  position: relative;
+  margin-top: 2.1%;
+
+  // LEFT ARROW
+  > div:nth-child(1){
+    position: absolute;
+    left: 0;
+    top: 28%;
+    width: 4%;
+    height: 33.3%;
+    background: white;
+
+    > div {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      &:after {
+        content: "";
+        width: 27%;
+        height: 6%;
+        background: transparent;
+        border-left: 4px solid rgba(0, 0, 0, 0.2);
+        border-top: 4px solid rgba(0, 0, 0, 0.2);
+        position: absolute;
+        left: 32%;
+        top: 45%;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  > figcaption {
+    @include flex-box(stretch, column, center, nowrap);
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    left: 7.3%;
+    top: 15%;
+
+    // Crazy
+    > :nth-child(1){
+      text-align: center;
+      position: relative;
+      width: 59.4%;
+      padding-right: 1%;
+      margin-right: 1%;
+      color: #78645d;
+      font: {
+        family: "Luxury Royale JF";
+        size: 27px;
+      }
+
+      &:after {
+        content: "";
+        width: 30%;
+        height: 4.7%;
+        background: #a2948d;
+        position: absolute;
+        right: 0;
+        top: 65%;
+        box-shadow: 0px -1px rgba(162, 148, 141, 0.1),
+                    1px -1px rgba(162, 148, 141, 0.1),
+                    1px 0px rgba(162, 148, 141, 0.3),
+                    -1px 0px rgba(162, 148, 141, 0.2);
+      }
+
+      &:before {
+        content: "";
+        width: 30%;
+        height: 4.7%;
+        background: #a2948d;
+        position: absolute;
+        left: 0;
+        top: 65%;
+        box-shadow: 0px -1px rgba(162, 148, 141, 0.1),
+                    1px -1px rgba(162, 148, 141, 0.1),
+                    1px 0px rgba(162, 148, 141, 0.3),
+                    -1px 0px rgba(162, 148, 141, 0.2),
+                    -1px -1px rgba(162, 148, 141, 0.1);
+      }
+    }
+
+    // CRAZY SUMMER
+    > :nth-child(2){
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      line-height: 53px;
+      padding-top: 6%;
+      letter-spacing: -1px;
+      padding-right: 3%;
+      font: {
+        family: "Helvetica Neue LT Std";
+        size: 71px;
+        weight: 800;
+      }
+
+      // background image
+      background: url("../images/crazy-summer.png") no-repeat;
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &:before {
+        content: "";
+        width: 82.8%;
+        height: 2%;
+        background: #78645d;
+        position: absolute;
+        left: 7.2%;
+        bottom: 0.9%;
+        box-shadow: 0px -1px rgba(162, 148, 141, 0.4),
+                    0px 1px rgba(162, 148, 141, 0.4),
+                    1px -1px rgba(162, 148, 141, 0.2),
+                    1px 0px rgba(162, 148, 141, 0.6),
+                    1px 1px rgba(162, 148, 141, 0.2);
+      }
+
+      &:after {
+        content: "";
+        width: 82.1%;
+        height: 1px;
+        background: #aa9d96;
+        position: absolute;
+        bottom: -2%;
+        left: 7.4%;
+        box-shadow: 0px -1px rgba(162, 148, 141, 0.2),
+                    1px -1px rgba(162, 148, 141, 0.1),
+                    1px 0px rgba(162, 148, 141, 0.1),
+      }
+    }
+
+    // WOMEN COLLECTION
+    > :nth-child(3){
+      position: relative;
+      text-transform: uppercase;
+      margin-top: 3.5%;
+      padding-left: 1.5%;
+      letter-spacing: 0.1px;
+      color: #78645d;
+      font: {
+        family: "Helvetica Neue LT Std";
+        size: 26px;
+      }
+    }
+
+    // button (SHOP NOW >)
+    > :nth-child(4){
+      text-transform: uppercase;
+      border-bottom: 2px solid #dd6b44;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+      width: 38.4%;
+      height: 13.5%;
+      margin-right: 2.8%;
+      margin-top: 2%;
+      padding-top: 5%;
+      padding-right: 8.7%;
+      background-color: $light-peach;
+      color: white;
+      >p {
+        font: {
+          family: "Helvetica Neue LT Std";
+          size: 12px;
+          weight: 300;
+        }
+        letter-spacing: -0.2px;
+        width:100%;
+        height: 100%;
+        position: relative;
+
+        &:after {
+          content: "";
+          border-style: solid;
+          border-width: 2.5px 0 2.5px 3px;
+          border-color: transparent transparent transparent white;
+          position: absolute;
+
+          right: -8%;
+          top: 13%;
+        }
+      }
+    }
+  }
+
+  // RIGHT ARROW
+  > div:nth-child(3){
+    position: absolute;
+    right: 0;
+    top: 28%;
+    width: 4%;
+    height: 33.3%;
+    background: white;
+
+    >div {
+      width: 100%;
+      height: 100%;
+
+      &:after {
+        content: "";
+        width: 27%;
+        height: 6%;
+        background: transparent;
+        border-right: 4px solid rgba(0, 0, 0, 0.2);
+        border-top: 4px solid rgba(0, 0, 0, 0.2);
+        position: absolute;
+        left: 25%;
+        top: 45%;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  > img {
+    width: 100%;
+  }
+
+  // Slider circles
+  > ul {
+    @include flex-box(center, row, center, wrap);
+    width: 100%;
+
+    > :nth-child(2) {
+      background: $light-peach;
+    }
+
+    > li {
+      border-radius: 50%;
+      margin: 3% 1.3%;
+      width: 1.32%;
+      font-size: 10px;
+      background: #867a76;
+
+      &:active {
+        background: $light-peach;
+      }
+    }
+  }
 }
 
 .content__header--form {
   @include flex-box(stretch, row, stretch, nowrap);
-  text-transform: uppercase;
-  width: 100%;
+  width: 50%;
+  background: #ededed;
+  padding: 1.7% 0;
+  font: {
+    family: "Arial", sans-serif;
+    size: 12px;
+  }
 
   > label {
-    display: none;
+    margin-left: 3.4%;
+    margin-top: 2.3%;
   }
 
   > input:nth-child(2) {
-    font: {
-      family: "Arial", sans-serif;
-      style: italic;
-      size: 30px;
-    }
     border: none;
     color: #b4b4b4;
-    flex-grow: 5;
-    background: #ededed;
-    padding: 5.3% 4% 4.7%;
+    width: 34.7%;
+    margin-left: 2.5%;
+    font-style: italic;
+    padding: 2% 0 2% 2.2%;
+    letter-spacing: 0.1px;
   }
 
   > div {
     @include flex-box(center, row, stretch);
     position: relative;
-    flex-grow: 2.6;
-    border-bottom: 7px solid #dd6b44;
+    width: 7.5%;
+    border-bottom: 2px solid #dd6b44;
 
     &:after {
       content: "";
-      width: 39%;
-      height: 12%;
-      background: white;
-      position: absolute;
-      left: 31%;
-      top: 45%;
+    width: 38%;
+    height: 13%;
+    background: white;
+    position: absolute;
+    left: 28%;
+    top: 48%;
     }
 
     &:before {
       content: "";
-      width: 11%;
-      height: 42%;
-      background: white;
-      position: absolute;
-      left: 45%;
-      top: 30%;
-      z-index: 1;
+    width: 14%;
+    height: 41%;
+    background: white;
+    position: absolute;
+    left: 40%;
+    top: 34%;
+    z-index: 1;
     }
 
     &:hover:after,
@@ -305,17 +597,18 @@ header {
 }
 
 .content__header--smm {
-  @include flex-box(stretch, row, center, nowrap);
+  @include flex-box(flex-end, row, center, nowrap);
   text-transform: uppercase;
-  width: 100%;
-  padding: 4% 14% 4% 13%;
+  width: 50%;
+  padding: 0 2%;
 
   > h2 {
     @include flex-box(flex-start, row, center);
-    width: 40%;
+    margin-right: 4%;
+    background: #ededed;
     font: {
       family: "Arial", sans-serif;
-      size: 26px;
+      size: 12px;
     }
     color: #6c6c6c;
     text-transform: none;
@@ -325,7 +618,7 @@ header {
   > div {
     @include flex-box(stretch, row, stretch, nowrap);
     color: #6b6b6b;
-    width: 60%;
+    width: 47.2%;
 
     &:hover {
       cursor: pointer;
@@ -333,7 +626,7 @@ header {
 
     > i:nth-child(1) {
       @include flex-box(center, row, center);
-      padding: 10.9% 0;
+      padding: 12% 0;
       width: 33.3%;
       background: #f7f7f7;
 
@@ -365,6 +658,10 @@ header {
       }
     }
   }
+}
+
+.content__header--advertising {
+  display: none;
 }
 
 .content__main {
