@@ -185,6 +185,13 @@ body {
         right: -13px;
         top: 45%;
       }
+
+      &:hover {
+        color: grey;
+      }
+      &:hover:after {
+        border-color: grey transparent transparent transparent;
+      }
     }
   }
 
@@ -337,6 +344,11 @@ body {
     height: 80%;
     left: 12.8%;
     top: 8%;
+
+    &:hover {
+      cursor: default;
+      user-select: none;
+    }
 
     // Crazy
     > :nth-child(1){
@@ -1110,6 +1122,7 @@ body {
       background: #f7f7f7;
       text-transform: uppercase;
       padding: 4% 0 6%;
+      overflow: hidden;
 
       > :first-child {
         font: {
@@ -1322,6 +1335,7 @@ body {
       background: #f7f7f7;
       text-transform: uppercase;
       padding: 5% 0 6%;
+      overflow: hidden;
 
       > :first-child {
         font: {

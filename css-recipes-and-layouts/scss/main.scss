@@ -1,7 +1,8 @@
+@import "reset";
 @import "containers";
 @import "variables";
 @import "mixin";
-@import "reset";
+
 
 @media screen and (max-width: 640px) {
   @import "mobile";
@@ -11,6 +12,6 @@
   @import "tablet";
 }
 
-@media screen and (min-width: 761px) /*and (max-width: 768px)*/ {
+@media screen and (min-width: 761px) {
   @import "desktop";
 }

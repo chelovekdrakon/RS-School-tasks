@@ -326,6 +326,11 @@ body {
     left: 7.3%;
     top: 15%;
 
+    &:hover {
+      cursor: default;
+      user-select: none;
+    }
+
     // Crazy
     > :nth-child(1){
       text-align: center;
@@ -1097,6 +1102,7 @@ body {
       background: #f7f7f7;
       text-transform: uppercase;
       padding: 4% 0 6%;
+      overflow: hidden;
 
       > :first-child {
         font: {
@@ -1309,6 +1315,7 @@ body {
       background: #f7f7f7;
       text-transform: uppercase;
       padding: 5% 0 6%;
+      overflow: hidden;
 
       > :first-child {
         font: {
