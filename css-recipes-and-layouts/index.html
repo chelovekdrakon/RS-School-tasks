@@ -14,7 +14,7 @@
   <header class="header">
 
     <section class="header__usability">
-      <h2>custom care: <span>&nbsp;123 456 789</span><span>&nbsp;888-23-4567</span></h2>
+      <h2>custom care: <span>&nbsp;123 456 789</span><span>&nbsp;<nobr>888-23-4567</nobr></span></h2>
       <div class="usability--account">
         <div>us</div>
         <div><i class="fa fa-user fa-lg" aria-hidden="true"></i>my account</div>
@@ -25,8 +25,8 @@
     <section class="header__navigation">
       <h2>
         <picture>
-         <source srcset="images/logo-tablet.png" media="(min-width: 640px)">
-         <img src="images/logo-mobile.png" alt="">
+         <source srcset="images/logo-mobile.png" media="(max-width: 640px)">
+         <img src="images/logo.png" alt="logo">
         </picture>
       </h2>
 
@@ -69,8 +69,9 @@
         </figcaption>
         <div><div></div></div>
         <picture>
-         <source srcset="images/legs-bg.png" media="(min-width: 640px)">
-         <img src="images/legs-bg.png" alt="nice legs">
+          <source srcset="images/legs-desktop.png" media="(min-width: 761px)">
+          <source srcset="images/legs-tablet.png" media="(min-width: 640px)">
+          <img src="images/legs-tablet.png" alt="nice legs">
         </picture>
 
 
@@ -168,7 +169,7 @@
       <section class="main__slider">
         <nav>
           <ul>
-            <li> what's hot?  </li>
+            <li> what's&nbsp;hot?  </li>
             <li> designers  </li>
             <li> featured  </li>
             <li> latest  </li>
@@ -234,11 +235,37 @@
           </figure>
 
           <figure>
-            <img src="" alt="#">
+            <img src="images/slider-d/pink.png" alt="#">
             <figcaption>
-              <p>#NAME#</p>
-              <p>PRICE</p>
-              <div>BUTTON<i class="fa fa-plus" aria-hidden="true"></i></div>
+              <p>petrol sweater</p>
+              <p>$21.50</p>
+              <div>add to card<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+            <div>
+              <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+              <p>shop it</p>
+            </div>
+          </figure>
+
+          <figure>
+            <img src="images/slider-d/pink.png" alt="#">
+            <figcaption>
+              <p>petrol sweater</p>
+              <p>$21.50</p>
+              <div>add to card<i class="fa fa-plus" aria-hidden="true"></i></div>
+            </figcaption>
+            <div>
+              <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+              <p>shop it</p>
+            </div>
+          </figure>
+
+          <figure>
+            <img src="images/slider-d/pink.png" alt="#">
+            <figcaption>
+              <p>petrol sweater</p>
+              <p>$21.50</p>
+              <div>add to card<i class="fa fa-plus" aria-hidden="true"></i></div>
             </figcaption>
             <div>
               <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
@@ -348,18 +375,20 @@
           </figure>
 
           <figure>
-            <img src="" alt="#">
+            <img src="images/slider-d/2-last.png" alt="#">
             <figcaption>
-              <p>name</p>
-              <p>price</p>
+              <p>mimosa lace dress</p>
+              <p>$76</p>
               <div>add to card <i class="fa fa-plus" aria-hidden="true"></i> </div>
             </figcaption>
             <div>
               <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
               <p>shop it</p>
             </div>
+            <div>
+              sale
+            </div>
           </figure>
-
         </div>
 
         <div class="stock--more">
@@ -471,7 +500,10 @@
       </figure>
       <div>
         <figure>
-          <img src="images/secure.png" alt="100% secure">
+          <picture>
+            <source srcset="images/secure-desktop.png" media="(min-width: 761px)">
+            <img src="images/secure.png" alt="100% secure">
+          </picture>
           <figcaption>
             <span>100%</span>
             <span>secured</span>

@@ -1,0 +1,18 @@
+%sale {
+  > div:nth-child(4) {
+    text-transform: uppercase;
+    background: linear-gradient(to top left, white 49.9%, black 50%, black 100%);
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22.8%;
+    height: 12.7%;
+    padding: 2%;
+
+    font: {
+      size: 10px;
+      family: "Arial", sans-serif;
+    }
+  }
+}

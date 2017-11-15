@@ -2,6 +2,7 @@ body {
   @include flex-box(stretch, column, stretch, nowrap);
   min-height: 100vh;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 * {
@@ -18,7 +19,7 @@ body {
 
 .header__usability {
   @include flex-box(stretch, row, stretch, nowrap);
-  padding: 0 2%;
+  padding: 0 9.5%;
   background: black;
 
   > h2 {
@@ -26,8 +27,8 @@ body {
     background: black;
     color: white;
     text-transform: uppercase;
-    padding: 1.25% 0;
-    width: 68%;
+    padding: 0.9% 0;
+    width: 99%;
 
     &:hover {
       color: grey;
@@ -124,17 +125,16 @@ body {
 }
 
 .header__navigation {
-  @include flex-box(stretch, row, stretch, wrap);
-  margin: 0 2%;
+  @include flex-box(center, row, stretch, wrap);
+  margin: 1.8% 9.5% 1.4%;
 
   > h2 {
     @include flex-box(flex-start, row, center);
-    width: 70.7%;
-    padding: 5.8% 0 2.1%;
+    order: 0;
+    width: 22%;
 
     img {
       width: 100%;
-      height: auto;
     }
 
     &:hover {
@@ -143,14 +143,64 @@ body {
   }
 }
 
+.header__navigation--menu {
+  @include flex-box(space-between, row, stretch);
+  width: 56%;
+  order: 1;
+  color: black;
+  font: {
+    family: "Arial", sans-serif;
+    size: 16px;
+  }
+
+  &:hover {
+    cursor: default;
+  }
+
+  > h2 {
+    display: none;
+  }
+
+  ul {
+    width: 100%;
+    list-style: none;
+    @include flex-box(flex-end, row, center, wrap);
+
+    > li {
+      text-align: center;
+      margin: 0 7% 0 0.8%;
+
+      >a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      position: relative;
+      &:after{
+        content: "";
+        border-style: solid;
+        border-width: 4px 3.5px 0 3.5px;
+        border-color: black transparent transparent transparent;
+        position: absolute;
+        right: -13px;
+        top: 45%;
+      }
+    }
+  }
+
+  div:last-child {
+    display: none;
+  }
+}
+
 .header__navigation--basket {
   @include flex-box(space-between, row, stretch);
+  width: 22%;
   background: #fafafa;
   border: 1px solid #d6d6d6;
-  color: #838383;
+  color: #949393;
   text-transform: uppercase;
-  width: 29.3%;
-  margin-top: 2.9%;
+  order: 2;
 
   &:hover {
     cursor: default;
@@ -160,7 +210,7 @@ body {
     width: 100%;
     position: relative;
     border-bottom: 1px solid #d6d6d6;
-    padding: 1.2% 4% 1.2%;
+    padding: 3.8% 4%;
 
     > select {
       -webkit-appearance: none;
@@ -171,7 +221,7 @@ body {
       height:100%;
       font-size: 12px;
       letter-spacing: -1px;
-      color: #d6d6d6;
+      color: #949393;
 
       &:hover {
         cursor: pointer;
@@ -183,7 +233,7 @@ body {
       content: "";
       border-style: solid;
       border-width: 4px 3.5px 0 3.5px;
-      border-color: #d6d6d6 transparent transparent transparent;
+      border-color: #949393 transparent transparent transparent;
       position: absolute;
       right: 5%;
       top: 45%;
@@ -197,7 +247,8 @@ body {
   :nth-child(2) {
     @include flex-box(flex-start, row, center);
     flex-grow: 1;
-    padding: 2% 5.5% 0;
+    padding: 0 5%;
+    font-size: 19px;
 
     &:hover {
       cursor: pointer;
@@ -209,59 +260,22 @@ body {
   :nth-child(3) {
     @include flex-box(flex-end, row, center);
     flex-grow: 34;
-    padding-top: 1%;
   }
 
   :nth-child(4) {
     @include flex-box(flex-end, row, center);
     position: relative;
-    padding: 3% 5% 2% 0;
     flex-grow: 6;
+    padding: 5% 6% 5% 0;
 
     &:before {
       content: "";
       width: 3%;
       height: 32%;
-      border-left: 2px solid #838383;
+      border-left: 2px solid #949393;
       position: absolute;
       left: 16%;
       top: 41%;
-    }
-  }
-}
-
-.header__navigation--menu {
-  @include flex-box(space-between, row, stretch);
-  width: 100%;
-  background: #fd926d;
-  color: white;
-  padding: 2.3% 2.3% 2%;
-  margin-top: 2.8%;
-  text-transform: uppercase;
-
-  font: {
-    family: "Arial", sans-serif;
-    size: 18px;
-  }
-
-  &:hover {
-    cursor: default;
-  }
-
-  ul {
-    display: none;
-  }
-
-  > h2 {
-    @include flex-box(flex-start, row, center);
-  }
-
-  div:last-child {
-    @include flex-box(flex-end, row, center);
-
-    &:hover {
-      cursor: pointer;
-      color: grey;
     }
   }
 }
@@ -272,8 +286,6 @@ body {
 }
 
 .content__header {
-  // padding: 0 2.3%;
-  // margin: 4% 0 0.2%;
   @include flex-box(stretch, row, center, wrap);
 }
 
@@ -281,15 +293,14 @@ body {
   @include flex-box(space-between, row, center, wrap);
   width: 100%;
   position: relative;
-  margin-top: 2.1%;
 
   // LEFT ARROW
   > div:nth-child(1){
     position: absolute;
     left: 0;
-    top: 30%;
-    width: 4%;
-    height: 29%;
+    top: 31.3%;
+    width: 2.5%;
+    height: 22.6%;
     background: white;
 
     > div {
@@ -322,22 +333,22 @@ body {
   > figcaption {
     @include flex-box(stretch, column, center, nowrap);
     position: absolute;
-    width: 40%;
+    width: 34%;
     height: 80%;
-    left: 7.3%;
-    top: 15%;
+    left: 12.8%;
+    top: 8%;
 
     // Crazy
     > :nth-child(1){
       text-align: center;
       position: relative;
       width: 59.4%;
-      padding-right: 1%;
+      padding-right: 1.5%;
       margin-right: 1%;
       color: #78645d;
       font: {
         family: "Luxury Royale JF";
-        size: 27px;
+        size: 36px;
       }
 
       &:after {
@@ -375,13 +386,13 @@ body {
       text-align: center;
       text-transform: uppercase;
       position: relative;
-      line-height: 53px;
+      line-height: 73px;
       padding-top: 6%;
-      letter-spacing: -1px;
+      letter-spacing: -2px;
       padding-right: 3%;
       font: {
         family: "Helvetica Neue LT Std";
-        size: 71px;
+        size: 96px;
         weight: 800;
       }
 
@@ -399,7 +410,7 @@ body {
         background: #78645d;
         position: absolute;
         left: 7.2%;
-        bottom: 0.9%;
+        bottom: 1.9%;
         box-shadow: 0px -1px rgba(162, 148, 141, 0.4),
                     0px 1px rgba(162, 148, 141, 0.4),
                     1px -1px rgba(162, 148, 141, 0.2),
@@ -413,7 +424,7 @@ body {
         height: 1px;
         background: #aa9d96;
         position: absolute;
-        bottom: -2%;
+        bottom: 0;
         left: 7.4%;
         box-shadow: 0px -1px rgba(162, 148, 141, 0.2),
                     1px -1px rgba(162, 148, 141, 0.1),
@@ -427,11 +438,11 @@ body {
       text-transform: uppercase;
       margin-top: 3.5%;
       padding-left: 1.5%;
-      letter-spacing: 0.1px;
+      letter-spacing: -0.3px;
       color: #78645d;
       font: {
         family: "Helvetica Neue LT Std";
-        size: 26px;
+        size: 36px;
       }
     }
 
@@ -454,7 +465,7 @@ body {
       >p {
         font: {
           family: "Helvetica Neue LT Std";
-          size: 12px;
+          size: 16px;
           weight: 300;
         }
         letter-spacing: -0.2px;
@@ -465,12 +476,12 @@ body {
         &:after {
           content: "";
           border-style: solid;
-          border-width: 2.5px 0 2.5px 3px;
+          border-width: 4px 0 4px 4px;
           border-color: transparent transparent transparent white;
           position: absolute;
 
-          right: -8%;
-          top: 13%;
+          right: -9%;
+          top: 8%;
         }
         &:hover {
           color: grey;
@@ -489,9 +500,9 @@ body {
   > div:nth-child(3){
     position: absolute;
     right: 0;
-    top: 30%;
-    width: 4%;
-    height: 29%;
+    top: 31.3%;
+    width: 2.5%;
+    height: 22.6%;
     background: white;
 
     >div {
@@ -522,7 +533,10 @@ body {
 
   > picture {
     width: 100%;
-    display: flex;
+
+    > img {
+      width: 100%;
+    }
   }
 
   // Slider circles
@@ -536,8 +550,8 @@ body {
 
     > li {
       border-radius: 50%;
-      margin: 3% 1.3%;
-      width: 1.32%;
+      margin: 2.5% 0.8% 2.7%;
+      width: 0.9%;
       font-size: 10px;
       background: #867a76;
 
@@ -552,7 +566,7 @@ body {
   @include flex-box(stretch, row, stretch, nowrap);
   width: 50%;
   background: #ededed;
-  padding: 1.7% 0;
+  padding: 1.2% 0;
   font: {
     family: "Arial", sans-serif;
     size: 12px;
@@ -560,24 +574,24 @@ body {
 
   > label {
     color: #6b6b6b;
-    margin-left: 3.4%;
-    margin-top: 2.3%;
+    margin-left: 18.6%;
+    margin-top: 1.3%;
   }
 
   > input:nth-child(2) {
     border: none;
     color: #b4b4b4;
-    width: 34.7%;
-    margin-left: 2.5%;
+    width: 22%;
+    margin-left: 2%;
     font-style: italic;
-    padding: 2% 0 2% 2.2%;
+    padding: 1.2%;
     letter-spacing: 0.1px;
   }
 
   > div {
     @include flex-box(center, row, stretch);
     position: relative;
-    width: 7.5%;
+    width: 4.5%;
     border-bottom: 2px solid #dd6b44;
 
     &:after {
@@ -630,7 +644,7 @@ body {
 
   > h2 {
     @include flex-box(flex-start, row, center);
-    margin-right: 4%;
+    margin-right: 2.6%;
     font: {
       family: "Arial", sans-serif;
       size: 12px;
@@ -643,7 +657,8 @@ body {
   > div {
     @include flex-box(stretch, row, stretch, nowrap);
     color: #6b6b6b;
-    width: 47.2%;
+    width: 29.9%;
+    margin-right: 16.5%;
 
     &:hover {
       cursor: pointer;
@@ -651,7 +666,7 @@ body {
 
     > i:nth-child(1) {
       @include flex-box(center, row, center);
-      padding: 12% 0;
+      padding: 12.1% 0;
       width: 33.3%;
       background: #f7f7f7;
 
@@ -687,7 +702,7 @@ body {
 
 .content__header--advertising {
   @include flex-box(flex-start, row, flex-start, wrap);
-  margin: 33px 15px 28px;
+  margin: 3.4% 9.6% 3.9%;
   width:100%;
 
   figure {
@@ -722,23 +737,24 @@ body {
       @include flex-box(flex-start, column, center, wrap);
       text-transform: uppercase;
       right: 9%;
-      bottom: 15%;
+      bottom: 18%;
 
       >:nth-child(1) {
         letter-spacing: -1px;
-        margin-bottom: 7%;
+        margin-bottom: 10%;
         color: #414141;
         font: {
-          size: 27px;
+          size: 34px;
           family: "Helvetica Neue LT Std", sans-serif;
           weight: 900;
         }
       }
       >:nth-child(2) {
+        margin-bottom: 3%;
         line-height: 35px;
         color: #414141;
         font: {
-          size: 56px;
+          size: 74px;
           family: "Helvetica Neue LT Std", sans-serif;
           weight: 500;
         }
@@ -747,6 +763,7 @@ body {
         @include flex-box(center, row, center, nowrap);
         width: 100%;
         position: relative;
+        margin-bottom: 5%;
 
         > p {
           width: 15%;
@@ -758,7 +775,7 @@ body {
         }
 
         font: {
-          size: 17px;
+          size: 22px;
           family: "Helvetica Neue LT Std", sans-serif;
           weight: 300;
         }
@@ -787,7 +804,7 @@ body {
         line-height: 71px;
         color: #4fafa0;
         font: {
-          size: 62px;
+          size: 82px;
           family: "Helvetica Neue LT Std", sans-serif;
           weight: 900;
         }
@@ -808,7 +825,7 @@ body {
 
       > a > figcaption {
         @include flex-box(flex-start, column, center, wrap);
-        left: 6%;
+        left: 6.4%;
         bottom: 16%;
         padding: 3% 2.7% 4%;
         border-radius: 50%;
@@ -818,31 +835,32 @@ body {
         background: white;
 
         >:nth-child(1){
-          line-height: 28px;
+          line-height: 44px;
           color: $light-peach;
           font: {
             family: "Bello", sans-serif;
-            size: 17px;
+            size: 22px;
           }
         }
         >:nth-child(2){
+          margin-bottom: 6%;
           letter-spacing: 0px;
-          line-height: 25px;
+          line-height: 27px;
           color: #c1aea8;
           text-transform: uppercase;
           font: {
             family: "Helvetica Neue LT Std", sans-serif;
-            size: 32px;
+            size: 42px;
             weight: 200;
           }
         }
         >:nth-child(3){
-          letter-spacing: 0.4px;
+          line-height: 9px;
           color: #6a6a6a;
           text-transform: uppercase;
           font: {
             family: "Helvetica Neue LT Std", sans-serif;
-            size: 10px;
+            size: 14px;
             weight: bold;
           }
         }
@@ -858,16 +876,16 @@ body {
 
       > a > figcaption {
         left: 11%;
-        bottom: 6%;
+        bottom: 5%;
 
         > div {
           position: relative;
           text-transform: uppercase;
-          letter-spacing: -1.1px;
+          letter-spacing: -0.7px;
           color: white;
           font: {
             family: "Helvetica Neue LT Std", sans-serif;
-            size: 27px;
+            size: 34px;
             weight: 500;
           }
 
@@ -906,52 +924,50 @@ body {
         color: white;
         text-transform: uppercase;
         left: 8.5%;
-        bottom: 14%;
+        bottom: 12%;
         font-family: "Helvetica Neue LT Std", sans-serif;
 
         > div {
           @include flex-box(center, column, center, nowrap);
           width: 100%;
           font: {
-            size: 27px;
+            size: 36px;
             weight: normal;
           }
 
           > span:nth-child(1) {
-            line-height: 6px;
+            line-height: 19px;
             padding-right: 4%;
           }
 
           > span:nth-child(2) {
             padding-right: 0%;
             margin-right: 4%;
+            margin-bottom: 6%;
             line-height: 40px;
           }
-
-
         }
 
         > button {
           color: white;
           text-transform: uppercase;
-          padding: 5% 21% 6% 6%;
-          letter-spacing: -0.8px;
+          padding: 6% 21% 6% 7%;
           border-radius: 0;
           border: none;
           position: relative;
           background: #4fafa0;
           font: {
-            size: 10px;
+            size: 12px;
             weight: 300;
           }
 
           &::after {
             content: "";
             position: absolute;
-            right: 10%;
+            right: 13%;
             bottom: 37%;
             border-style: solid;
-            border-width: 2.5px 0 2.5px 4px;
+            border-width: 4px 0 4px 4px;
             border-color: transparent transparent transparent white;
           }
 
@@ -982,7 +998,7 @@ body {
     @include flex-box(flex-start, row, center);
     background-color: white;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 9.5%;
     color: #555555;
 
   // WHAT'S HOT, ... etc.
@@ -991,7 +1007,7 @@ body {
       @include flex-box(flex-start, row, center);
 
       > li {
-        padding: 3% 2.8% 2.3% 3.3%;
+        padding: 2.1% 2.8% 1.7% 2%;
         letter-spacing: -0.1px;
 
           text-transform: uppercase;
@@ -1017,7 +1033,7 @@ body {
 
 
     > div {
-      width: 6.5%;
+      width: 4.5%;
       position: relative;
       align-self: stretch;
       color: #f2f2f2;
@@ -1035,6 +1051,7 @@ body {
     }
 
     > div:nth-child(2) {
+      margin-left: 3.5%;
       &::after{
         content: "";
         width: 38%;
@@ -1075,20 +1092,17 @@ body {
   @include flex-box (center, row, center, nowrap);
   background: #fd926d;
   width: 100%;
+  overflow: hidden;
 
-  > figure:not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+  > figure:first-child, figure:last-child {
     display: none;
   }
 
   figure {
     @include flex-box(center, column, stretch, nowrap);
     background: white;
-    margin: 4% 2.2%;
+    margin: 2.5% 1.2%;
     position: relative;
-
-    img {
-      max-width: 100%;
-    }
 
     figcaption {
       @include flex-box(stretch, column, center, nowrap);
@@ -1212,6 +1226,7 @@ body {
 .main__stock {
   @include flex-box(center, column, center);
   width: 100%;
+  padding: 0 9.5%;
 
   > figure {
     @include flex-box(center, row, center);
@@ -1220,7 +1235,7 @@ body {
     margin-top: 1%;
 
     > picture {
-      width: 25%;
+      width: 20%;
       > img {
         width: 100%;
       }
@@ -1264,7 +1279,7 @@ body {
 
     &:after {
       content: "";
-      width: 37.5%;
+      width: 40%;
       height: 1px;
       background: #d8d8d8;
       position: absolute;
@@ -1274,7 +1289,7 @@ body {
 
     &:before {
       content: "";
-      width: 37.5%;
+      width: 40%;
       height: 1px;
       background: #d8d8d8;
       position: absolute;
@@ -1285,17 +1300,16 @@ body {
 }
 
 .stock--slider {
-  @include flex-box (center, row, center, nowrap);
+  @include flex-box (space-between, row, center, nowrap);
   width: 100%;
 
-  > figure:not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(5)) {
+  > figure:first-child, figure:nth-child(2) {
     display: none;
   }
 
   figure {
     @include flex-box(center, column, stretch, nowrap);
     background: white;
-    margin: 0.7% 2.2%;
     position: relative;
 
     img {
@@ -1409,6 +1423,25 @@ body {
       }
     }
   }
+
+  >figure:last-child {
+    > div:nth-child(4) {
+      text-transform: uppercase;
+      background: linear-gradient(to top left, white 49.9%, black 50%, black 100%);
+      color: white;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 22.8%;
+      height: 12.7%;
+      padding: 2%;
+
+      font: {
+        size: 10px;
+        family: "Arial", sans-serif;
+      }
+    }
+  }
 }
 
 .stock--more {
@@ -1421,7 +1454,7 @@ body {
 
 .content__footer--brands {
   @include flex-box(center, column, center, nowrap);
-  margin-top: 3.5%;
+  margin-top: 4.7%;
   padding-bottom: 0.7%;
   border-bottom: 1px solid #d8d8d8;
 
@@ -1463,11 +1496,7 @@ body {
   > figure {
     @include flex-box(space-around, row, center, wrap);
     width: 100%;
-    padding: 2%;
-
-    >:last-child, >:nth-child(7) {
-      display: none;
-    }
+    padding: 1.3% 7% 1.1%;
 
     > div {
       cursor: pointer;
@@ -1491,7 +1520,7 @@ background-image:url(../images/brands.png);}
 
 .content__footer--lookshop {
   @include flex-box(center, column, center, nowrap);
-  margin-top: 3.5%;
+  margin-top: 2.1%;
 
   > h2 {
     color: #414141;
@@ -1502,25 +1531,27 @@ background-image:url(../images/brands.png);}
   }
 
   > p {
+    text-align: center;
     color: #999999;
     font: {
       size: 14px;
       family: "Arial", sans-serif;
     }
-    text-align: center;
-    padding: 1.5% 2%;
+    padding: 1% 9.5% 0;
     line-height: 18px;
+    letter-spacing: 0.1px;
   }
 }
 
 .content__footer--accept {
   @include flex-box(space-between, row, center, wrap);
   width: 100%;
-  padding: 2.5% 15% 2.2% 13%;
+  padding: 1.48% 28% 1.5% 26.6%;
   margin-top: 2.4%;
   background: #f7f7f7;
 
   > figcaption {
+    margin-right: 1%;
     color: #a9a9a9;
     font: {
       size: 12px;
@@ -1548,15 +1579,13 @@ background-image:url(../images/acceptence.png);}
 
 
 .footer {
-  @include flex-box(center, row, stretch, wrap);
+  @include flex-box(space-between, row, stretch, wrap);
 
   .footer__menu--links {
-    width: 55%;
     background: #ededed;
   }
 
   .footer__menu--social {
-    width: 45%;
     background: #ededed;
   }
 
@@ -1567,13 +1596,12 @@ background-image:url(../images/acceptence.png);}
 }
 
 .footer__menu--links {
-  @include flex-box(center, row, flex-start, wrap);
-  padding: 1% 1% 3.4%;
+  @include flex-box(space-between, row, flex-start, wrap);
+  width: 65%;
+  padding: 2% 4% 2.5% 9%;
 
   > section {
-    width: 50%;
-    padding: 6% 2% 0;
-    margin-bottom: 3%;
+    padding: 1%;
 
     > h3 {
       color: #544f4d;
@@ -1592,7 +1620,7 @@ background-image:url(../images/acceptence.png);}
         size: 12px;
         family: "Arial", sans-serif;
       }
-      margin-top: 6%;
+      margin-top: 13px;
 
       > li {
         > a {
@@ -1607,12 +1635,14 @@ background-image:url(../images/acceptence.png);}
 }
 
 .footer__menu--social {
-  @include flex-box(space-between, row, flex-start, wrap);
+  @include flex-box(center, row, flex-start, wrap);
+  width: 35%;
 
   > figure {
     width: 50%;
     @include flex-box(space-between, row, center, wrap);
-    padding: 10% 13% 10% 0%;
+    padding: 7% 20% 17% 0%;
+    margin-left: -15%;
 
     > figcaption {
       width:100%;
@@ -1649,13 +1679,14 @@ background-image:url(../images/acceptence.png);}
   }
 
   > div {
-    width: 50%;
+    width: 41%;
+    margin-left: -10%;
 
     >figure {
       width: 62%;
       margin: 29% 11%;
 
-      > img {
+      > picture, > picture > img {
         width: 100%;
       }
 
@@ -1693,7 +1724,7 @@ background-image:url(../images/acceptence.png);}
   width: 100%;
   position: relative;
   color: #8d8d8d;
-  padding: 3.5% 0% 4.5%;
+  padding: 2% 4% 3.3% 9%;
   margin-top: -1.4%;
   font: {
     family: "Arial", sans-serif;
@@ -1708,11 +1739,10 @@ background-image:url(../images/acceptence.png);}
     @include flex-box(flex-start, row, center, wrap);
     list-style: none;
     width: 86%;
-    margin-top: -1%;
 
     > li {
       position: relative;
-      margin: 0 1% 0 2.2%;
+      margin: 0 1.7% 0 0.6%;
       > a {
         text-decoration: none;
         color: inherit;
@@ -1732,7 +1762,7 @@ background-image:url(../images/acceptence.png);}
 
   > div:last-child {
     @include flex-box(space-around, column, flex-end, nowrap);
-    margin-left: -0.7%;
+    margin-left: -1.6%;
     > a {
       margin-top: -3%;
       margin-bottom: 4%;
