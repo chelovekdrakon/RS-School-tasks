@@ -508,6 +508,10 @@ body {
         }
       }
     }
+
+    > div {
+      display: none;
+    }
   }
 }
 
@@ -553,9 +557,13 @@ body {
     width: 100%;
     margin-top: 4%;
 
-    > img {
+    > picture {
       width: 24%;
+      > img {
+        width: 100%;
+      }
     }
+
 
     figcaption {
       @include flex-box(center, row, center);
@@ -720,11 +728,15 @@ body {
   @include flex-box(center, column, center);
   padding: 0 2.5%;
   background: black;
+
+  > nav {
+    display: none;
+  }
 }
 
 .content__footer,
-.footer__accept,
-.footer__menu {
+.footer__menu--social,
+.footer__menu--links {
   display: none;
 }
 

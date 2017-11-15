@@ -42,7 +42,7 @@
         url('../fonts/HelveticaNeueLTStd-LtCn/HelveticaNeueLTStd-LtCn.woff2') format('woff2'),
         url('../fonts/HelveticaNeueLTStd-LtCn/HelveticaNeueLTStd-LtCn.woff') format('woff'),
         url('../fonts/HelveticaNeueLTStd-LtCn/HelveticaNeueLTStd-LtCn.ttf') format('truetype');
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -54,7 +54,7 @@
         url('../fonts/HelveticaNeueLTStd-ThCn/HelveticaNeueLTStd-ThCn.woff2') format('woff2'),
         url('../fonts/HelveticaNeueLTStd-ThCn/HelveticaNeueLTStd-ThCn.woff') format('woff'),
         url('../fonts/HelveticaNeueLTStd-ThCn/HelveticaNeueLTStd-ThCn.ttf') format('truetype');
-    font-weight: 100;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -90,7 +90,7 @@
         url('../fonts/HelveticaNeueLTStd-HvCn/HelveticaNeueLTStd-HvCn.woff2') format('woff2'),
         url('../fonts/HelveticaNeueLTStd-HvCn/HelveticaNeueLTStd-HvCn.woff') format('woff'),
         url('../fonts/HelveticaNeueLTStd-HvCn/HelveticaNeueLTStd-HvCn.ttf') format('truetype');
-    font-weight: 900;
+    font-weight: 800;
     font-style: normal;
 }
 
@@ -163,4 +163,15 @@
         url('../fonts/HelveticaNeueLTStd-LtIt/HelveticaNeueLTStd-LtIt.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
+}
+@font-face {
+    font-family: 'Impact';
+    src: url('../fonts/Impact/Impact.eot');
+    src: local('Impact'),
+        url('Impact.eot?#iefix') format('embedded-opentype'),
+        url('Impact.woff2') format('woff2'),
+        url('Impact.woff') format('woff'),
+        url('Impact.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
