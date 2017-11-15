@@ -1,6 +1,7 @@
 body {
   @include flex-box(stretch, column, stretch, nowrap);
   min-height: 100vh;
+  max-width: 1200px;
 }
 
 * {
