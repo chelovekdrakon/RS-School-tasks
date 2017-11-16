@@ -45,81 +45,81 @@ body {
       padding-left: 0.4%;
     }
   }
-}
 
-.usability--account {
-  @include flex-box(space-around, row, stretch);
-  width: 32%;
-  background: #000000;
-  color: #ffffff;
-  text-transform: uppercase;
+  >div:nth-child(2){
+    @include flex-box(space-around, row, stretch);
+    width: 32%;
+    background: #000000;
+    color: #ffffff;
+    text-transform: uppercase;
 
-  > div {
-    @include flex-box(center, row, center, nowrap);
-  }
-
-  > div:nth-child(1) {
-    position: relative;
-    width: 30%;
-    padding-right: 2.5%;
-    border-left: 1px solid #444444;
-
-    &:before {
-      content: "$";
-      position: absolute;
-      left: 22%;
+    > div {
+      @include flex-box(center, row, center, nowrap);
     }
 
-    &:after {
-      content: "";
-      border-style: solid;
-      border-width: 4px 3.5px 0 3.5px;
-      border-color: #ffffff transparent transparent transparent;
-      position: absolute;
-      right: 20%;
-      top: 45%;
+    > div:nth-child(1) {
+      position: relative;
+      width: 30%;
+      padding-right: 2.5%;
+      border-left: 1px solid #444444;
+
+      &:before {
+        content: "$";
+        position: absolute;
+        left: 22%;
+      }
+
+      &:after {
+        content: "";
+        border-style: solid;
+        border-width: 4px 3.5px 0 3.5px;
+        border-color: #ffffff transparent transparent transparent;
+        position: absolute;
+        right: 20%;
+        top: 45%;
+      }
+
+      &:hover:after {
+        border-color: grey transparent transparent transparent;
+      }
+
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
     }
 
-    &:hover:after {
-      border-color: grey transparent transparent transparent;
+    > div:nth-child(2) {
+      width: 55%;
+      padding-left: 1%;
+      border-left: 1px solid #444444;
+      border-right: 1px solid #444444;
+      letter-spacing: -0.1px;
+
+      i {
+        color: grey;
+        padding-right: 9%;
+      }
+
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
     }
 
-    &:hover {
-      color: grey;
-      cursor: pointer;
-    }
-  }
+    > div:nth-child(3) {
+      width: 15%;
+      position: relative;
+      border-right: 1px solid #444444;
 
-  > div:nth-child(2) {
-    width: 55%;
-    padding-left: 1%;
-    border-left: 1px solid #444444;
-    border-right: 1px solid #444444;
-    letter-spacing: -0.1px;
+      i {
+        transform: rotateZ(90deg);
+      }
 
-    i {
-      color: grey;
-      padding-right: 9%;
-    }
-
-    &:hover {
-      color: grey;
-      cursor: pointer;
-    }
-  }
-
-  > div:nth-child(3) {
-    width: 15%;
-    position: relative;
-    border-right: 1px solid #444444;
-
-    i {
-      transform: rotateZ(90deg);
-    }
-
-    &:hover {
-      color: grey;
-      cursor: pointer;
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -164,7 +164,7 @@ body {
   ul {
     width: 100%;
     list-style: none;
-    @include flex-box(flex-end, row, center, wrap);
+    @include flex-box(flex-end, row, center, nowrap);
 
     > li {
       text-align: center;
@@ -1155,6 +1155,7 @@ body {
         border-bottom: 3px solid #dd6b44;
         margin-top: 1%;
         padding: 3.5% 4% 3% 1%;
+        overflow: hidden;
         font: {
           family: "Arial", sans-serif;
           size: 12px;
@@ -1324,6 +1325,7 @@ body {
     @include flex-box(center, column, stretch, nowrap);
     background: white;
     position: relative;
+    margin: 0 1.5%;
 
     img {
       max-width: 100%;
@@ -1367,6 +1369,7 @@ body {
         background: $light-peach;
         border-bottom: 3px solid #dd6b44;
         padding: 4.5% 4% 3% 1%;
+        overflow: hidden;
         font: {
           family: "Arial", sans-serif;
           size: 12px;
@@ -1558,7 +1561,7 @@ background-image:url(../images/brands.png);}
 }
 
 .content__footer--accept {
-  @include flex-box(space-between, row, center, wrap);
+  @include flex-box(space-between, row, center, nowrap);
   width: 100%;
   padding: 1.48% 28% 1.5% 26.6%;
   margin-top: 2.4%;
