@@ -1,0 +1,6 @@
+@mixin flex-box($align-main:center, $direction:row, $align-secondary:stretch, $wrap:wrap) {
+  display: flex;
+  flex-flow: $direction $wrap;
+  justify-content: $align-main;
+  align-items: $align-secondary;
+};

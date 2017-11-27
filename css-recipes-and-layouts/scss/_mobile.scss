@@ -1,0 +1,775 @@
+body {
+  @include flex-box(stretch, column, stretch, nowrap);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  @include flex-box(stretch, column, stretch, nowrap);
+  font: {
+    size: 30px;
+    family: "Arial", sans-serif;
+  }
+}
+
+.header__usability {
+  @include flex-box(stretch, column, stretch, nowrap);
+
+  > h2 {
+    @include flex-box(center, row, center);
+    background: #fafafa;
+    color: #838383;
+    text-transform: uppercase;
+    padding: 5.7% 0 4.8%;
+
+    &:hover {
+      color: white;
+      background-color: grey;
+      cursor: pointer;
+    }
+
+    span:nth-child(2){
+      display: none;
+    }
+  }
+
+  > div:nth-child(2) {
+    @include flex-box(space-around, row, stretch);
+    background: #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+
+    > div {
+      @include flex-box(center, row, center, nowrap);
+    }
+
+    > div:nth-child(1) {
+      position: relative;
+      width: 24%;
+      padding: 5.7% 1% 4.6% 0;
+
+      &:before {
+        content: "$";
+        position: absolute;
+        left: 19%;
+      }
+
+      &:after {
+        content: "";
+        border-style: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: #ffffff transparent transparent transparent;
+        position: absolute;
+        right: 17%;
+        top: 45%;
+      }
+
+      &:hover:after {
+        border-color: grey transparent transparent transparent;
+      }
+
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
+    }
+
+    > div:nth-child(2) {
+      width: 60.5%;
+      border-left: 2px solid #444444;
+      border-right: 2px solid #444444;
+      padding-right: 2%;
+      letter-spacing: -0.3px;
+      padding-top: 0.8%;
+
+      i {
+        color: grey;
+        margin-right: 25px;
+        margin-left: 17px;
+      }
+
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
+    }
+
+    > div:nth-child(3) {
+      width: 15.5%;
+      position: relative;
+
+      i {
+        transform: rotateZ(90deg);
+      }
+
+      &:hover {
+        color: grey;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+.header__navigation {
+  @include flex-box(center, column, stretch, nowrap);
+  margin: 0 2.3%;
+
+  > h2 {
+    @include flex-box(center, column, center);
+    padding: 9.7% 20.5% 8.7% 21%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.header__navigation--basket {
+  @include flex-box(space-between, row, stretch);
+  background: #fafafa;
+  border: 1px solid #d6d6d6;
+  color: #838383;
+  text-transform: uppercase;
+  padding: 1% 5% 0.3%;
+
+  &:hover {
+    cursor: default;
+  }
+
+  :nth-child(2) {
+    @include flex-box(flex-start, row, center);
+    flex-grow: 1;
+    padding: 5% 0 3.5%;
+
+    &:hover {
+      cursor: pointer;
+      background: grey;
+      color: white;
+    }
+  }
+
+  :nth-child(3) {
+    @include flex-box(flex-end, row, center);
+    flex-grow: 2;
+    padding-right: 7%;
+
+    &:hover {
+      cursor: pointer;
+      background: grey;
+      color: white;
+    }
+  }
+
+  :nth-child(4) {
+    @include flex-box(flex-end, row, center);
+    position: relative;
+    flex-grow: 0;
+
+    &:before {
+      content: "";
+      width: 3%;
+      height: 34%;
+      border-left: 2px solid #838383;
+      position: absolute;
+      left: -51%;
+      top: 37%;
+    }
+  }
+  > form {
+    display: none;
+  }
+}
+
+.header__navigation--menu {
+  @include flex-box(space-between, row, stretch);
+  background: #fd926d;
+  color: white;
+  padding: 5.5% 4.6% 5.3%;
+  margin-top: 3.7%;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: default;
+  }
+
+  ul {
+    display: none;
+  }
+
+  > h2 {
+    @include flex-box(flex-start, row, center);
+  }
+
+  div:last-child {
+    @include flex-box(flex-end, row, center);
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
+  }
+}
+
+.content {
+  @include flex-box(stretch, column, stretch, nowrap);
+  flex: 1;
+}
+
+.content__header {
+  padding: 0 2.3%;
+  margin: 4% 0 0.2%;
+  @include flex-box(stretch, row, center, wrap);
+}
+
+.content__header--slider {
+  display: none;
+}
+
+.content__header--advertising {
+  display: none;
+}
+
+.content__header--form {
+  @include flex-box(stretch, row, stretch, nowrap);
+  text-transform: uppercase;
+  width: 100%;
+
+  > label {
+    display: none;
+  }
+
+  > input:nth-child(2) {
+    font: {
+      family: "Arial", sans-serif;
+      style: italic;
+      size: 30px;
+    }
+    border: none;
+    color: #b4b4b4;
+    width: 84%;
+    background: #ededed;
+    padding: 5.3% 4% 4.7%;
+  }
+
+  > div {
+    @include flex-box(center, row, stretch);
+    position: relative;
+    width: 16%;
+    border-bottom: 7px solid #dd6b44;
+
+    &:after {
+      content: "";
+      width: 39%;
+      height: 12%;
+      background: white;
+      position: absolute;
+      left: 31%;
+      top: 45%;
+    }
+
+    &:before {
+      content: "";
+      width: 11%;
+      height: 42%;
+      background: white;
+      position: absolute;
+      left: 45%;
+      top: 30%;
+      z-index: 1;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      cursor: pointer;
+      background-color: grey;
+    }
+  }
+
+  > div > input {
+    background: #fd926d;
+    border: none;
+    width: 100%;
+    position: relative;
+    border-radius: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.content__header--smm {
+  @include flex-box(stretch, row, center, nowrap);
+  text-transform: uppercase;
+  width: 100%;
+  padding: 4% 14% 4% 13%;
+
+  > h2 {
+    @include flex-box(flex-start, row, center);
+    width: 40%;
+    font: {
+      family: "Arial", sans-serif;
+      size: 26px;
+    }
+    color: #6c6c6c;
+    text-transform: none;
+    cursor: default;
+  }
+
+  > div {
+    @include flex-box(stretch, row, stretch, nowrap);
+    color: #6b6b6b;
+    width: 60%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    > i:nth-child(1) {
+      @include flex-box(center, row, center);
+      padding: 10.9% 0;
+      width: 33.3%;
+      background: #f7f7f7;
+
+      &:hover {
+        background-color: $light-peach;
+        color: white;
+      }
+    }
+
+    > i:nth-child(2) {
+      @include flex-box(center, row, center);
+      background: #ededed;
+      width: 33.3%;
+
+      &:hover {
+        background-color: $light-peach;
+        color: white;
+      }
+    }
+
+    > i:nth-child(3) {
+      @include flex-box(center, row, center);
+      background: #f7f7f7;
+      width: 33.3%;
+
+      &:hover {
+        background-color: $light-peach;
+        color: white;
+      }
+    }
+  }
+}
+
+.content__main {
+  @include flex-box(stretch, column, center, nowrap);
+}
+
+.main__slider {
+  @include flex-box(center, column, center, nowrap);
+  width: 100%;
+  background: $light-peach;
+
+  > nav {
+    @include flex-box(flex-start, row, center);
+    background-color: #f4845d;
+    width: 100%;
+    position: relative;
+    padding: 5% 2% 4.2%;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+      border-color: grey;
+      border: 1px solid grey;
+    }
+
+    > div {
+      display: none;
+    }
+
+    ul {
+      margin: auto 15px;
+      text-transform: uppercase;
+      font: {
+        family: "Arial", sans-serif;
+        size: 30px;
+      }
+
+      > li:not(:first-child) {
+        display: none;
+      }
+    }
+
+    &:after {
+      content: "";
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: white transparent transparent transparent;
+      position: absolute;
+      right: 4.8%;
+      top: 44%;
+    }
+
+    &:hover:after {
+      border-color: grey transparent transparent transparent;
+    }
+  }
+}
+
+.slider--block1 {
+  @include flex-box (center, row, center, nowrap);
+  background: #fd926d;
+  width: 100%;
+
+  > figure:not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  figure {
+    @include flex-box(center, column, stretch, nowrap);
+    background: white;
+    margin: 5% 2.6% 0.9%;
+
+    img {
+      max-width: 100%;
+    }
+
+    figcaption {
+      @include flex-box(stretch, column, center, nowrap);
+      color: #373737;
+      background: #f7f7f7;
+      text-transform: uppercase;
+      padding: 4% 0 6%;
+      overflow: hidden;
+
+      > :first-child {
+        font: {
+          family: "Arial", sans-serif;
+          size: 18px;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      > :nth-child(2) {
+        padding: 4%;
+        font: {
+          family: "Arial", sans-serif;
+          size: 27.5px;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      > div {
+        @include flex-box(center, row, center);
+        align-self: center;
+        width: 80%;
+        background: $light-peach;
+        border-bottom: 7px solid #dd6b44;
+        margin-top: 1%;
+        padding: 7% 1% 5% 5%;
+        overflow: hidden;
+        font: {
+          family: "Helvetica Neue LT Std", sans-serif;
+          size: 20px;
+          weight: 300;
+        }
+        text-transform: uppercase;
+        color: white;
+
+        i {
+          margin-left: 10%;
+          margin-bottom: 3%;
+        }
+
+        &:hover {
+          color: grey;
+          cursor: pointer;
+        }
+      }
+    }
+
+    > div {
+      display: none;
+    }
+  }
+}
+
+.slider__block2,
+.slider__block3,
+.slider_block4 {
+  display: none;
+}
+
+.slider--more {
+  width: 100%;
+  background: $light-peach;
+  @include flex-box(center, row, center);
+  padding: 3.3% 0 5%;
+
+  p {
+    @include flex-box(center, row, center);
+    background: black;
+    width: 34.5%;
+    padding: 3.7% 1% 2.6% 0;
+    font: {
+      family: "Helvetica Neue LT Std", sans-serif;
+      size: 20px;
+      weight: 300;
+    }
+    text-transform: uppercase;
+    color: white;
+
+    &:hover {
+      color: grey;
+      cursor: pointer;
+    }
+  }
+}
+
+.main__stock {
+  @include flex-box(center, column, center);
+  width: 100%;
+
+  > figure {
+    @include flex-box(center, row, center);
+    position: relative;
+    width: 100%;
+    margin-top: 4%;
+
+    > picture {
+      width: 24%;
+      > img {
+        width: 100%;
+      }
+    }
+
+
+    figcaption {
+      @include flex-box(center, row, center);
+      position: absolute;
+      font: {
+        family: "a_Empirial", sans-serif;
+        size: 36px;
+        weight: 100;
+      }
+      color: white;
+
+      > h2 {
+        @include flex-box(center, row, center);
+        width: 100%;
+        padding-top: 10%;
+        padding-right: 4%;
+      }
+
+      div {
+        @include flex-box(center, column, flex-start);
+      }
+
+      &:hover {
+        color: $peach;
+        cursor: pointer;
+      }
+
+      > p:nth-child(2) {
+        font: {
+          family: "a_Empirial", sans-serif;
+          size: 81px;
+        }
+      }
+    }
+
+    &:after {
+      content: "";
+      width: 35%;
+      height: 1px;
+      background: #d8d8d8;
+      position: absolute;
+      right: 0;
+      top: 51%;
+    }
+
+    &:before {
+      content: "";
+      width: 35%;
+      height: 1px;
+      background: #d8d8d8;
+      position: absolute;
+      left: 0;
+      top: 51%;
+    }
+  }
+}
+
+.stock--slider {
+  @include flex-box(center, row, stretch, nowrap);
+  width: 100%;
+
+  figure:not(:nth-child(1)):not(:nth-child(2)) {
+    display: none;
+  }
+
+  figure {
+    @include flex-box(center, column, stretch, nowrap);
+    background: white;
+    margin: 0 2.6%;
+    max-width: 50%;
+
+    img {
+      max-width: 100%;
+    }
+
+    figcaption {
+      @include flex-box(stretch, column, center, nowrap);
+      color: #373737;
+      background: #f7f7f7;
+      text-transform: uppercase;
+      padding: 2% 0 6%;
+      overflow: hidden;
+
+      > :first-child {
+        font: {
+          family: "Arial", sans-serif;
+          size: 18px;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      > :nth-child(2) {
+        padding: 4%;
+        font: {
+          family: "Arial", sans-serif;
+          size: 27.5px;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      > div {
+        @include flex-box(center, row, center);
+        align-self: center;
+        width: 80%;
+        background: $light-peach;
+        border-bottom: 7px solid #dd6b44;
+        margin-top: 1%;
+        padding: 7% 1% 5% 5%;
+        overflow: hidden;
+        font: {
+          family: "Helvetica Neue LT Std", sans-serif;
+          size: 20px;
+          weight: 300;
+        }
+        text-transform: uppercase;
+        color: white;
+
+        i {
+          margin-left: 23px;
+          margin-bottom: 5px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: grey;
+        }
+      }
+    }
+  }
+}
+
+.stock--more {
+  width: 100%;
+  @include flex-box(center, row, center);
+  padding: 4.5% 0 5.6%;
+
+  p {
+    @include flex-box(center, row, center);
+    background: black;
+    width: 34.5%;
+    padding: 3.7% 1% 2.6% 0;
+    font: {
+      family: "Helvetica Neue LT Std", sans-serif;
+      size: 20px;
+      weight: 300;
+    }
+    text-transform: uppercase;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
+  }
+}
+
+.footer {
+  @include flex-box(center, column, center);
+  padding: 0 2.5%;
+  background: black;
+
+  > nav {
+    display: none;
+  }
+}
+
+.content__footer,
+.footer__menu--social,
+.footer__menu--links {
+  display: none;
+}
+
+.footer__links {
+  @include flex-box(center, column, flex-end);
+  width: 100%;
+  padding: 4.7% 2.2% 5.2%;
+  position: relative;
+
+  > i {
+    align-self: flex-start;
+    color: white;
+    position: absolute;
+
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
+  }
+
+  > ul:first-child {
+    display: none;
+  }
+
+  > div:last-child {
+    @include flex-box(space-around, column, flex-end, nowrap);
+    color: #8d8d8d;
+    font: {
+      family: "Arial", sans-serif;
+      size: 24px;
+    }
+
+    a {
+      color: #8d8d8d;
+      text-decoration: none;
+    }
+  }
+}
