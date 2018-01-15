@@ -1,0 +1,8 @@
+body {
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 1200px;
+  margin: 0 auto;
+}
