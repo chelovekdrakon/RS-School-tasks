@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
     padding: 2% 7%;
     color: grey;
 
-    > div:first-child {
+    > h1 {
         font-size: 3rem;
         width: 25%;
         font-family: 'Roboto', sans-serif;

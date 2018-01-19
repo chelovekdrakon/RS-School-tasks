@@ -30,7 +30,8 @@ class Header extends Component {
     render() {
         return (
             <StyledHeader>
-                <div> To-Do List </div>
+                <h1> To-Do List </h1>
+
                 <div />
 
                 <label>
