@@ -9,27 +9,40 @@ class Main extends Component {
         this.state = {
             categoryField: '',
             todoField: '',
-            categories: ['eoraskjhdjkashdkjashdashaskldjaskljdlkasjaklsjdklajslkdj', 'bla'],
+            categories: ['bla', ['eoraskjhdjkashdkjashdashaskldjaskljdlkasjaklsjdklajslkdj', 'kwo', ['lol', 'patch']]],
             todos: ['aksljzxcm,n', 'bla'],
         }
     }
 
     addCategory = (e) => {
         const newArray = Array.from(this.state.categories);
-        newArray.unshift(this.state.categoryField);
-        this.setState({
-            categories: newArray,
-            categoryField: '',
-        })
+        const imputValue = this.state.categoryField;
+
+        if (newArray.indexOf(imputValue) > -1) {
+            console.log('you already have this category');
+            return false;
+        } else {
+            newArray.unshift(imputValue);
+            this.setState({
+                categories: newArray,
+                categoryField: '',
+            })
+        }
+        console.log(this.state, this.state.set.add);
     }
 
     deleteCategory = (e) => {
-        console.log(e.target);
-        console.log('delete');
+        const element = e.currentTarget.getAttribute('data-key');
+        const arr = this.state.categories;
+        const newArray = arr.filter( el => el !== element);
+
+        this.setState({
+            categories: newArray,
+        })
     }
 
     addSubcategory = (e) => {
-        console.log(e.target);
+        console.log(e.currentTarget.getAttribute('data-key'));
         console.log('addSub');
     }
 
@@ -59,7 +72,7 @@ class Main extends Component {
         return (
             <MainWrapper>
                 <MainSection
-                    aside category
+                    aside category={1}
                     placeholder='Enter category title'
                     todos={this.state.categories}
                     onAdd={this.addCategory}

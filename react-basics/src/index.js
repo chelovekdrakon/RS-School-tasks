@@ -5,9 +5,16 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 
+import store from './store';
+import { Provider } from 'react-redux';
+
 ReactDOM.render((
-    <Router>
-        <Route path="/" component={App} />
-    </Router>
+    <Provider store={store}>
+        <Router>
+            <Route path="/" component={App} />
+        </Router>
+    </Provider>
 ), document.getElementById('root'));
 registerServiceWorker();
+
+store.dispatch({ type: 'LOAD_DATA' });

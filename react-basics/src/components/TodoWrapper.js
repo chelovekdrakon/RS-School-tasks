@@ -6,7 +6,7 @@ const TodoWrapper = styled.li`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    width: 100%;
+    width: ${props => `${props.category * 100}%`};
 
     > div {
         display: flex;
@@ -34,7 +34,7 @@ const TodoWrapper = styled.li`
             }
 
             > div:last-child {
-                max-width: 18rem;
+                max-width: ${props => `${props.category * 18}rem`};
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow:ellipsis;
