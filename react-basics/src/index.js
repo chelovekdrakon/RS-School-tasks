@@ -8,6 +8,13 @@ import App from './App';
 import store from './store';
 import { Provider } from 'react-redux';
 
+
+import Immutable from 'immutable';
+import installDevTools from 'immutable-devtools';
+installDevTools(Immutable);
+window.Immutable = Immutable;
+
+
 ReactDOM.render((
     <Provider store={store}>
         <Router>
@@ -16,5 +23,3 @@ ReactDOM.render((
     </Provider>
 ), document.getElementById('root'));
 registerServiceWorker();
-
-store.dispatch({ type: 'LOAD_DATA' });

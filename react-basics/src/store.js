@@ -1,50 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
-import data from './data.json';
-import appReducers from './reducers';
+import { combineReducers } from 'redux';
+import { logger } from './middleware';
 
+import categoryListReducer from './reducers/categoryListReducer';
+import todoListReducer from './reducers/todoListReducer';
 
-const logger = ({ getState }) => next => action => {
-    console.log('will dispatch', action);
-    const state = next(action);
-
-    console.log('state after dispatch', getState());
-    return state;
-}
-
-
-function dataLoadingMiddleware({ getState, dispatch }) {
-  return next => action => {
-    if (action.type === 'LOAD_DATA') {
-        loadData().then(data => {
-            dispatch({ type: 'RECEIVE_DATA', payload: data })
-        })
-    }
-
-    return next(action);
-  }
-}
-
-function loadData() {
-    return new Promise((res, rej) => {
-        setTimeout(() => res(data), 2000)
-    })
-}
+const appReducers = combineReducers({
+    categoryList: categoryListReducer,
+    todos: todoListReducer
+});
 
 const store = createStore(
     appReducers,
-    applyMiddleware(
-        logger,
-        dataLoadingMiddleware
-    )
+    applyMiddleware(logger)
 );
-window.store = store;
-
-
-Object.defineProperty(window, 'state', {
-    get() {
-        return store.getState();
-    }
-});
-
 
 export default store;

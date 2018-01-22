@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './TodoList';
 import styled from 'styled-components';
 import AddField from '../containers/AddField';
+import { connect } from 'react-redux';
 
 const Section = styled.section`
     display: flex;
@@ -18,17 +19,14 @@ const MainSection = (props) => {
                 <AddField
                     placeholder={props.placeholder}
                     onSubmit={props.onAdd}
-                    onTap={props.onTap}
-                    value={props.value}/>
+                />
             </header>
             <TodoList
                 category={props.category}
-                text={props.todos}
-                deleteCategory={props.deleteCategory}
-                addSubcategory={props.addSubcategory}
+                list={props.list}
             />
         </Section>
     );
 }
 
-export default MainSection;
+export default connect()(MainSection);

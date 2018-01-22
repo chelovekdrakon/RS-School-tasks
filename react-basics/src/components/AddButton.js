@@ -19,7 +19,11 @@ const Button = styled.button`
 
 const AddButton = (props) => {
     return (
-        <Button onClick={props.onSubmit}>
+        <Button onClick={() => {
+            props.onSubmit(props.value);
+            props.clear();
+        }
+        }>
             Add
         </Button>
     );

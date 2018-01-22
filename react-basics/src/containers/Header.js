@@ -4,7 +4,6 @@ import ClearButton from '../components/ClearButton';
 import StyledHeader from '../components/StyledHeader';
 import { Checkbox, LinearProgress } from 'material-ui';
 
-
 class Header extends Component {
     constructor(props) {
         super(props);

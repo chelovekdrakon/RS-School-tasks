@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TodoField from '../components/TodoField';
 import AdjustTodo from '../components/AdjustTodo';
 import TodoWrapper from '../components/TodoWrapper';
+import Immutable from 'immutable';
 
 const MyList = styled.ul`
     width: 100%;
@@ -17,29 +18,34 @@ const MyList = styled.ul`
 `;
 
 const TodoList = (props) => {
+    const lol = <div>hello</div>;
+    if (props.list) {
+        if (props.list.length === 0) return lol;
+    const list = props.category ? Array.from(props.list.values()) : props.list;
+    console.log(list, 'list at TodoList');
     return (
         <MyList category={props.category}>
             {
-                props.text.map( li => {
-                    if (Array.isArray(li)) {
+                list.map( element => {
+                    if (Immutable.Map.isMap(element)) {
                         return (
                             <TodoList key={props.category}
                                 category={props.category - 0.1}
-                                text={li}
+                                list={element}
                                 deleteCategory={props.deleteCategory}
                                 addSubcategory={props.addSubcategory}
                             />
                         );
                     } else {
                         return (
-                            <TodoWrapper category={props.category} key={li}>
-                                <TodoField value={li} data={li} />
+                            <TodoWrapper category={props.category} key={element}>
+                                <TodoField value={element} data={element} />
                                 {
                                         props.category &&
                                     <AdjustTodo
                                         deleteCategory={props.deleteCategory}
                                         addSubcategory={props.addSubcategory}
-                                        data={li}
+                                        data={element}
                                     />
                                 }
                             </TodoWrapper>
@@ -50,6 +56,9 @@ const TodoList = (props) => {
             }
         </MyList>
     );
+} else {
+    return lol;
+}
 }
 
 
