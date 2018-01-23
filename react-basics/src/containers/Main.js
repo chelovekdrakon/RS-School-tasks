@@ -5,17 +5,6 @@ import { connect } from 'react-redux';
 import { addCategory, addTodo } from '../actions';
 
 const Main = (props) => {
-    let todoList;
-    if (props.todos) {
-        console.log(props.todos);
-        todoList = <MainSection
-            placeholder='Enter todo task'
-            onAdd={props.addTodoField}
-            list={props.todos}
-                   />
-    } else {
-        todoList = <div> Hello </div>
-    }
     return (
         <MainWrapper>
             <MainSection
@@ -24,7 +13,11 @@ const Main = (props) => {
                 onAdd={props.addCategoryField}
                 list={props.categories}
             />
-            {todoList}
+            {props.todos ? <MainSection
+                placeholder='Enter todo task'
+                onAdd={props.addTodoField}
+                list={props.todos}
+                           /> : <div> Hello </div>}
         </MainWrapper>
     );
 }

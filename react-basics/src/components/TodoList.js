@@ -4,6 +4,10 @@ import TodoField from '../components/TodoField';
 import AdjustTodo from '../components/AdjustTodo';
 import TodoWrapper from '../components/TodoWrapper';
 import Immutable from 'immutable';
+import { addSubCategory, deleteCategory, pickCategory } from '../actions';
+import { connect } from 'react-redux';
+
+
 
 const MyList = styled.ul`
     width: 100%;
@@ -20,9 +24,7 @@ const MyList = styled.ul`
 const TodoList = (props) => {
     const lol = <div>hello</div>;
     if (props.list) {
-        if (props.list.length === 0) return lol;
     const list = props.category ? Array.from(props.list.values()) : props.list;
-    console.log(list, 'list at TodoList');
     return (
         <MyList category={props.category}>
             {
@@ -37,17 +39,19 @@ const TodoList = (props) => {
                             />
                         );
                     } else {
+                        let checked = props.selected === element ? true : false;
                         return (
                             <TodoWrapper category={props.category} key={element}>
-                                <TodoField value={element} data={element} />
-                                {
-                                        props.category &&
-                                    <AdjustTodo
-                                        deleteCategory={props.deleteCategory}
-                                        addSubcategory={props.addSubcategory}
-                                        data={element}
-                                    />
-                                }
+                                <TodoField
+                                    value={element}
+                                    pickCategoryField={props.pickCategoryField}
+                                    checked={checked}
+                                />
+                                {props.category && <AdjustTodo
+                                    deleteCategory={() => props.deleteCategoryField(element)}
+                                    addSubcategory={() => props.addSubcategoryField(element)}
+                                    data={element}
+                                                   />}
                             </TodoWrapper>
                         );
                     }
@@ -55,11 +59,32 @@ const TodoList = (props) => {
                 )
             }
         </MyList>
-    );
-} else {
-    return lol;
-}
+        );
+    } else {
+        return lol;
+    }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categoryList.get('nestedCategories'),
+        todos: state.todos.get('toRender'),
+        selected: state.todos.get('selectedCategory')
+    }
+}
 
-export default TodoList;
+const mapActionToProps = (dispatch) => {
+    return {
+        addSubcategoryField(value) {
+            dispatch(addSubCategory(value))
+        },
+        deleteCategoryField(value) {
+            dispatch(deleteCategory(value))
+        },
+        pickCategoryField(value) {
+            dispatch(pickCategory(value))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(TodoList);

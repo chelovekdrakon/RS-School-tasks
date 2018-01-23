@@ -15,6 +15,12 @@ installDevTools(Immutable);
 window.Immutable = Immutable;
 
 
+window.store = store;
+Object.defineProperty(window, 'state', {
+    get: store.getState
+});
+
+
 ReactDOM.render((
     <Provider store={store}>
         <Router>

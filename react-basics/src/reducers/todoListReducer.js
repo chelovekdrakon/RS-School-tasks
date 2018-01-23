@@ -35,14 +35,19 @@ function categoryListReducer(state = initialState, action) {
             let cell = todos.get(selectedCategoryValue);
             cell = cell.push(action.payload);
             todos = todos.set(selectedCategoryValue, cell);
-            return state.set('todos', todos);
+            state = state.set('todos', todos);
+            return state.set('toRender', cell);
         }
 
-        case ADD_SUB_CATEGORY:
-            return state;
+        case ADD_SUB_CATEGORY: {
 
-        case DELETE_CATEGORY:
             return state;
+        }
+
+        case DELETE_CATEGORY: {
+
+            return state;
+        }
 
       default: return state;
     }

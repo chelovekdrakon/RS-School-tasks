@@ -30,10 +30,10 @@ export function addCategory(text) {
   }
 }
 
-export function addSubCategory(text) {
+export function addSubCategory(value) {
   return {
       type: ADD_SUB_CATEGORY,
-      payload: text
+      payload: value
   }
 }
 
