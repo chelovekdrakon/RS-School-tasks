@@ -29,9 +29,13 @@ class AddField extends Component {
                 <InputField
                     onChange={this.onTap}
                     value={this.state.inputValue}
-                    placeholder={this.props.placeholder} />
-
-                <AddButton value={this.state.inputValue} onSubmit={this.props.onSubmit} clear={this.clear} />
+                    placeholder={this.props.placeholder}
+                />
+                <AddButton 
+                    value={this.state.inputValue}
+                    onSubmit={this.props.onSubmit}
+                    clear={this.clear}
+                />
             </div>
         );
     }

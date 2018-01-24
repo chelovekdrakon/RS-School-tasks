@@ -12,6 +12,8 @@ export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const TODO_INPUT_TAP = 'TODO_INPUT_TAP';
 
+export const RESTART = 'RESTART';
+
 
 // OTHER CONSTANTS
 
@@ -63,6 +65,13 @@ export function addTodo(text) {
   return {
       type: ADD_TODO,
       payload: text
+  }
+}
+
+export function restartPage() {
+  return {
+      type: RESTART,
+      payload: 'Page restart by click on H1'
   }
 }
 

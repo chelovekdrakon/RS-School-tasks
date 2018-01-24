@@ -4,6 +4,8 @@ import ClearButton from '../components/ClearButton';
 import StyledHeader from '../wrappers/StyledHeader';
 import { Checkbox, LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { restartPage } from '../actions';
 
 class Header extends Component {
     constructor(props) {
@@ -33,22 +35,22 @@ class Header extends Component {
         const linearProgress = (100 / allTodos) * done;
         return (
             <StyledHeader>
-                <h1> To-Do List </h1>
-
-                <div />
-
+                <h1>
+                    <Link to="/" onClick={this.props.restart}>
+                        To-Do List
+                    </Link>
+                </h1>
+                <div></div>
                 <label>
                     <Checkbox />
                     Show done
                 </label>
-
                 <div>
                     <InputField onChange={this._onChange} value={this.state.value} placeholder='Search' />
                     <ClearButton onClick={this.clearInput}/>
                 </div>
 
                 <LinearProgress mode="determinate" value={linearProgress || 0} />
-
             </StyledHeader>
         );
     }
@@ -63,7 +65,9 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = (dispatch) => {
     return {
-
+        restart() {
+            dispatch(restartPage())
+        }
     }
 }
 

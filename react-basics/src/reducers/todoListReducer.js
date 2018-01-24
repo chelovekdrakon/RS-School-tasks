@@ -3,7 +3,8 @@ import { ADD_CATEGORY,
     DELETE_CATEGORY,
     ADD_TODO,
     PICK_CATEGORY,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    RESTART
  } from '../actions';
 import Immutable from 'immutable';
 
@@ -81,6 +82,10 @@ function categoryListReducer(state = initialState, action) {
             } else {
                 return state;
             }
+        }
+
+        case RESTART: {
+            return state.set('selectedCategory', '');
         }
 
       default: return state;
