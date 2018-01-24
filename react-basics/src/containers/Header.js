@@ -1,59 +1,45 @@
-import React, { Component } from 'react';
-import InputField from '../components/InputField';
-import ClearButton from '../components/ClearButton';
-import StyledHeader from '../wrappers/StyledHeader';
-import { Checkbox, LinearProgress } from 'material-ui';
+import React from 'react';
+import Logo from '../components/Logo';
+import Search from '../components/Search';
+import DisplayFilter from '../components/DisplayFilter';
+import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { restartPage } from '../actions';
+import styled from 'styled-components';
 
-class Header extends Component {
-    constructor(props) {
-        super(props);
+const StyledHeader = styled.header`
+    display: flex;
+    width: 100%;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 7%;
+    color: grey;
 
-        this.state = {
-            value: '',
-        }
+    > div:last-child {
+        margin: 4% 0 0 !important;
+        height: 0.7rem !important;
     }
+`;
 
-    _onChange = (e) => {
-        this.setState({
-            value: `${e.target.value}`
-        });
-    }
+const getRatio = (map) => {
+    const values = Array.from(map.values());
+    const allTodos = map.size;
+    const done = values.filter(el => el).length;
+    const linearProgress = (100 / allTodos) * done;
+    return linearProgress;
+}
 
-    clearInput = () => {
-        this.setState({
-            value: '',
-        });
-    }
-
-    render() {
-        const values = Array.from(this.props.done.values());
-        const allTodos = this.props.done.size;
-        const done = values.filter(el => el).length;
-        const linearProgress = (100 / allTodos) * done;
-        return (
-            <StyledHeader>
-                <h1>
-                    <Link to="/" onClick={this.props.restart}>
-                        To-Do List
-                    </Link>
-                </h1>
-                <div></div>
-                <label>
-                    <Checkbox />
-                    Show done
-                </label>
-                <div>
-                    <InputField onChange={this._onChange} value={this.state.value} placeholder='Search' />
-                    <ClearButton onClick={this.clearInput}/>
-                </div>
-
-                <LinearProgress mode="determinate" value={linearProgress || 0} />
-            </StyledHeader>
-        );
-    }
+const Header = (props) => {
+    const linearProgress = getRatio(props.done);
+    return (
+        <StyledHeader>
+            <Logo restart={props.restart} />
+            <DisplayFilter />
+            <Search />
+            <LinearProgress mode="determinate" value={linearProgress || 0} />
+        </StyledHeader>
+    );
 }
 
 const mapStateToProps = (state) => {
