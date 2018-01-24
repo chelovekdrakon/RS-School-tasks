@@ -4,10 +4,12 @@ import { logger } from './middleware';
 
 import categoryListReducer from './reducers/categoryListReducer';
 import todoListReducer from './reducers/todoListReducer';
+import filterReducer from './reducers/filterReducer';
 
 const appReducers = combineReducers({
     categoryList: categoryListReducer,
-    todos: todoListReducer
+    todos: todoListReducer,
+    displayFilter: filterReducer
 });
 
 const store = createStore(

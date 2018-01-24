@@ -5,10 +5,10 @@ import MaterialIcon from 'material-icons-react';
 const AdjustTodo = (props) => {
     return (
         <div>
-            <span onClick={props.deleteCategory} data={props.data} >
+            <span onClick={() => props.deleteCategory(props.value)} >
                 <MaterialIcon icon="delete" />
             </span>
-            <span onClick={props.addSubcategory} data={props.data} >
+            <span onClick={() => props.addSubcategory(props.value)} >
                 <MaterialIcon icon="playlist_add" />
             </span>
         </div>

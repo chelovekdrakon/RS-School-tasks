@@ -1,8 +1,9 @@
 import React from 'react';
-import MainWrapper from '../components/StyledMain';
+import MainWrapper from '../wrappers/MainWrapper';
 import MainSection from '../components/MainSection';
 import { connect } from 'react-redux';
 import { addCategory, addTodo } from '../actions';
+import { Route } from 'react-router-dom';
 
 const Main = (props) => {
     return (
@@ -13,11 +14,17 @@ const Main = (props) => {
                 onAdd={props.addCategoryField}
                 list={props.categories}
             />
-            {props.todos ? <MainSection
-                placeholder='Enter todo task'
-                onAdd={props.addTodoField}
-                list={props.todos}
-                           /> : <div> Hello </div>}
+            <Route
+                exact
+                path="/:category"
+                component={routeProps => props.selected !== '' ? (
+                    <MainSection
+                        placeholder='Enter todo task'
+                        onAdd={props.addTodoField}
+                        list={props.todos}
+                    />
+                ) : null}
+            />
         </MainWrapper>
     );
 }
@@ -25,7 +32,8 @@ const Main = (props) => {
 const mapStateToProps = (state) => {
     return {
         categories: state.categoryList.get('nestedCategories'),
-        todos: state.todos.get('toRender')
+        todos: state.todos.get('toRender'),
+        selected: state.todos.get('selectedCategory'),
     }
 }
 

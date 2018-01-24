@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../components/Input';
+import InputField from '../components/InputField';
 import AddButton from '../components/AddButton';
 
 class AddField extends Component {
@@ -26,7 +26,7 @@ class AddField extends Component {
     render() {
         return (
             <div>
-                <Input
+                <InputField
                     onChange={this.onTap}
                     value={this.state.inputValue}
                     placeholder={this.props.placeholder} />

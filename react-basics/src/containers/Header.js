@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Input from '../components/Input';
+import InputField from '../components/InputField';
 import ClearButton from '../components/ClearButton';
-import StyledHeader from '../components/StyledHeader';
+import StyledHeader from '../wrappers/StyledHeader';
 import { Checkbox, LinearProgress } from 'material-ui';
+import { connect } from 'react-redux';
 
 class Header extends Component {
     constructor(props) {
@@ -10,7 +11,6 @@ class Header extends Component {
 
         this.state = {
             value: '',
-            linearProgress: 50
         }
     }
 
@@ -27,6 +27,10 @@ class Header extends Component {
     }
 
     render() {
+        const values = Array.from(this.props.done.values());
+        const allTodos = this.props.done.size;
+        const done = values.filter(el => el).length;
+        const linearProgress = (100 / allTodos) * done;
         return (
             <StyledHeader>
                 <h1> To-Do List </h1>
@@ -39,15 +43,28 @@ class Header extends Component {
                 </label>
 
                 <div>
-                    <Input onChange={this._onChange} value={this.state.value} placeholder='Search' />
+                    <InputField onChange={this._onChange} value={this.state.value} placeholder='Search' />
                     <ClearButton onClick={this.clearInput}/>
                 </div>
 
-                <LinearProgress mode="determinate" value={this.state.linearProgress} />
+                <LinearProgress mode="determinate" value={linearProgress || 0} />
 
             </StyledHeader>
         );
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        done: state.todos.get('done'),
+        todos: state.todos.get('todos')
+    }
+}
+
+const mapActionToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Header);

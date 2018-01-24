@@ -2,14 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import TodoField from '../components/TodoField';
 import AdjustTodo from '../components/AdjustTodo';
-import TodoWrapper from '../components/TodoWrapper';
+import FieldWrapper from '../wrappers/FieldWrapper';
 import Immutable from 'immutable';
-import { addSubCategory, deleteCategory, pickCategory } from '../actions';
+import {
+    addSubCategory,
+    deleteCategory,
+    pickCategory,
+    toggleTodo
+} from '../actions';
 import { connect } from 'react-redux';
 
 
-
-const MyList = styled.ul`
+const ListWrapper = styled.ul`
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
@@ -21,12 +25,12 @@ const MyList = styled.ul`
     }
 `;
 
+
 const TodoList = (props) => {
-    const lol = <div>hello</div>;
-    if (props.list) {
     const list = props.category ? Array.from(props.list.values()) : props.list;
+
     return (
-        <MyList category={props.category}>
+        <ListWrapper category={props.category}>
             {
                 list.map( element => {
                     if (Immutable.Map.isMap(element)) {
@@ -39,37 +43,43 @@ const TodoList = (props) => {
                             />
                         );
                     } else {
-                        let checked = props.selected === element ? true : false;
-                        return (
-                            <TodoWrapper category={props.category} key={element}>
+                        let checked
+                        if (props.category) {
+                            checked = props.selected === element ? true : false;
+                        } else {
+                            checked = props.done.get(element);
+                        }
+
+                        return props.done.get(element) ? (
+                            <FieldWrapper category={props.category} key={element}>
                                 <TodoField
                                     value={element}
-                                    pickCategoryField={props.pickCategoryField}
+                                    category={props.category}
+                                    pick={props.category ? props.pickCategoryField : props.pickTodoField}
                                     checked={checked}
                                 />
                                 {props.category && <AdjustTodo
-                                    deleteCategory={() => props.deleteCategoryField(element)}
-                                    addSubcategory={() => props.addSubcategoryField(element)}
-                                    data={element}
+                                    deleteCategory={props.deleteCategoryField}
+                                    addSubcategory={props.addSubcategoryField}
+                                    value={element}
                                                    />}
-                            </TodoWrapper>
-                        );
+                            </FieldWrapper>
+                        ) : null;
                     }
                 }
                 )
             }
-        </MyList>
+        </ListWrapper>
         );
-    } else {
-        return lol;
-    }
 }
 
 const mapStateToProps = (state) => {
     return {
         categories: state.categoryList.get('nestedCategories'),
         todos: state.todos.get('toRender'),
-        selected: state.todos.get('selectedCategory')
+        selected: state.todos.get('selectedCategory'),
+        done: state.todos.get('done'),
+        filter: state.displayFilter
     }
 }
 
@@ -83,6 +93,9 @@ const mapActionToProps = (dispatch) => {
         },
         pickCategoryField(value) {
             dispatch(pickCategory(value))
+        },
+        pickTodoField(value) {
+            dispatch(toggleTodo(value))
         }
     }
 }

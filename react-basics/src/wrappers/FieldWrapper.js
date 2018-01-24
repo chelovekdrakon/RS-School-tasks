@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const TodoWrapper = styled.li`
+const FieldWrapper = styled.li`
     border: 1px solid LightBlue;
     border-radius: 0.2rem;
     display: flex;
@@ -51,4 +51,4 @@ const TodoWrapper = styled.li`
     }
 `;
 
-export default TodoWrapper;
+export default FieldWrapper;

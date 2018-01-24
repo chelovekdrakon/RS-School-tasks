@@ -22,8 +22,7 @@ const AddButton = (props) => {
         <Button onClick={() => {
             props.onSubmit(props.value);
             props.clear();
-        }
-        }>
+        }}>
             Add
         </Button>
     );

@@ -1,8 +1,7 @@
 import React from 'react';
-import TodoList from './TodoList';
+import TodoList from '../containers/TodoList';
 import styled from 'styled-components';
-import AddField from '../containers/AddField';
-import { connect } from 'react-redux';
+import InputContainer from '../containers/InputContainer';
 
 const Section = styled.section`
     display: flex;
@@ -16,7 +15,7 @@ const MainSection = (props) => {
     return (
         <Section aside={props.aside}>
             <header>
-                <AddField
+                <InputContainer
                     placeholder={props.placeholder}
                     onSubmit={props.onAdd}
                 />
@@ -29,4 +28,4 @@ const MainSection = (props) => {
     );
 }
 
-export default connect()(MainSection);
+export default MainSection;

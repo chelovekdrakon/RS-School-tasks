@@ -66,10 +66,10 @@ export function addTodo(text) {
   }
 }
 
-export function toggleTodo(index) {
+export function toggleTodo(value) {
   return {
       type: TOGGLE_TODO,
-      payload: index
+      payload: value
   }
 }
 

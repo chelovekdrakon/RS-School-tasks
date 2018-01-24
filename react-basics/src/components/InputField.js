@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const StyledInput = styled.input`
     border: none;
 
     &:focus {
@@ -17,10 +17,10 @@ const Input = styled.input`
     }
 `;
 
-const Search = (props) => {
+const Input = (props) => {
     return (
-        <Input value={props.value} placeholder={props.placeholder} onChange={props.onChange} />
+        <StyledInput value={props.value} placeholder={props.placeholder} onChange={props.onChange} />
     );
 };
 
-export default Search;
+export default Input;
