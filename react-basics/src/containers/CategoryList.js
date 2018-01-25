@@ -14,7 +14,7 @@ const ListWrapper = styled.ul`
 `;
 
 const CategoryList = (props) => {
-    const list = Array.from(props.list.values());
+    const list = Array.from(props.list.values()).reverse();
     return (
         <ListWrapper>
             {

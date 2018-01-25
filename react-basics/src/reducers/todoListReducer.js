@@ -4,7 +4,8 @@ import { ADD_CATEGORY,
     ADD_TODO,
     PICK_CATEGORY,
     TOGGLE_TODO,
-    RESTART
+    RESTART,
+    ADJUST_DELIVERY
  } from '../actions';
 import Immutable from 'immutable';
 
@@ -26,7 +27,8 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
     todos: Immutable.Map(),
     selectedCategory: '',
-    selectedListMap: Immutable.Map()
+    selectedListMap: Immutable.Map(),
+    adjustedBySearch: Immutable.Map()
 })
 
 
@@ -88,6 +90,31 @@ function todoListReducer(state = initialState, action) {
 
         case RESTART: {
             return state.set('selectedCategory', '');
+        }
+
+        case ADJUST_DELIVERY: {
+            const selectedListMap = state.get('selectedListMap');
+            state = state.set('adjustedBySearch', selectedListMap);
+
+            const arrTodos = Array.from(selectedListMap.keys());
+            if (arrTodos.length === 0) return state;
+
+            const searchingValue = action.payload;
+            const notRelevantTodos = [];
+            arrTodos.forEach(todo => {
+                const todoLettersArray = todo.split('');
+                const searchingLettersArray = searchingValue.split('');
+
+                for (let i in searchingLettersArray) {
+                    if (todoLettersArray[i] !== searchingLettersArray[i]) {
+                        notRelevantTodos.push(todo);
+                    }
+                }
+            });
+            notRelevantTodos.forEach(todo => {
+                state = state.deleteIn(['adjustedBySearch', todo]);
+            })
+            return state;
         }
 
       default: return state;

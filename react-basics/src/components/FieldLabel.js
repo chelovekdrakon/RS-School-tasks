@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledLabel = styled.label`
     display: flex;
@@ -34,10 +35,12 @@ const onClick = (props) => {
 const FieldLabel = (props) => {
     return (
         <StyledLabel>
-            <Checkbox
-                checked={props.checked}
-                onClick={() => onClick(props)}
-            />
+            <Link to={`${props.value}`}>
+                <Checkbox
+                    checked={props.checked}
+                    onClick={() => onClick(props)}
+                />
+            </Link>
             <div> {props.value} </div>
         </StyledLabel>
     );

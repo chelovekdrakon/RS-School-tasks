@@ -13,8 +13,10 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const TODO_INPUT_TAP = 'TODO_INPUT_TAP';
 
 export const RESTART = 'RESTART';
-
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const ADJUST_DELIVERY = 'ADJUST_DELIVERY';
+
+
 
 // ACTION CREATORS
 
@@ -85,6 +87,13 @@ export function reflectTodoInput(text) {
 export function toggleFilter(value) {
   return {
       type: TOGGLE_FILTER,
+      payload: value
+  }
+}
+
+export function adjustDelivery(value) {
+  return {
+      type: ADJUST_DELIVERY,
       payload: value
   }
 }

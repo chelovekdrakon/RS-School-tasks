@@ -19,6 +19,7 @@ const SearchWrapper = styled.div`
 class Search extends Component {
     constructor(props) {
         super(props);
+        this.timerID = '';
 
         this.state = {
             value: '',
@@ -35,6 +36,15 @@ class Search extends Component {
         this.setState({
             value: '',
         });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        clearTimeout(this.timerID);
+        if (this.state.value !== '') {
+            this.timerID = setTimeout(this.props.onTap, 170, this.state.value);
+        } else {
+            this.props.onTap(this.state.value);
+        }
     }
 
     render() {

@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import DisplayFilter from '../components/DisplayFilter';
 import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
-import { restartPage, toggleFilter } from '../actions';
+import { restartPage, toggleFilter, adjustDelivery } from '../actions';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 
@@ -43,13 +43,12 @@ const getRatio = (map) => {
 }
 
 const Header = (props) => {
-    console.log(props.todos.size);
     const linearProgress = getRatio(props.todos);
     return (
         <StyledHeader>
             <Logo restart={props.restart} />
             <DisplayFilter onClick={props.toggle} />
-            <Search />
+            <Search list={props.selectedList} onTap={props.searchRelevant} />
             <LinearProgress mode="determinate" value={linearProgress || 0} />
         </StyledHeader>
     );
@@ -57,7 +56,8 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos.get('todos')
+        todos: state.todos.get('todos'),
+        selectedList: state.todos.get('selectedListMap')
     }
 }
 
@@ -68,6 +68,9 @@ const mapActionToProps = (dispatch) => {
         },
         toggle() {
             dispatch(toggleFilter())
+        },
+        searchRelevant(value) {
+            dispatch(adjustDelivery(value))
         }
     }
 }
