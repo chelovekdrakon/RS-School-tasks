@@ -6,7 +6,6 @@ import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { restartPage } from '../actions';
 import styled from 'styled-components';
-import Immutable from 'immutable';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -24,8 +23,7 @@ const StyledHeader = styled.header`
 `;
 
 const getRatio = (map) => {
-    const values = map.values();
-    console.log(values);
+    const values = Array.from(map.values());
     const allTodos = map.size;
     const done = values.filter(el => el).length;
     const linearProgress = (100 / allTodos) * done;
@@ -33,7 +31,7 @@ const getRatio = (map) => {
 }
 
 const Header = (props) => {
-    const linearProgress = 0;
+    const linearProgress = getRatio(props.done);
     return (
         <StyledHeader>
             <Logo restart={props.restart} />
@@ -46,7 +44,8 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos
+        done: state.todos.get('done'),
+        todos: state.todos.get('todos')
     }
 }
 

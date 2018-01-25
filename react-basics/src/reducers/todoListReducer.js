@@ -9,54 +9,60 @@ import { ADD_CATEGORY,
 import Immutable from 'immutable';
 
 
-// Example of data structure
-//
-// const stateArchitechture = Immutable.Map({
-//     category: Immutable.Map({
-//         todo: Immutable.Map({
-//             isDone: false,
-//             desctiption: ''
-//         })
-//     })
-// });
-//
-//
+const initialState = Immutable.Map({
+    todos: Immutable.Map(),
+    toRender: Immutable.List(),
+    done: Immutable.Map(),
+    selectedCategory: ''
+});
 
 
-function todoListReducer(state = Immutable.Map(), action) {
+function categoryListReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_CATEGORY: {
-            return state.set(action.payload, Immutable.Map());
+            let existTODO = state.get('done');
+            if (existTODO.get(action.payload)) {
+                return console.log('')
+            }
+            let todos = state.get('todos');
+            todos = todos.set(action.payload, Immutable.List());
+            state = state.set('todos', todos);
+            return state;
         }
 
         case PICK_CATEGORY: {
+            let todos = state.get('todos');
+            let toRender = todos.get(action.payload);
+            state = state.set('toRender', toRender);
             return state.set('selectedCategory', action.payload);
         }
 
         case ADD_TODO: {
-            const selectedCategoryName = state.get('selectedCategory');
-            let categoryCell = state.get(selectedCategoryName);
-            categoryCell = categoryCell.set(action.payload, Immutable.Map({
-                isDone: false,
-                description: ''
-            }));
-            return state.set(selectedCategoryName, categoryCell)
+            let selectedCategoryValue = state.get('selectedCategory');
+
+            let todos = state.get('todos');
+            let cell = todos.get(selectedCategoryValue);
+            cell = cell.push(action.payload);
+
+            todos = todos.set(selectedCategoryValue, cell);
+            state = state.set('todos', todos);
+
+            state = state.set('toRender', cell);
+
+            let done = state.get('done');
+            done = done.set(action.payload, false);
+            return state.set('done', done);
         }
 
         case TOGGLE_TODO: {
-            const selectedCategoryName = state.get('selectedCategory');
-            let categoryCell = state.get(selectedCategoryName);
-            let todoCell = categoryCell.get(action.payload);
-
-            const todoValue = todoCell.get('isDone');
-            if (todoValue) {
-                todoCell = todoCell.set('isDone', false);
+            let done = state.get('done');
+            let value = done.get(action.payload);
+            if (value) {
+                done = done.set(action.payload, false);
             } else {
-                todoCell = todoCell.set('isDone', true);
+                done = done.set(action.payload, true);
             }
-
-            categoryCell = categoryCell.set(action.payload, todoCell);
-            return state.set(selectedCategoryName, categoryCell);
+            return state.set('done', done);
         }
 
         case ADD_SUB_CATEGORY: {
@@ -65,9 +71,17 @@ function todoListReducer(state = Immutable.Map(), action) {
         }
 
         case DELETE_CATEGORY: {
-            let selectedCategoryName = state.get('selectedCategory');
-            state = action.payload === selectedCategoryName ? state.set('selectedCategory', '') : state;
-            return state.delete(action.payload);
+            let todos = state.get('todos');
+            todos = todos.delete(action.payload);
+            state = state.set('todos', todos);
+
+            let selectedCategoryValue = state.get('selectedCategory');
+            if (action.payload === selectedCategoryValue) {
+                state = state.set('selectedCategory', '');
+                return state.set('toRender', Immutable.List())
+            } else {
+                return state;
+            }
         }
 
         case RESTART: {
@@ -78,4 +92,4 @@ function todoListReducer(state = Immutable.Map(), action) {
     }
 }
 
-export default todoListReducer;
+export default categoryListReducer;
