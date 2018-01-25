@@ -9,18 +9,14 @@ import { ADD_CATEGORY,
 import Immutable from 'immutable';
 
 
-// Example of data structure
-//
-// const stateArchitechture = Immutable.Map({
-//     category: Immutable.Map({
-//         todo: Immutable.Map({
-//             isDone: false,
-//             desctiption: ''
-//         })
-//     })
-// });
-//
-//
+const stateArchitechture = Immutable.Map({
+    category: Immutable.Map({
+        todo: Immutable.Map({
+            isDone: false,
+            desctiption: ''
+        })
+    })
+});
 
 
 function todoListReducer(state = Immutable.Map(), action) {

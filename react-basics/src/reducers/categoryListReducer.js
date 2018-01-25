@@ -12,9 +12,6 @@ const initialState = Immutable.Map({
 
 
 function categoryListReducer(state = initialState, action) {
-
-
-
     switch (action.type) {
         case ADD_CATEGORY: {
             let nestedCategories = state.get('nestedCategories');
