@@ -8,80 +8,81 @@ import { ADD_CATEGORY,
  } from '../actions';
 import Immutable from 'immutable';
 
+// Example of data structure
+//
+// const stateArchitechture = Immutable.Map({
+//     todos: Immutable.Map({
+//         category: Immutable.Map({
+//             todo: Immutable.Map({
+//                 isDone: false,
+//                 desctiption: ''
+//             })
+//         })
+//     }),
+//     selectedCategory: ''
+// });
+
 
 const initialState = Immutable.Map({
     todos: Immutable.Map(),
-    toRender: Immutable.List(),
-    done: Immutable.Map(),
-    selectedCategory: ''
-});
+    selectedCategory: '',
+    selectedListMap: Immutable.Map()
+})
 
 
-function categoryListReducer(state = initialState, action) {
+function todoListReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_CATEGORY: {
-            let existTODO = state.get('done');
-            if (existTODO.get(action.payload)) {
-                return console.log('')
-            }
-            let todos = state.get('todos');
-            todos = todos.set(action.payload, Immutable.List());
-            state = state.set('todos', todos);
-            return state;
+            const categoryName = action.payload;
+            return state.setIn(['todos', `${categoryName}`], Immutable.Map());
         }
 
         case PICK_CATEGORY: {
-            let todos = state.get('todos');
-            let toRender = todos.get(action.payload);
-            state = state.set('toRender', toRender);
-            return state.set('selectedCategory', action.payload);
+            const categoryName = action.payload;
+            const listMap = state.getIn(['todos', `${categoryName}`]);
+            state = state.set('selectedListMap', listMap);
+            return state.set('selectedCategory', categoryName);
         }
 
         case ADD_TODO: {
-            let selectedCategoryValue = state.get('selectedCategory');
-
-            let todos = state.get('todos');
-            let cell = todos.get(selectedCategoryValue);
-            cell = cell.push(action.payload);
-
-            todos = todos.set(selectedCategoryValue, cell);
-            state = state.set('todos', todos);
-
-            state = state.set('toRender', cell);
-
-            let done = state.get('done');
-            done = done.set(action.payload, false);
-            return state.set('done', done);
+            const categoryName = state.get('selectedCategory');
+            const todoName = action.payload;
+            const initialValue = Immutable.Map({
+                isDone: false,
+                description: ''
+            });
+            state = state.setIn(['todos', `${categoryName}`, `${todoName}`], initialValue);
+            return state.setIn(['selectedListMap', `${todoName}`], initialValue);
         }
 
         case TOGGLE_TODO: {
-            let done = state.get('done');
-            let value = done.get(action.payload);
-            if (value) {
-                done = done.set(action.payload, false);
+            const categoryName = state.get('selectedCategory');
+            let todoName = action.payload;
+            const todoValue = state.getIn(['todos', `${categoryName}`, `${todoName}`, 'isDone']);
+
+            if (todoValue) {
+                state = state.setIn(['selectedListMap', `${todoName}`, 'isDone'], false);
+                return state.setIn(['todos', `${categoryName}`, `${todoName}`, 'isDone'], false)
             } else {
-                done = done.set(action.payload, true);
+                state = state.setIn(['selectedListMap', `${todoName}`, 'isDone'], true);
+                return state.setIn(['todos', `${categoryName}`, `${todoName}`, 'isDone'], true)
             }
-            return state.set('done', done);
         }
 
         case ADD_SUB_CATEGORY: {
-
-            return state;
+            const categoryName = action.payload;
+            return state.setIn(['todos', `${categoryName}`], Immutable.Map());
         }
 
         case DELETE_CATEGORY: {
-            let todos = state.get('todos');
-            todos = todos.delete(action.payload);
-            state = state.set('todos', todos);
+            const selectedCategoryName = state.get('selectedCategory');
+            const categoryName = action.payload;
 
-            let selectedCategoryValue = state.get('selectedCategory');
-            if (action.payload === selectedCategoryValue) {
-                state = state.set('selectedCategory', '');
-                return state.set('toRender', Immutable.List())
-            } else {
-                return state;
+            if (categoryName === selectedCategoryName) {
+                state = state.set('selectedCategory', '')
             }
+
+            return state.deleteIn(['todos', `${categoryName}`]);
         }
 
         case RESTART: {
@@ -92,4 +93,4 @@ function categoryListReducer(state = initialState, action) {
     }
 }
 
-export default categoryListReducer;
+export default todoListReducer;

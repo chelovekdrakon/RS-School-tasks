@@ -13,11 +13,12 @@ const ListWrapper = styled.ul`
 `;
 
 const TodoList = (props) => {
+    const list = Array.from(props.list.keys());
     return (
         <ListWrapper>
             {
-                props.toRender.map( element => {
-                    let done = props.done.get(element);
+                list.map( element => {
+                    let done = props.list.getIn([`${element}`, 'isDone']);
                     return (
                         <TodoField
                             key={element}
@@ -34,8 +35,8 @@ const TodoList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        done: state.todos.get('done'),
-        toRender: state.todos.get('toRender'),
+        todos: state.todos.get('todos'),
+        list: state.todos.get('selectedListMap')
     }
 }
 

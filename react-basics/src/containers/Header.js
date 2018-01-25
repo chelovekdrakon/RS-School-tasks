@@ -6,6 +6,7 @@ import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { restartPage } from '../actions';
 import styled from 'styled-components';
+import Immutable from 'immutable';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -23,15 +24,27 @@ const StyledHeader = styled.header`
 `;
 
 const getRatio = (map) => {
-    const values = Array.from(map.values());
-    const allTodos = map.size;
-    const done = values.filter(el => el).length;
-    const linearProgress = (100 / allTodos) * done;
-    return linearProgress;
+    const todosInCategory = Array.from(map.values());
+    const booleanArray = [];
+
+    todosInCategory.forEach(todoMap => {
+        const mapWithTodoData = Array.from(todoMap.values());
+        mapWithTodoData.forEach(element => {
+            if (Immutable.Map.isMap(element)) {
+                const boolean = element.get('isDone');
+                booleanArray.push(boolean);
+            }
+        });
+    });
+
+    const amountOfTasks = booleanArray.length;
+    const amountOfDone = booleanArray.filter(el => el).length;
+    return (100 / amountOfTasks) * amountOfDone;
 }
 
 const Header = (props) => {
-    const linearProgress = getRatio(props.done);
+    console.log(props.todos.size);
+    const linearProgress = getRatio(props.todos);
     return (
         <StyledHeader>
             <Logo restart={props.restart} />
@@ -44,7 +57,6 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        done: state.todos.get('done'),
         todos: state.todos.get('todos')
     }
 }
