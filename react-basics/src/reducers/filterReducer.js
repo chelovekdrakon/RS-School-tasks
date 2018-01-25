@@ -1,16 +1,16 @@
-import { VisibilityFilters } from '../actions';
+import {  TOGGLE_FILTER } from '../actions';
 
 const initialState = false;
 
 
 function categoryListReducer(state = initialState, action) {
     switch (action.type) {
-        case VisibilityFilters.SHOW_ALL: {
-            return true;
-        }
-
-        case VisibilityFilters.SHOW_DONE: {
-            return false;
+        case TOGGLE_FILTER: {
+            if (state) {
+                return false
+            } else {
+                return true;
+            }
         }
 
       default: return state;

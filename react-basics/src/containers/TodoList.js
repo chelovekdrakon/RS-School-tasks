@@ -19,6 +19,7 @@ const TodoList = (props) => {
             {
                 list.map( element => {
                     let done = props.list.getIn([`${element}`, 'isDone']);
+                    if (!props.showDone && done) return null;
                     return (
                         <TodoField
                             key={element}
@@ -36,7 +37,8 @@ const TodoList = (props) => {
 const mapStateToProps = (state) => {
     return {
         todos: state.todos.get('todos'),
-        list: state.todos.get('selectedListMap')
+        list: state.todos.get('selectedListMap'),
+        showDone: state.displayFilter
     }
 }
 

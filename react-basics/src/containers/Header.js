@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import DisplayFilter from '../components/DisplayFilter';
 import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
-import { restartPage } from '../actions';
+import { restartPage, toggleFilter } from '../actions';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 
@@ -48,7 +48,7 @@ const Header = (props) => {
     return (
         <StyledHeader>
             <Logo restart={props.restart} />
-            <DisplayFilter />
+            <DisplayFilter onClick={props.toggle} />
             <Search />
             <LinearProgress mode="determinate" value={linearProgress || 0} />
         </StyledHeader>
@@ -65,6 +65,9 @@ const mapActionToProps = (dispatch) => {
     return {
         restart() {
             dispatch(restartPage())
+        },
+        toggle() {
+            dispatch(toggleFilter())
         }
     }
 }

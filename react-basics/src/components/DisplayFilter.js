@@ -23,7 +23,7 @@ const StyledLabel = styled.label`
 const DisplayFilter = (props) => {
     return (
         <StyledLabel>
-            <Checkbox />
+            <Checkbox onClick={props.onClick} />
             Show done
         </StyledLabel>
     );

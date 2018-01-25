@@ -2,17 +2,29 @@ import React from 'react';
 import MaterialIcon from 'material-icons-react';
 import { addSubCategory, deleteCategory } from '../actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+
+    > * {
+        display: flex;
+        align-items: center;
+    }
+`;
 
 const AdjustCategory = (props) => {
     return (
-        <div>
-            <span onClick={() => props.deleteCategoryField(props.value)} >
+        <Wrapper>
+            <Link to="/" onClick={() => props.deleteCategoryField(props.value)} >
                 <MaterialIcon icon="delete" />
-            </span>
+            </Link>
             <span onClick={() => props.addSubcategoryField(props.value)} >
                 <MaterialIcon icon="playlist_add" />
             </span>
-        </div>
+        </Wrapper>
     );
 }
 

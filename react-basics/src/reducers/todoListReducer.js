@@ -79,7 +79,8 @@ function todoListReducer(state = initialState, action) {
             const categoryName = action.payload;
 
             if (categoryName === selectedCategoryName) {
-                state = state.set('selectedCategory', '')
+                state = state.set('selectedCategory', '');
+                state = state.set('selectedListMap', Immutable.Map());
             }
 
             return state.deleteIn(['todos', `${categoryName}`]);

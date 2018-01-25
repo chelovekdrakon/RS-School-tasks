@@ -1,9 +1,8 @@
 import React from 'react';
-import Checkbox from 'material-ui/Checkbox';
 import MaterialIcon from 'material-icons-react';
-import { Link } from 'react-router-dom';
 import AdjustCategory from './AdjustCategory';
 import styled from 'styled-components';
+import FieldLabel from './FieldLabel';
 
 const FieldWrapper = styled.li`
     display: flex;
@@ -16,39 +15,9 @@ const FieldWrapper = styled.li`
 
     width: ${props => `${props.category * 100}%`};
 
-    > div {
-        display: flex;
-        align-items: center;
-
-        > span {
-            display: flex;
-            align-items: center;
-        }
-    }
-
     > i {
         flex: 1;
         margin: 0 2%;
-    }
-`;
-
-const StyledLabel = styled.label`
-    display: flex;
-    align-items: center;
-
-    > div {
-        max-width: ${props => `${props.category * 18}rem`};
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-    }
-
-    > a {
-        width: 2.5rem;
-    }
-
-    &:hover {
-        cursor: pointer;
     }
 `;
 
@@ -56,18 +25,13 @@ const StyledLabel = styled.label`
 const CategoryField = (props) => {
     return (
         <FieldWrapper category={props.category}>
-            <StyledLabel category={props.category}>
-                <Link to={props.value}>
-                    <Checkbox
-                        checked={props.checked}
-                        onClick={() => props.checked ? console.log('not today, bro') : props.pick(props.value)}
-                    />
-                </Link>
-                <div> {props.value} </div>
-            </StyledLabel>
-
+            <FieldLabel
+                category={props.category}
+                value={props.value}
+                checked={props.checked}
+                onClick={props.pick}
+            />
             <MaterialIcon icon="mode_edit" size="tiny" />
-
             <AdjustCategory value={props.value} />
         </FieldWrapper>
     );

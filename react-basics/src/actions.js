@@ -14,14 +14,7 @@ export const TODO_INPUT_TAP = 'TODO_INPUT_TAP';
 
 export const RESTART = 'RESTART';
 
-
-// OTHER CONSTANTS
-
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_DONE: 'SHOW_DONE'
-}
-
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 // ACTION CREATORS
 
@@ -86,5 +79,12 @@ export function reflectTodoInput(text) {
   return {
       type: TODO_INPUT_TAP,
       payload: text
+  }
+}
+
+export function toggleFilter(value) {
+  return {
+      type: TOGGLE_FILTER,
+      payload: value
   }
 }
