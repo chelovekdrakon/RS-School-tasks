@@ -146,7 +146,8 @@ function todoListReducer(state = initialState, action) {
 
             state = state.deleteIn(['todos', `${oldCategory}`, `${todoName}`]);
             state = state.setIn(['todos', `${newCategoryName}`, `${todoName}`], todoDescription);
-            return state.set('selectedCategory', newCategoryName);
+            state = state.set('selectedCategory', newCategoryName);
+            return state.set('selectedListMap', state.getIn(['todos', newCategoryName]));
         }
 
       default: return state;

@@ -19,18 +19,17 @@ const CategoryList = (props) => {
 
     props.list.forEach( (mapUnderCategory, categoryName) => {
         if (categoryName === INPUT_FIELD) {
-
-            res.push(
+            let element = (
                 <InputContainer
                     key={`${categoryName}-${INPUT_FIELD}`}
                     placeholder={ADD_SUBCATEGORY}
                     onSubmit={input => props.addSubCategory([...props.pathToNode], input)}
                 />
             );
-
+            res.push(element);
         } else {
             let checked = checkSelection(props, categoryName);
-            res.push(
+            let element = (
                 <CategoryField
                     key={categoryName}
                     category={props.category}
@@ -40,11 +39,11 @@ const CategoryList = (props) => {
                     checked={checked}
                 />
             );
-
+            res.push(element);
         }
 
         if (mapUnderCategory.size > 0) {
-            res.push(
+            let element = (
                 <CategoryList
                     key={`${categoryName}-map`}
                     category={props.category - 0.03}
@@ -55,7 +54,8 @@ const CategoryList = (props) => {
                     addSubCategory={props.addSubCategory}
                     pick={props.pick}
                 />
-            );
+            )
+            res.push(element);
         }
     })
 

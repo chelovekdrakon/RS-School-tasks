@@ -23,17 +23,23 @@ const StyledHeader = styled.header`
 `;
 
 const getRatio = (categoriesMap) => {
-    const booleanArray = [];
+    const amountOfCategories = categoriesMap.size;
+
+    let solvedCategories = 0;
     categoriesMap.forEach(todosUnderCategory => {
+        const comparisonArray = [];
         todosUnderCategory.forEach(todo => {
             const boolean = todo.get('isDone');
-            booleanArray.push(boolean);
-        })
+            if (boolean) {
+                comparisonArray.push(boolean);
+            }
+        });
+        if (comparisonArray.length === todosUnderCategory.size) {
+            solvedCategories++;
+        }
     });
 
-    const amountOfTasks = booleanArray.length;
-    const amountOfDone = booleanArray.filter(el => el).length;
-    return (100 / amountOfTasks) * amountOfDone;
+    return (100 / amountOfCategories) * solvedCategories;
 }
 
 const Header = (props) => {

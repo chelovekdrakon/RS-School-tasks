@@ -21,6 +21,7 @@ const TodoList = (props) => {
                         <TodoField key={element} value={element} pick={props.pick} checked={done} />
                     );
                 })
+                .reverse()
             }
         </ListWrapper>
         );
