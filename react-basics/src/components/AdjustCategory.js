@@ -1,9 +1,8 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react';
-import { addSubCategory, deleteCategory } from '../actions';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import {withRouter} from 'react-router';
 
 const Wrapper = styled.div`
     display: flex;
@@ -12,37 +11,25 @@ const Wrapper = styled.div`
     > * {
         display: flex;
         align-items: center;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 `;
 
 const AdjustCategory = (props) => {
     return (
         <Wrapper>
-            <Link to="/" onClick={() => props.deleteCategoryField(props.value)} >
+            <Link to={props.value === props.selected ? `/` : `/${props.selected}`} onClick={props.onDelete} >
                 <MaterialIcon icon="delete" />
             </Link>
-            <span onClick={() => props.addSubcategoryField(props.value)} >
+            <span onClick={props.onAdd} >
                 <MaterialIcon icon="playlist_add" />
             </span>
         </Wrapper>
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selected: state.todos.get('selectedCategory'),
-    }
-}
 
-const mapActionToProps = (dispatch) => {
-    return {
-        addSubcategoryField(value) {
-            dispatch(addSubCategory(value))
-        },
-        deleteCategoryField(value) {
-            dispatch(deleteCategory(value))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapActionToProps)(AdjustCategory);
+export default withRouter(AdjustCategory);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
 import ClearButton from './ClearButton';
@@ -16,7 +16,7 @@ const SearchWrapper = styled.div`
     border-radius: 3px;
 `;
 
-class SearchBar extends Component {
+class SearchBar extends PureComponent {
     constructor(props) {
         super(props);
         this.timerID = '';

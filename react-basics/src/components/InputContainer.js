@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const FieldWrapper = styled.div`
     display: flex;
-    
+
     > input {
         border: 1px solid;
         border-radius: 5px 0 0 5px;
@@ -47,7 +47,6 @@ class AddField extends Component {
                         this.props.onSubmit(this.state.inputValue);
                         this.clear();
                     }}
-                    clear={this.clear}
                     buttonCall="Add"
                 />
             </FieldWrapper>

@@ -2,7 +2,7 @@ import React from 'react';
 import CategoryList from '../components/CategoryList';
 import styled from 'styled-components';
 import SectionHeader from '../components/SectionHeader';
-import { addCategory, pickCategory } from '../actions';
+import { addCategory, pickCategory, confirmAdding } from '../actions';
 import { connect } from 'react-redux';
 
 const SectionWrapper = styled.section`
@@ -20,9 +20,12 @@ const CategorySection = (props) => {
             <SectionHeader placeholder='Enter category title' onSubmit={props.addCategoryField} />
             <CategoryList
                 category={1}
+                pathToNode={[]}
                 list={props.categories}
                 selected={props.selected}
+                selectedPath={props.selectedPath}
                 pick={props.pickCategoryField}
+                addSubCategory={props.addSubCategory}
             />
         </SectionWrapper>
     );
@@ -31,7 +34,8 @@ const CategorySection = (props) => {
 const mapStateToProps = (state) => {
     return {
         categories: state.categoryList.get('nestedCategories'),
-        selected: state.todos.get('selectedCategory')
+        selected: state.todos.get('selectedCategory'),
+        selectedPath: state.todos.get('pathToSelectedNode')
     }
 }
 
@@ -40,9 +44,12 @@ const mapActionToProps = (dispatch) => {
         addCategoryField(value) {
             dispatch(addCategory(value))
         },
-        pickCategoryField(value) {
-            dispatch(pickCategory(value))
-        }
+        pickCategoryField(pathToNode, value) {
+            dispatch(pickCategory(pathToNode, value))
+        },
+        addSubCategory(pathToParent, input) {
+            dispatch(confirmAdding(pathToParent, input))
+        },
     }
 }
 

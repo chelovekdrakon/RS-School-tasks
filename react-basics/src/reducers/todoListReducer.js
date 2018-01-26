@@ -6,7 +6,8 @@ import { ADD_CATEGORY,
     TOGGLE_TODO,
     RESTART,
     ADJUST_DELIVERY,
-    CHANGE_TODO_DESCRIPTION
+    CHANGE_TODO_DESCRIPTION,
+    CONFIRM_SUB_CATEGORY
  } from '../actions';
 import Immutable from 'immutable';
 
@@ -26,8 +27,9 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
     todos: Immutable.Map(),
     selectedCategory: '',
+    pathToSelectedNode: Immutable.List(),
     selectedListMap: Immutable.Map(),
-    adjustedBySearch: Immutable.Map()
+    adjustedBySearch: Immutable.Map(),
 })
 
 
@@ -38,11 +40,17 @@ function todoListReducer(state = initialState, action) {
             return state.setIn(['todos', `${categoryName}`], Immutable.Map());
         }
 
+        case CONFIRM_SUB_CATEGORY: {
+            const { input } = action.payload;
+            return state.setIn(['todos', input], Immutable.Map());
+        }
+
         case PICK_CATEGORY: {
-            const categoryName = action.payload;
-            const listMap = state.getIn(['todos', `${categoryName}`]);
+            const { value, pathToNode } = action.payload;
+            const listMap = state.getIn(['todos', `${value}`]);
             state = state.set('selectedListMap', listMap);
-            return state.set('selectedCategory', categoryName);
+            state = state.set('pathToSelectedNode', pathToNode);
+            return state.set('selectedCategory', value);
         }
 
         case ADD_TODO: {

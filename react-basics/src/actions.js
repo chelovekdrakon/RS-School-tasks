@@ -1,8 +1,8 @@
-
 // TYPE OF ACTIONS
 
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_SUB_CATEGORY = 'ADD_SUB_CATEGORY';
+export const CONFIRM_SUB_CATEGORY = 'CONFIRM_SUB_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 export const PICK_CATEGORY = 'PICK_CATEGORY';
@@ -35,10 +35,13 @@ export function addSubCategory(value) {
   }
 }
 
-export function pickCategory(value) {
+export function pickCategory(pathToNode, value) {
   return {
       type: PICK_CATEGORY,
-      payload: value
+      payload: {
+          pathToNode: pathToNode,
+          value: value
+      }
   }
 }
 
@@ -103,5 +106,15 @@ export function changeTodo(state) {
   return {
       type: CHANGE_TODO_DESCRIPTION,
       payload: state
+  }
+}
+
+export function confirmAdding(pathToParent, input) {
+  return {
+      type: CONFIRM_SUB_CATEGORY,
+      payload: {
+          pathToParent: pathToParent,
+          input: input
+      }
   }
 }

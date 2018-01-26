@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import CategoryField from '../components/CategoryField';
-import Immutable from 'immutable';
+import { INPUT_FIELD, ADD_SUBCATEGORY } from '../constants';
+import InputContainer from './InputContainer';
+import { checkSelection } from '../verifications';
 
 const ListWrapper = styled.ul`
     width: 100%;
@@ -12,33 +14,53 @@ const ListWrapper = styled.ul`
 `;
 
 const CategoryList = (props) => {
-    const list = Array.from(props.list.values()).reverse();
+    const res = [];
+
+    props.list.forEach( (mapUnderCategory, categoryName) => {
+        if (categoryName === INPUT_FIELD) {
+
+            res.push(
+                <InputContainer
+                    key={`${categoryName}-${INPUT_FIELD}`}
+                    placeholder={ADD_SUBCATEGORY}
+                    onSubmit={input => props.addSubCategory([...props.pathToNode], input)}
+                />
+            );
+
+        } else {
+            let checked = checkSelection(props, categoryName);
+            res.push(
+                <CategoryField
+                    key={categoryName}
+                    category={props.category}
+                    pathToNode={[...props.pathToNode, categoryName]}
+                    value={categoryName}
+                    pick={props.pick}
+                    checked={checked}
+                />
+            );
+
+        }
+
+        if (mapUnderCategory.size > 0) {
+            res.push(
+                <CategoryList
+                    key={`${categoryName}-map`}
+                    category={props.category - 0.1}
+                    list={mapUnderCategory}
+                    selected={props.selected}
+                    selectedPath={props.selectedPath}
+                    pathToNode={[...props.pathToNode, categoryName]}
+                    addSubCategory={props.addSubCategory}
+                    pick={props.pick}
+                />
+            );
+        }
+    })
+
     return (
         <ListWrapper>
-            {
-                list.map( element => {
-                    if (Immutable.Map.isMap(element)) {
-                        return (
-                            <CategoryList
-                                key={element}
-                                category={props.category - 0.1}
-                                list={element}
-                            />
-                        );
-                    } else {
-                        let checked = props.selected === element ? true : false;
-                        return (
-                            <CategoryField
-                                key={element}
-                                category={props.category}
-                                value={element}
-                                pick={props.pick}
-                                checked={checked}
-                            />
-                        );
-                    }
-                })
-            }
+            {res}
         </ListWrapper>
     );
 }

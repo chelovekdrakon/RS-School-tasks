@@ -1,9 +1,12 @@
 import { ADD_CATEGORY,
     ADD_SUB_CATEGORY,
-    DELETE_CATEGORY
+    DELETE_CATEGORY,
+    CONFIRM_SUB_CATEGORY
 } from '../actions';
 import Immutable from 'immutable';
-
+import {
+    INPUT_FIELD
+} from '../constants';
 
 const initialState = Immutable.Map({
     nestedCategories: Immutable.Map(),
@@ -12,14 +15,10 @@ const initialState = Immutable.Map({
 
 
 function categoryListReducer(state = initialState, action) {
-
-
-
     switch (action.type) {
         case ADD_CATEGORY: {
-            let nestedCategories = state.get('nestedCategories');
-            nestedCategories = nestedCategories.set(action.payload, action.payload);
-            state = state.set('nestedCategories', nestedCategories);
+            const newCategoryName = action.payload
+            state = state.setIn(['nestedCategories', newCategoryName], Immutable.Map())
 
             let paths = state.get('paths');
             paths = paths.set(action.payload, Immutable.fromJS([action.payload]))
@@ -27,31 +26,19 @@ function categoryListReducer(state = initialState, action) {
         }
 
         case ADD_SUB_CATEGORY: {
-            let paths = state.get('paths');
-            let pathToParent = paths.get(action.payload);
-            let pathToChild = pathToParent.push(action.payload);
-            paths = paths.set(action.payload.value, pathToChild);
-            state = state.set('paths', paths);
-            console.log(pathToParent, 'path to parent');
-            console.log(pathToChild, 'path to child');
+            const pathToNode = action.payload;
+            return state.setIn(['nestedCategories', ...pathToNode, INPUT_FIELD], Immutable.Map());
+        }
 
-            let nestedCategories = state.get('nestedCategories');
-            let parentValue = nestedCategories.getIn(pathToParent);
-            console.log(parentValue, 'parentValue');
-            // Immutable.isMap(parentValue) ? parentValue
-            // nestedCategories = nestedCategories.setIn(pathToChild, action.payload.value);
-            return state.set('nestedCategories', nestedCategories);
+        case CONFIRM_SUB_CATEGORY: {
+            const { pathToParent, input } = action.payload;
+            state = state.deleteIn(['nestedCategories', ...pathToParent, INPUT_FIELD]);
+            return state.setIn(['nestedCategories', ...pathToParent, input], Immutable.Map());
         }
 
         case DELETE_CATEGORY: {
-            let paths = state.get('paths');
-            let pathToNode = paths.get(action.payload);
-            paths = paths.delete(action.payload);
-            state = state.set('paths', paths);
-
-            let nestedCategories = state.get('nestedCategories');
-            nestedCategories = nestedCategories.deleteIn(pathToNode)
-            return state.set('nestedCategories', nestedCategories);
+            const pathToNode = action.payload;
+            return state.deleteIn(['nestedCategories', ...pathToNode]);
         }
 
       default: return state;
