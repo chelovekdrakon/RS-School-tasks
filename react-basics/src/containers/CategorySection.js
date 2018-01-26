@@ -1,8 +1,8 @@
 import React from 'react';
-import CategoryList from './CategoryList';
+import CategoryList from '../components/CategoryList';
 import styled from 'styled-components';
-import InputContainer from '../components/InputContainer';
-import { addCategory } from '../actions';
+import SectionHeader from '../components/SectionHeader';
+import { addCategory, pickCategory } from '../actions';
 import { connect } from 'react-redux';
 
 const SectionWrapper = styled.section`
@@ -11,25 +11,27 @@ const SectionWrapper = styled.section`
     justify-content: flex-start;
     align-items: flex-start;
     width: '35%';
+    padding: 0% 2%;
 `;
-
-const PLACE_HOLDER = 'Enter category title'
 
 const CategorySection = (props) => {
     return (
         <SectionWrapper>
-            <header>
-                <InputContainer placeholder={PLACE_HOLDER} onSubmit={props.addCategoryField} />
-            </header>
-
-            <CategoryList category={1} list={props.categories} />
+            <SectionHeader placeholder='Enter category title' onSubmit={props.addCategoryField} />
+            <CategoryList
+                category={1}
+                list={props.categories}
+                selected={props.selected}
+                pick={props.pickCategoryField}
+            />
         </SectionWrapper>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoryList.get('nestedCategories')
+        categories: state.categoryList.get('nestedCategories'),
+        selected: state.todos.get('selectedCategory')
     }
 }
 
@@ -37,6 +39,9 @@ const mapActionToProps = (dispatch) => {
     return {
         addCategoryField(value) {
             dispatch(addCategory(value))
+        },
+        pickCategoryField(value) {
+            dispatch(pickCategory(value))
         }
     }
 }

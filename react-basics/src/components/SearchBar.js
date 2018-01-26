@@ -16,7 +16,7 @@ const SearchWrapper = styled.div`
     border-radius: 3px;
 `;
 
-class Search extends Component {
+class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.timerID = '';
@@ -57,4 +57,4 @@ class Search extends Component {
 }
 }
 
-export default Search;
+export default SearchBar;

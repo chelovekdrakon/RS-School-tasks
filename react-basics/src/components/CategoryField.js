@@ -26,10 +26,11 @@ const CategoryField = (props) => {
     return (
         <FieldWrapper category={props.category}>
             <FieldLabel
+                path={`/${props.value}`}
                 category={props.category}
                 value={props.value}
                 checked={props.checked}
-                onClick={props.pick}
+                onClick={() => props.checked ? console.log('not today, bro') : props.pick(props.value)}
             />
             <MaterialIcon icon="mode_edit" size="tiny" />
             <AdjustCategory value={props.value} />

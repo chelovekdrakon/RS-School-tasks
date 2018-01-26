@@ -5,13 +5,13 @@ import { ADD_CATEGORY,
     PICK_CATEGORY,
     TOGGLE_TODO,
     RESTART,
-    ADJUST_DELIVERY
+    ADJUST_DELIVERY,
+    CHANGE_TODO_DESCRIPTION
  } from '../actions';
 import Immutable from 'immutable';
 
-// Example of data structure
+// Example of todos data structure
 //
-// const stateArchitechture = Immutable.Map({
 //     todos: Immutable.Map({
 //         category: Immutable.Map({
 //             todo: Immutable.Map({
@@ -20,7 +20,6 @@ import Immutable from 'immutable';
 //             })
 //         })
 //     }),
-//     selectedCategory: ''
 // });
 
 
@@ -115,6 +114,20 @@ function todoListReducer(state = initialState, action) {
                 state = state.deleteIn(['adjustedBySearch', todo]);
             })
             return state;
+        }
+
+        case CHANGE_TODO_DESCRIPTION: {
+            const {isDone, newTodoName, todoName, category, description} = action.payload;
+            const newMap = Immutable.Map({
+                isDone: isDone,
+                description: description
+            });
+            if (newTodoName !== todoName) {
+                state = state.deleteIn(['todos', `${category}`, `${todoName}`]);
+                state = state.deleteIn(['selectedListMap', `${todoName}`]);
+            }
+            state = state.setIn(['todos', `${category}`, `${newTodoName}`], newMap);
+            return state.setIn(['selectedListMap', `${newTodoName}`], newMap)
         }
 
       default: return state;

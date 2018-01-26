@@ -24,22 +24,11 @@ const StyledLabel = styled.label`
     }
 `;
 
-const onClick = (props) => {
-    if (props.category) {
-        return props.checked ? console.log('not today, bro') : props.onClick(props.value);
-    } else {
-        return props.onClick(props.value);
-    }
-};
-
 const FieldLabel = (props) => {
     return (
         <StyledLabel>
-            <Link to={`${props.value}`}>
-                <Checkbox
-                    checked={props.checked}
-                    onClick={() => onClick(props)}
-                />
+            <Link to={props.path}>
+                <Checkbox checked={props.checked} onClick={props.onClick} />
             </Link>
             <div> {props.value} </div>
         </StyledLabel>

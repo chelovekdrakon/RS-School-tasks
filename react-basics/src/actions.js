@@ -15,6 +15,7 @@ export const TODO_INPUT_TAP = 'TODO_INPUT_TAP';
 export const RESTART = 'RESTART';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const ADJUST_DELIVERY = 'ADJUST_DELIVERY';
+export const CHANGE_TODO_DESCRIPTION = 'CHANGE_TODO_DESCRIPTION';
 
 
 
@@ -95,5 +96,12 @@ export function adjustDelivery(value) {
   return {
       type: ADJUST_DELIVERY,
       payload: value
+  }
+}
+
+export function changeTodo(state) {
+  return {
+      type: CHANGE_TODO_DESCRIPTION,
+      payload: state
   }
 }

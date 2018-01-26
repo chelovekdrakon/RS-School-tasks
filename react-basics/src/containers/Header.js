@@ -1,12 +1,11 @@
 import React from 'react';
 import Logo from '../components/Logo';
-import Search from '../components/Search';
+import SearchBar from '../components/SearchBar';
 import DisplayFilter from '../components/DisplayFilter';
 import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { restartPage, toggleFilter, adjustDelivery } from '../actions';
 import styled from 'styled-components';
-import Immutable from 'immutable';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -23,18 +22,13 @@ const StyledHeader = styled.header`
     }
 `;
 
-const getRatio = (map) => {
-    const todosInCategory = Array.from(map.values());
+const getRatio = (categoriesMap) => {
     const booleanArray = [];
-
-    todosInCategory.forEach(todoMap => {
-        const mapWithTodoData = Array.from(todoMap.values());
-        mapWithTodoData.forEach(element => {
-            if (Immutable.Map.isMap(element)) {
-                const boolean = element.get('isDone');
-                booleanArray.push(boolean);
-            }
-        });
+    categoriesMap.forEach(todosUnderCategory => {
+        todosUnderCategory.forEach(todo => {
+            const boolean = todo.get('isDone');
+            booleanArray.push(boolean);
+        })
     });
 
     const amountOfTasks = booleanArray.length;
@@ -48,7 +42,7 @@ const Header = (props) => {
         <StyledHeader>
             <Logo restart={props.restart} />
             <DisplayFilter onClick={props.toggle} />
-            <Search list={props.selectedList} onTap={props.searchRelevant} />
+            <SearchBar list={props.selectedList} onTap={props.searchRelevant} />
             <LinearProgress mode="determinate" value={linearProgress || 0} />
         </StyledHeader>
     );

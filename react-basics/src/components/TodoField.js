@@ -2,6 +2,8 @@ import React from 'react';
 import MaterialIcon from 'material-icons-react';
 import styled from 'styled-components';
 import FieldLabel from './FieldLabel';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const FieldWrapper = styled.li`
     display: flex;
@@ -18,13 +20,16 @@ const TodoField = (props) => {
     return (
         <FieldWrapper>
             <FieldLabel
+                path={`/${props.match.params.category}`}
                 value={props.value}
                 checked={props.checked}
-                onClick={props.pick}
+                onClick={() => props.pick(props.value)}
             />
-            <MaterialIcon icon="mode_edit" size="tiny" />
+            <Link to={`${props.match.params.category}/${props.value}`} onClick={() => console.log('hello')}>
+                <MaterialIcon icon="mode_edit" size="tiny" />
+            </Link>
         </FieldWrapper>
     );
 }
 
-export default TodoField;
+export default withRouter(TodoField);

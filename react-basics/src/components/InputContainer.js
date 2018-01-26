@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import InputField from '../components/InputField';
-import AddButton from '../components/AddButton';
+import Button from '../components/Button';
+import styled from 'styled-components';
+
+const FieldWrapper = styled.div`
+    display: flex;
+    
+    > input {
+        border: 1px solid;
+        border-radius: 5px 0 0 5px;
+        border-color: Gainsboro transparent Gainsboro Gainsboro;
+    }
+`;
 
 class AddField extends Component {
     constructor(props) {
@@ -25,18 +36,21 @@ class AddField extends Component {
 
     render() {
         return (
-            <div>
+            <FieldWrapper>
                 <InputField
                     onChange={this.onTap}
                     value={this.state.inputValue}
                     placeholder={this.props.placeholder}
                 />
-                <AddButton 
-                    value={this.state.inputValue}
-                    onSubmit={this.props.onSubmit}
+                <Button
+                    onSubmit={() => {
+                        this.props.onSubmit(this.state.inputValue);
+                        this.clear();
+                    }}
                     clear={this.clear}
+                    buttonCall="Add"
                 />
-            </div>
+            </FieldWrapper>
         );
     }
 }

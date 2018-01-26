@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CategoryField from '../components/CategoryField';
 import Immutable from 'immutable';
-import { pickCategory } from '../actions';
-import { connect } from 'react-redux';
 
 const ListWrapper = styled.ul`
     width: 100%;
@@ -34,7 +32,7 @@ const CategoryList = (props) => {
                                 key={element}
                                 category={props.category}
                                 value={element}
-                                pick={props.pickCategoryField}
+                                pick={props.pick}
                                 checked={checked}
                             />
                         );
@@ -45,18 +43,4 @@ const CategoryList = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selected: state.todos.get('selectedCategory')
-    }
-}
-
-const mapActionToProps = (dispatch) => {
-    return {
-        pickCategoryField(value) {
-            dispatch(pickCategory(value))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapActionToProps)(CategoryList);
+export default CategoryList;
