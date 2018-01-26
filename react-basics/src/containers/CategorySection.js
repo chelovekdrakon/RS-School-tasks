@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SectionHeader from '../components/SectionHeader';
 import { addCategory, pickCategory, confirmAdding } from '../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 const SectionWrapper = styled.section`
     display: flex;
@@ -53,4 +54,4 @@ const mapActionToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapActionToProps)(CategorySection);
+export default withRouter(connect(mapStateToProps, mapActionToProps)(CategorySection));

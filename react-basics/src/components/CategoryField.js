@@ -3,8 +3,11 @@ import MaterialIcon from 'material-icons-react';
 import AdjustCategory from './AdjustCategory';
 import styled from 'styled-components';
 import FieldLabel from './FieldLabel';
-import { addSubCategory, deleteCategory } from '../actions';
+import { addSubCategory, deleteCategory, trasitTodo } from '../actions';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const FieldWrapper = styled.li`
     display: flex;
@@ -36,12 +39,29 @@ const CategoryField = (props) => {
                 onClick={() => props.checked ? console.log('not today, bro') : props.pick(props.pathToNode, props.value)}
             />
             <MaterialIcon icon="mode_edit" size="tiny" />
-            <AdjustCategory
-                selected={props.selected}
-                value={props.value}
-                onDelete={() => props.deleteCategoryField(props.pathToNode)}
-                onAdd={() => props.addSubcategoryField(props.pathToNode)}
+
+            <Route exact path="/:category?"
+                render={routeProps => (
+                    <AdjustCategory
+                        selected={props.selected}
+                        value={props.value}
+                        onDelete={() => props.deleteCategoryField(props.pathToNode)}
+                        onAdd={() => props.addSubcategoryField(props.pathToNode)}
+                    />
+                )}
             />
+
+            <Route exact path="/:category/:todo"
+                render={routeProps => (
+                    <Link
+                        to={`/${props.value}`}
+                        onClick={() => props.onTransit(props.value, routeProps.match.params.todo)}
+                    >
+                        <MaterialIcon icon="reply" />
+                    </Link>
+                )}
+            />
+
         </FieldWrapper>
     );
 }
@@ -59,6 +79,9 @@ const mapActionToProps = (dispatch) => {
         },
         deleteCategoryField(value) {
             dispatch(deleteCategory(value))
+        },
+        onTransit(categoryName, todoName) {
+            dispatch(trasitTodo(categoryName, todoName))
         }
     }
 }

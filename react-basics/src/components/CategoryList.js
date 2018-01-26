@@ -4,6 +4,7 @@ import CategoryField from '../components/CategoryField';
 import { INPUT_FIELD, ADD_SUBCATEGORY } from '../constants';
 import InputContainer from './InputContainer';
 import { checkSelection } from '../verifications';
+import { withRouter } from 'react-router';
 
 const ListWrapper = styled.ul`
     width: 100%;
@@ -46,7 +47,7 @@ const CategoryList = (props) => {
             res.push(
                 <CategoryList
                     key={`${categoryName}-map`}
-                    category={props.category - 0.1}
+                    category={props.category - 0.03}
                     list={mapUnderCategory}
                     selected={props.selected}
                     selectedPath={props.selectedPath}
@@ -65,4 +66,4 @@ const CategoryList = (props) => {
     );
 }
 
-export default CategoryList;
+export default withRouter(CategoryList);

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import styled from 'styled-components';
 import { changeTodo } from '../actions';
 import { connect } from 'react-redux';
@@ -46,7 +46,7 @@ const SectionWrapper = styled.div`
     }
 `;
 
-class EditSection extends Component {
+class EditSection extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -110,7 +110,7 @@ class EditSection extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ) => {
     return {
         todos: state.todos.get('todos')
     }
@@ -124,4 +124,4 @@ const mapActionToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapActionToProps)(withRouter(EditSection));
+export default withRouter(connect(mapStateToProps, mapActionToProps)(EditSection));

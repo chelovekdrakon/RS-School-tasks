@@ -11,6 +11,7 @@ export const CATEGORY_INPUT_TAP = 'CATEGORY_INPUT_TAP';
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const TODO_INPUT_TAP = 'TODO_INPUT_TAP';
+export const TRANSIT_TODO = 'TRANSIT_TODO';
 
 export const RESTART = 'RESTART';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
@@ -115,6 +116,16 @@ export function confirmAdding(pathToParent, input) {
       payload: {
           pathToParent: pathToParent,
           input: input
+      }
+  }
+}
+
+export function trasitTodo(categoryName, todoName) {
+  return {
+      type: TRANSIT_TODO,
+      payload: {
+          newCategoryName: categoryName,
+          todoName: todoName
       }
   }
 }

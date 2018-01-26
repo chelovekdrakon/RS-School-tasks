@@ -7,7 +7,8 @@ import { ADD_CATEGORY,
     RESTART,
     ADJUST_DELIVERY,
     CHANGE_TODO_DESCRIPTION,
-    CONFIRM_SUB_CATEGORY
+    CONFIRM_SUB_CATEGORY,
+    TRANSIT_TODO
  } from '../actions';
 import Immutable from 'immutable';
 
@@ -136,6 +137,16 @@ function todoListReducer(state = initialState, action) {
             }
             state = state.setIn(['todos', `${category}`, `${newTodoName}`], newMap);
             return state.setIn(['selectedListMap', `${newTodoName}`], newMap)
+        }
+
+        case TRANSIT_TODO: {
+            const { newCategoryName, todoName } = action.payload;
+            const oldCategory = state.get('selectedCategory');
+            const todoDescription = state.getIn(['todos', `${oldCategory}`, `${todoName}`]);
+
+            state = state.deleteIn(['todos', `${oldCategory}`, `${todoName}`]);
+            state = state.setIn(['todos', `${newCategoryName}`, `${todoName}`], todoDescription);
+            return state.set('selectedCategory', newCategoryName);
         }
 
       default: return state;
