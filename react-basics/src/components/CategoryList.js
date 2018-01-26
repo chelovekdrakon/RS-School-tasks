@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CategoryField from '../components/CategoryField';
 import { INPUT_FIELD, ADD_SUBCATEGORY } from '../constants';
 import InputContainer from './InputContainer';
-import { checkSelection } from '../verifications';
+import { checkSelection } from '../math';
 import { withRouter } from 'react-router';
 
 const ListWrapper = styled.ul`

@@ -6,6 +6,8 @@ import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { restartPage, toggleFilter, adjustDelivery } from '../actions';
 import styled from 'styled-components';
+import { getRatio } from '../math';
+import { withRouter } from 'react-router';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -21,26 +23,6 @@ const StyledHeader = styled.header`
         height: 0.7rem !important;
     }
 `;
-
-const getRatio = (categoriesMap) => {
-    const amountOfCategories = categoriesMap.size;
-
-    let solvedCategories = 0;
-    categoriesMap.forEach(todosUnderCategory => {
-        const comparisonArray = [];
-        todosUnderCategory.forEach(todo => {
-            const boolean = todo.get('isDone');
-            if (boolean) {
-                comparisonArray.push(boolean);
-            }
-        });
-        if (comparisonArray.length === todosUnderCategory.size) {
-            solvedCategories++;
-        }
-    });
-
-    return (100 / amountOfCategories) * solvedCategories;
-}
 
 const Header = (props) => {
     const linearProgress = getRatio(props.todos);
@@ -75,4 +57,4 @@ const mapActionToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapActionToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapActionToProps)(Header));

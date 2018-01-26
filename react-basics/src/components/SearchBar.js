@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
 import ClearButton from './ClearButton';
+import { withRouter } from 'react-router';
 
 const SearchWrapper = styled.div`
     display: flex;
@@ -27,9 +28,11 @@ class SearchBar extends PureComponent {
     }
 
     _onChange = (e) => {
+        let verified = e.target.value.match(/[a-zA-Z0-9]/gim).join('');
         this.setState({
-            value: `${e.target.value}`
+            value: verified
         });
+        this.props.history.push(`/${verified}`);
     }
 
     clearInput = () => {
@@ -57,4 +60,4 @@ class SearchBar extends PureComponent {
 }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

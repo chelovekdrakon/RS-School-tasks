@@ -6,7 +6,6 @@ import FieldLabel from './FieldLabel';
 import { addSubCategory, deleteCategory, trasitTodo } from '../actions';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const FieldWrapper = styled.li`
