@@ -11,7 +11,7 @@ import {
 function categoryListReducer(state = Immutable.Map(), action) {
     switch (action.type) {
         case ADD_CATEGORY: {
-            const newCategoryName = action.payload
+            const newCategoryName = action.payload;
             return state.setIn([newCategoryName], Immutable.Map());
         }
 

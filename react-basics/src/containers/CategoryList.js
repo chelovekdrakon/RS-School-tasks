@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import CategoryField from '../components/CategoryField';
+import CategoryField from './CategoryField';
 import { INPUT_FIELD, ADD_SUBCATEGORY } from '../constants';
-import InputContainer from './InputContainer';
+import InputContainer from '../components/InputContainer';
 import { checkSelection } from '../math';
 import { withRouter } from 'react-router';
 
@@ -23,7 +23,7 @@ const CategoryList = (props) => {
                 <InputContainer
                     key={`${categoryName}-${INPUT_FIELD}`}
                     placeholder={ADD_SUBCATEGORY}
-                    onSubmit={input => props.addSubCategory([...props.pathToNode], input)}
+                    onSubmit={input => props.confirmAdd([...props.pathToNode], input)}
                 />
             );
             res.push(element);
@@ -37,6 +37,7 @@ const CategoryList = (props) => {
                     value={categoryName}
                     pick={props.pick}
                     checked={checked}
+                    selected={props.selected}
                 />
             );
             res.push(element);
@@ -51,7 +52,7 @@ const CategoryList = (props) => {
                     selected={props.selected}
                     selectedPath={props.selectedPath}
                     pathToNode={[...props.pathToNode, categoryName]}
-                    addSubCategory={props.addSubCategory}
+                    confirmAdd={props.confirmAdd}
                     pick={props.pick}
                 />
             )

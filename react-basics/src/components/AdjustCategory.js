@@ -2,7 +2,6 @@ import React from 'react';
 import MaterialIcon from 'material-icons-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {withRouter} from 'react-router';
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,7 +20,7 @@ const Wrapper = styled.div`
 const AdjustCategory = (props) => {
     return (
         <Wrapper>
-            <Link to={props.value === props.selected ? `/` : `/${props.selected}`} onClick={props.onDelete} >
+            <Link to={props.path} onClick={props.onDelete} >
                 <MaterialIcon icon="delete" />
             </Link>
             <span onClick={props.onAdd} >
@@ -32,4 +31,4 @@ const AdjustCategory = (props) => {
 }
 
 
-export default withRouter(AdjustCategory);
+export default AdjustCategory;

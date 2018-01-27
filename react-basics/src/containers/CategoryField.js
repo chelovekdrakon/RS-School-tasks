@@ -1,8 +1,8 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react';
-import AdjustCategory from './AdjustCategory';
+import AdjustCategory from '../components/AdjustCategory';
 import styled from 'styled-components';
-import FieldLabel from './FieldLabel';
+import FieldLabel from '../components/FieldLabel';
 import { addSubCategory, deleteCategory, trasitTodo } from '../actions';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -42,6 +42,7 @@ const CategoryField = (props) => {
             <Route exact path="/:category?"
                 render={routeProps => (
                     <AdjustCategory
+                        path={props.value === props.selected ? `/` : `/${props.selected}`}
                         selected={props.selected}
                         value={props.value}
                         onDelete={() => props.deleteCategoryField(props.pathToNode)}

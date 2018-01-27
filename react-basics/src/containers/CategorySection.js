@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryList from '../components/CategoryList';
+import CategoryList from './CategoryList';
 import styled from 'styled-components';
 import SectionHeader from '../components/SectionHeader';
 import { addCategory, pickCategory, confirmAdding } from '../actions';
@@ -26,7 +26,7 @@ const CategorySection = (props) => {
                 selected={props.selected}
                 selectedPath={props.selectedPath}
                 pick={props.pickCategoryField}
-                addSubCategory={props.addSubCategory}
+                confirmAdd={props.confirmAdd}
             />
         </SectionWrapper>
     );
@@ -48,7 +48,7 @@ const mapActionToProps = (dispatch) => {
         pickCategoryField(pathToNode, value) {
             dispatch(pickCategory(pathToNode, value))
         },
-        addSubCategory(pathToParent, input) {
+        confirmAdd(pathToParent, input) {
             dispatch(confirmAdding(pathToParent, input))
         },
     }
