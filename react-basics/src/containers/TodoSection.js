@@ -18,7 +18,11 @@ const TodoSection = (props) => {
     return (
         <SectionWrapper>
             <SectionHeader placeholder={PLACE_HOLDER} onSubmit={props.addTodoField} />
-            <TodoList list={props.list} showDone={props.showDone} pick={props.pickTodoField} />
+            <TodoList
+                list={props.list}
+                showDone={props.showDone}
+                pick={props.pickTodoField}
+            />
         </SectionWrapper>
     );
 }

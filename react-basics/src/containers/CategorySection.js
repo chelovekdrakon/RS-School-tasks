@@ -1,10 +1,17 @@
 import React from 'react';
-import CategoryList from './CategoryList';
+import CategoryList from '../components/CategoryList';
 import styled from 'styled-components';
 import SectionHeader from '../components/SectionHeader';
-import { addCategory, pickCategory, confirmAdding } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import {
+    pickCategory,
+    confirmAdding,
+    addSubCategory,
+    deleteCategory,
+    trasitTodo,
+    addCategory
+} from '../actions';
 
 const SectionWrapper = styled.section`
     display: flex;
@@ -20,13 +27,16 @@ const CategorySection = (props) => {
         <SectionWrapper>
             <SectionHeader placeholder='Enter category title' onSubmit={props.addCategoryField} />
             <CategoryList
-                category={1}
+                indexCorrection={1}
                 pathToNode={[]}
-                list={props.categories}
                 selected={props.selected}
                 selectedPath={props.selectedPath}
-                pick={props.pickCategoryField}
-                confirmAdd={props.confirmAdd}
+                list={props.categories}
+                onPick={props.pickCategoryField}
+                onDelete={props.deleteCategoryField}
+                onAdd={props.addSubcategoryField}
+                onConfirmAdd={props.confirmAdd}
+                onTransit={props.onTransit}
             />
         </SectionWrapper>
     );
@@ -51,6 +61,15 @@ const mapActionToProps = (dispatch) => {
         confirmAdd(pathToParent, input) {
             dispatch(confirmAdding(pathToParent, input))
         },
+        addSubcategoryField(value) {
+            dispatch(addSubCategory(value))
+        },
+        deleteCategoryField(value) {
+            dispatch(deleteCategory(value))
+        },
+        onTransit(pathToNewCategory, todoName) {
+            dispatch(trasitTodo(pathToNewCategory, todoName))
+        }
     }
 }
 

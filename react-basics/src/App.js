@@ -5,6 +5,7 @@ import { grey300 } from 'material-ui/styles/colors';
 import Header from './containers/Header';
 import Main from './containers/Main';
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -31,4 +32,4 @@ const App = (props) => {
 }
 
 
-export default App;
+export default withRouter(App);

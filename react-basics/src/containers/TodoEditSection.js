@@ -68,7 +68,7 @@ class EditSection extends PureComponent {
 
     }
 
-    onInoutTap = (e) => {
+    onInputTap = (e) => {
         this.setState({
             newTodoName: e.target.value
         })
@@ -93,7 +93,7 @@ class EditSection extends PureComponent {
                 <SaveCancelPanel onSave={() => this.props.saveChanges(this.state)} />
 
                 <InputField
-                    onChange={this.onInoutTap}
+                    onChange={this.onInputTap}
                     value={this.state.newTodoName}
                     placeholder='Enter new todo name'
                 />

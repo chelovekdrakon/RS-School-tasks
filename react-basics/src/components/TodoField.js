@@ -23,9 +23,9 @@ const TodoField = (props) => {
                 path={`/${props.match.params.category}`}
                 value={props.value}
                 checked={props.checked}
-                onClick={() => props.pick(props.value)}
+                onClick={props.onClick}
             />
-            <Link to={`${props.match.params.category}/${props.value}`} onClick={() => console.log('hello')}>
+            <Link to={`${props.match.params.category}/${props.value}`}>
                 <MaterialIcon icon="mode_edit" size="tiny" />
             </Link>
         </FieldWrapper>

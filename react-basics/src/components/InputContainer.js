@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import styled from 'styled-components';
@@ -13,7 +13,7 @@ const FieldWrapper = styled.div`
     }
 `;
 
-class AddField extends Component {
+class AddField extends PureComponent {
     constructor(props) {
         super(props);
 

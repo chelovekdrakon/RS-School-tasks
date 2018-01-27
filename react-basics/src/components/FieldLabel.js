@@ -13,7 +13,7 @@ const StyledLabel = styled.label`
     }
 
     > div:last-child {
-        max-width: ${props => `${props.category * 18}rem`};
+        max-width: ${props => `${props.indexCorrection * 16 || 50}rem`};
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;
@@ -26,7 +26,7 @@ const StyledLabel = styled.label`
 
 const FieldLabel = (props) => {
     return (
-        <StyledLabel>
+        <StyledLabel indexCorrection={props.indexCorrection}>
             <Link to={props.path}>
                 <Checkbox checked={props.checked} onClick={props.onClick} />
             </Link>
