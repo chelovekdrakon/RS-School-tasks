@@ -120,11 +120,11 @@ export function confirmAdding(pathToParent, input) {
   }
 }
 
-export function trasitTodo(categoryName, todoName) {
+export function trasitTodo(pathToNewCategory, todoName) {
   return {
       type: TRANSIT_TODO,
       payload: {
-          newCategoryName: categoryName,
+          newCategoryPath: pathToNewCategory,
           todoName: todoName
       }
   }

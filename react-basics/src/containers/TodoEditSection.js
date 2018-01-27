@@ -53,16 +53,17 @@ class EditSection extends PureComponent {
         this.state = {
             newTodoName: this.props.match.params.todo,
             todoName: this.props.match.params.todo,
-            category: this.props.match.params.category,
             description: '',
             isDone: false
         }
     }
 
     componentDidMount() {
+        const path = [...this.props.pathToSelectedNode].join('');
+        const todo = this.state.todoName;
         this.setState({
-            description: this.props.todos.getIn([this.state.category, this.state.todoName, 'description']),
-            isDone: this.props.todos.getIn([this.state.category, this.state.todoName, 'isDone'])
+            description: this.props.todos.getIn([path, todo, 'description']),
+            isDone: this.props.todos.getIn([path, todo, 'isDone'])
         })
 
     }
@@ -112,7 +113,8 @@ class EditSection extends PureComponent {
 
 const mapStateToProps = (state, ) => {
     return {
-        todos: state.todos.get('todos')
+        todos: state.todos.get('todos'),
+        pathToSelectedNode: state.todos.get('pathToSelectedNode')
     }
 }
 

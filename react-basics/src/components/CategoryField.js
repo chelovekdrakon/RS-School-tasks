@@ -54,7 +54,7 @@ const CategoryField = (props) => {
                 render={routeProps => (
                     <Link
                         to={`/${props.value}`}
-                        onClick={() => props.onTransit(props.value, routeProps.match.params.todo)}
+                        onClick={() => props.onTransit(props.pathToNode, routeProps.match.params.todo)}
                     >
                         <MaterialIcon icon="reply" />
                     </Link>
@@ -79,8 +79,8 @@ const mapActionToProps = (dispatch) => {
         deleteCategoryField(value) {
             dispatch(deleteCategory(value))
         },
-        onTransit(categoryName, todoName) {
-            dispatch(trasitTodo(categoryName, todoName))
+        onTransit(pathToNewCategory, todoName) {
+            dispatch(trasitTodo(pathToNewCategory, todoName))
         }
     }
 }

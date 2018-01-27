@@ -34,7 +34,7 @@ const CategorySection = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoryList.get('nestedCategories'),
+        categories: state.categoryList,
         selected: state.todos.get('selectedCategory'),
         selectedPath: state.todos.get('pathToSelectedNode')
     }

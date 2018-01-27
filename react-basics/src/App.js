@@ -4,7 +4,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { grey300 } from 'material-ui/styles/colors';
 import Header from './containers/Header';
 import Main from './containers/Main';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 const muiTheme = getMuiTheme({
@@ -32,4 +31,4 @@ const App = (props) => {
 }
 
 
-export default connect()(App);
+export default App;

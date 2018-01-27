@@ -28,10 +28,14 @@ class SearchBar extends PureComponent {
     }
 
     _onChange = (e) => {
-        let verified = e.target.value.match(/[a-zA-Z0-9]/gim).join('');
+        let verified = e.target.value.match(/[a-zA-Z0-9_\s]*/gim);
+        console.log(verified);
+        verified = verified ? verified.join('') : '';
         this.setState({
             value: verified
         });
+
+        verified = verified.replace(/\s/gim, '_');
         this.props.history.push(`/${verified}`);
     }
 
