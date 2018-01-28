@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
     pickCategory,
-    confirmAdding,
     addSubCategory,
     deleteCategory,
     trasitTodo,
-    addCategory
+    addCategory,
+    editCategory,
+    confirmEdit
 } from '../actions';
 
 const SectionWrapper = styled.section`
@@ -27,16 +28,12 @@ const CategorySection = (props) => {
         <SectionWrapper>
             <SectionHeader placeholder='Enter category title' onSubmit={props.addCategoryField} />
             <CategoryList
+                {...props}
                 indexCorrection={1}
                 pathToNode={[]}
                 selected={props.selected}
                 selectedPath={props.selectedPath}
                 list={props.categories}
-                onPick={props.pickCategoryField}
-                onDelete={props.deleteCategoryField}
-                onAdd={props.addSubcategoryField}
-                onConfirmAdd={props.confirmAdd}
-                onTransit={props.onTransit}
             />
         </SectionWrapper>
     );
@@ -44,9 +41,9 @@ const CategorySection = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoryList,
-        selected: state.todos.get('selectedCategory'),
-        selectedPath: state.todos.get('pathToSelectedNode')
+        categories: state.present.categoryList,
+        selected: state.present.todos.get('selectedCategory'),
+        selectedPath: state.present.todos.get('pathToSelectedNode')
     }
 }
 
@@ -55,20 +52,23 @@ const mapActionToProps = (dispatch) => {
         addCategoryField(value) {
             dispatch(addCategory(value))
         },
-        pickCategoryField(pathToNode, value) {
+        onPick(pathToNode, value) {
             dispatch(pickCategory(pathToNode, value))
         },
-        confirmAdd(pathToParent, input) {
-            dispatch(confirmAdding(pathToParent, input))
-        },
-        addSubcategoryField(value) {
+        onAdd(value) {
             dispatch(addSubCategory(value))
         },
-        deleteCategoryField(value) {
+        onDelete(value) {
             dispatch(deleteCategory(value))
         },
         onTransit(pathToNewCategory, todoName) {
             dispatch(trasitTodo(pathToNewCategory, todoName))
+        },
+        onEdit(categoryPath, newCategoryName) {
+            dispatch(editCategory(categoryPath, newCategoryName))
+        },
+        onConfirm(pathToParent, input) {
+            dispatch(confirmEdit(pathToParent, input))
         }
     }
 }

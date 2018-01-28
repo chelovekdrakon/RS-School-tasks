@@ -19,7 +19,7 @@ const StyledButton = styled.button`
 
 const Button = (props) => {
     return (
-        <StyledButton onClick={props.onSubmit}>
+        <StyledButton onClick={props.onSubmit} disabled={props.disabled}>
             {props.buttonCall}
         </StyledButton>
     );

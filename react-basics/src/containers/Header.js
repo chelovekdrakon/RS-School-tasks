@@ -2,12 +2,14 @@ import React from 'react';
 import Logo from '../components/Logo';
 import SearchBar from '../components/SearchBar';
 import DisplayFilter from '../components/DisplayFilter';
+import HistoryAPI from '../components/HistoryAPI';
 import { LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { restartPage, toggleFilter, adjustDelivery } from '../actions';
 import styled from 'styled-components';
 import { getRatio } from '../math';
 import { withRouter } from 'react-router';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -31,6 +33,12 @@ const Header = (props) => {
             <Logo restart={props.restart} />
             <DisplayFilter onClick={props.toggle} />
             <SearchBar list={props.selectedList} onTap={props.searchRelevant} />
+            <HistoryAPI
+                canUndo={props.canUndo}
+                canRedo={props.canRedo}
+                onUndo={props.onUndo}
+                onRedo={props.onRedo}
+            />
             <LinearProgress mode="determinate" value={linearProgress || 0} />
         </StyledHeader>
     );
@@ -38,8 +46,10 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos.get('todos'),
-        selectedList: state.todos.get('selectedListMap')
+        todos: state.present.todos.get('todos'),
+        selectedList: state.present.todos.get('selectedListMap'),
+        canUndo: state.past.length > 0,
+        canRedo: state.future.length > 0
     }
 }
 
@@ -53,6 +63,12 @@ const mapActionToProps = (dispatch) => {
         },
         searchRelevant(value) {
             dispatch(adjustDelivery(value))
+        },
+        onUndo() {
+            dispatch(UndoActionCreators.undo())
+        },
+        onRedo() {
+            dispatch(UndoActionCreators.redo())
         }
     }
 }

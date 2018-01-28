@@ -113,8 +113,8 @@ class EditSection extends PureComponent {
 
 const mapStateToProps = (state, ) => {
     return {
-        todos: state.todos.get('todos'),
-        pathToSelectedNode: state.todos.get('pathToSelectedNode')
+        todos: state.present.todos.get('todos'),
+        pathToSelectedNode: state.present.todos.get('pathToSelectedNode')
     }
 }
 

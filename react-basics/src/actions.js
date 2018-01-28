@@ -4,7 +4,8 @@ export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_SUB_CATEGORY = 'ADD_SUB_CATEGORY';
 export const CONFIRM_SUB_CATEGORY = 'CONFIRM_SUB_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
-
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+export const SUBMIT_EDITION = 'SUBMIT_EDITION';
 export const PICK_CATEGORY = 'PICK_CATEGORY';
 export const CATEGORY_INPUT_TAP = 'CATEGORY_INPUT_TAP';
 
@@ -17,6 +18,7 @@ export const RESTART = 'RESTART';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const ADJUST_DELIVERY = 'ADJUST_DELIVERY';
 export const CHANGE_TODO_DESCRIPTION = 'CHANGE_TODO_DESCRIPTION';
+
 
 
 
@@ -110,22 +112,29 @@ export function changeTodo(state) {
   }
 }
 
-export function confirmAdding(pathToParent, input) {
-  return {
-      type: CONFIRM_SUB_CATEGORY,
-      payload: {
-          pathToParent: pathToParent,
-          input: input
-      }
-  }
-}
-
 export function trasitTodo(pathToNewCategory, todoName) {
   return {
       type: TRANSIT_TODO,
       payload: {
           newCategoryPath: pathToNewCategory,
           todoName: todoName
+      }
+  }
+}
+
+export function editCategory(pathToNode) {
+  return {
+      type: EDIT_CATEGORY,
+      payload: pathToNode
+  }
+}
+
+export function confirmEdit(pathToParent, input) {
+  return {
+      type: SUBMIT_EDITION,
+      payload: {
+          pathToParent: pathToParent,
+          input: input
       }
   }
 }

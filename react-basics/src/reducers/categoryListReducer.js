@@ -1,12 +1,11 @@
 import { ADD_CATEGORY,
     ADD_SUB_CATEGORY,
     DELETE_CATEGORY,
-    CONFIRM_SUB_CATEGORY
+    EDIT_CATEGORY,
+    SUBMIT_EDITION
 } from '../actions';
 import Immutable from 'immutable';
-import {
-    INPUT_FIELD
-} from '../constants';
+import { INPUT_FIELD } from '../constants';
 
 function categoryListReducer(state = Immutable.Map(), action) {
     switch (action.type) {
@@ -20,10 +19,25 @@ function categoryListReducer(state = Immutable.Map(), action) {
             return state.setIn([...pathToNode, INPUT_FIELD], Immutable.Map());
         }
 
-        case CONFIRM_SUB_CATEGORY: {
+        case EDIT_CATEGORY: {
+            const pathToNode = action.payload;
+            const categoryName = Array.from(pathToNode).pop();
+            const pathToParent = pathToNode.slice(0, -1);
+            return state.updateIn(pathToParent, el => {
+                return el.mapKeys(elementMap => {
+                    console.log(elementMap);
+                    return elementMap === categoryName ? INPUT_FIELD : elementMap
+                });
+            });
+        }
+
+        case SUBMIT_EDITION: {
             const { pathToParent, input } = action.payload;
-            state = state.deleteIn([...pathToParent, INPUT_FIELD]);
-            return state.setIn([...pathToParent, input], Immutable.Map());
+            return state.updateIn(pathToParent, el => {
+                return el.mapKeys(elementMap => {
+                    return elementMap === INPUT_FIELD ? input : elementMap;
+                })
+            })
         }
 
         case DELETE_CATEGORY: {

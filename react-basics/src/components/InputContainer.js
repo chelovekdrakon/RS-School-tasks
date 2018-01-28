@@ -7,6 +7,7 @@ const FieldWrapper = styled.div`
     display: flex;
 
     > input {
+        width: 100%;
         border: 1px solid;
         border-radius: 5px 0 0 5px;
         border-color: Gainsboro transparent Gainsboro Gainsboro;

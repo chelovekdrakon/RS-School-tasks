@@ -6,9 +6,11 @@ import { ADD_CATEGORY,
     RESTART,
     ADJUST_DELIVERY,
     CHANGE_TODO_DESCRIPTION,
-    CONFIRM_SUB_CATEGORY,
-    TRANSIT_TODO
+    SUBMIT_EDITION,
+    TRANSIT_TODO,
+    EDIT_CATEGORY
  } from '../actions';
+ import { INPUT_FIELD } from '../constants';
 import Immutable from 'immutable';
 
 // Example of todos data structure
@@ -40,16 +42,39 @@ function todoListReducer(state = initialState, action) {
             return state.setIn(['todos', `${categoryName}`], Immutable.Map());
         }
 
-        case CONFIRM_SUB_CATEGORY: {
+        case EDIT_CATEGORY: {
+            const pathToNode = action.payload;
+            const categoryName = pathToNode.join('');
+            return state.update('todos', mapOfCategories => {
+                return mapOfCategories.mapKeys(category => {
+                    return category === categoryName ? INPUT_FIELD : category;
+                })
+            })
+        }
+
+        case SUBMIT_EDITION: {
             const { input, pathToParent } = action.payload;
-            return state.setIn(['todos', [...pathToParent, ...input].join('')], Immutable.Map());
+            const newCategoryName = [...pathToParent, input].join('');
+            const isItEdition = state.getIn(['todos', INPUT_FIELD]);
+
+            if (isItEdition) {
+                return state.update('todos', mapOfCategories => {
+                    return mapOfCategories.mapKeys(category => {
+                        return category === INPUT_FIELD ? newCategoryName : category;
+                    })
+                })
+            } else {
+                return state.setIn(['todos', newCategoryName], Immutable.Map());
+            }
+
         }
 
         case PICK_CATEGORY: {
             const { value, pathToNode } = action.payload;
-            const todosUnderCategory = state.getIn(['todos', [...pathToNode].join('')]);
+            const categoryName = pathToNode.join('');
+            const todosUnderCategory = state.getIn(['todos', categoryName]);
             state = state.set('selectedListMap', todosUnderCategory);
-            state = state.set('pathToSelectedNode', pathToNode);
+            state = state.set('pathToSelectedNode', Array.from(pathToNode));
             return state.set('selectedCategory', value);
         }
 
@@ -150,7 +175,7 @@ function todoListReducer(state = initialState, action) {
 
             state = state.deleteIn(['todos', [...oldCategoryPath].join(''), `${todoName}`]);
             state = state.setIn(['todos', [...newCategoryPath].join(''), `${todoName}`], todoDescription);
-            state = state.set('pathToSelectedNode', newCategoryPath);
+            state = state.set('pathToSelectedNode', Array.from(newCategoryPath));
             state = state.set('selectedCategory', Array.from(newCategoryPath).pop());
             return state.set('selectedListMap', state.getIn(['todos', [...newCategoryPath].join('')]));
         }

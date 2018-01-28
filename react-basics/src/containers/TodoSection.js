@@ -29,9 +29,9 @@ const TodoSection = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos.get('todos'),
-        list: state.todos.get('adjustedBySearch'),
-        showDone: state.displayFilter
+        todos: state.present.todos.get('todos'),
+        list: state.present.todos.get('adjustedBySearch'),
+        showDone: state.present.displayFilter
     }
 }
 

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux';
 import { logger } from './middleware';
-
+import undoable, { distinctState } from 'redux-undo'
 import categoryListReducer from './reducers/categoryListReducer';
 import todoListReducer from './reducers/todoListReducer';
 import filterReducer from './reducers/filterReducer';
@@ -12,8 +12,12 @@ const appReducers = combineReducers({
     displayFilter: filterReducer
 });
 
+const undoableReducers = undoable(appReducers, {
+    filter: distinctState()
+});
+
 const store = createStore(
-    appReducers,
+    undoableReducers,
     applyMiddleware(logger)
 );
 
