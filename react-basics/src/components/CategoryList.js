@@ -14,28 +14,6 @@ const ListWrapper = styled.ul`
     align-items: flex-end;
 `;
 
-const getCategoryField = (props, categoryName) => {
-    let checked = checkSelection(props, categoryName);
-    let pathToThisNode = [...props.pathToNode, categoryName];
-    let inputField = categoryName === INPUT_FIELD ? true : false;
-    return (
-        <CategoryField
-            key={categoryName}
-            indexCorrection={props.indexCorrection}
-            value={categoryName}
-            path={categoryName === props.selected ? `/` : `/${props.selected}`}
-            onPick={() => checked ? console.log('not today, bro') : props.onPick(pathToThisNode, categoryName)}
-            checked={checked}
-            onDelete={() => props.onDelete(pathToThisNode)}
-            onAdd={() => props.onAdd(pathToThisNode)}
-            onEdit={() => props.onEdit(pathToThisNode)}
-            onConfirm={input => props.onConfirm([...props.pathToNode], input)}
-            onTransit={() => props.onTransit(pathToThisNode, props.match.params.todo)}
-            inputField={inputField}
-        />
-    );
-}
-
 const getCategoryList = (props, categoryName, mapUnderCategory) => {
     let pathToThisNode = [...props.pathToNode, categoryName];
     return (
@@ -49,11 +27,41 @@ const getCategoryList = (props, categoryName, mapUnderCategory) => {
     );
 }
 
+
 const CategoryList = (props) => {
     const res = [];
 
+    const onPick = (pathToNode, categoryName) => () => {
+        return props.checked ? console.log('not today, bro') : props.onPick(pathToNode, categoryName);
+    }
+    const onDelete = (pathToNode) => () => props.onDelete(pathToNode);
+    const onAdd = (pathToNode) => () => props.onAdd(pathToNode);
+    const onEdit = (pathToNode) => () => props.onEdit(pathToNode);
+    const onConfirm = (pathToNode) => input => props.onConfirm([...pathToNode], input);
+    const onTransit = (pathToNode, todoName) => () => props.onTransit(pathToNode, todoName);
+
+
     props.list.forEach( (mapUnderCategory, categoryName) => {
-        let element = getCategoryField(props, categoryName);
+        let checked = checkSelection(props, categoryName);
+        let pathToThisNode = [...props.pathToNode, categoryName];
+        let inputField = categoryName === INPUT_FIELD ? true : false;
+
+        let element = (
+            <CategoryField
+                key={categoryName}
+                indexCorrection={props.indexCorrection}
+                value={categoryName}
+                path={categoryName === props.selected ? `/` : `/${props.selected}`}
+                onPick={onPick(pathToThisNode, categoryName)}
+                checked={checked}
+                onDelete={onDelete(pathToThisNode)}
+                onAdd={onAdd(pathToThisNode)}
+                onEdit={onEdit(pathToThisNode)}
+                onConfirm={onConfirm(props.pathToNode)}
+                onTransit={onTransit(pathToThisNode, props.match.params.todo)}
+                inputField={inputField}
+            />
+        );
         res.push(element);
 
         if (mapUnderCategory.size > 0) {

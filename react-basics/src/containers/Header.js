@@ -32,7 +32,7 @@ const Header = (props) => {
         <StyledHeader>
             <Logo restart={props.restart} />
             <DisplayFilter onClick={props.toggle} />
-            <SearchBar list={props.selectedList} onTap={props.searchRelevant} />
+            <SearchBar list={props.todos} onTap={props.searchRelevant} />
             <HistoryAPI
                 canUndo={props.canUndo}
                 canRedo={props.canRedo}

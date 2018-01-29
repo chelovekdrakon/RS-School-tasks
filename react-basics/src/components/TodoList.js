@@ -13,6 +13,7 @@ const ListWrapper = styled.ul`
 
 const TodoList = (props) => {
     const list = Array.from(props.list.keys());
+    const onPick = (element) => () => props.pick(element);
     return (
         <ListWrapper>
             {
@@ -22,7 +23,7 @@ const TodoList = (props) => {
                         <TodoField
                             key={element}
                             value={element}
-                            onClick={() => props.pick(element)}
+                            onClick={onPick(element)}
                             checked={done}
                         />
                     );
