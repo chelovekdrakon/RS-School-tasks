@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const express = require('express');
 const config = require('./config');
 const path = require('path');
@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const log = require('./libs/log')(module);
 const errorHandler = require('errorhandler');
+const fetch = require('node-fetch');
+const getInfo = require('./getInfo');
 
 const app = express();
 
@@ -24,22 +26,57 @@ app.use((err, req, res, next) => {
   }
 });
 
-http.createServer(app).listen(config.get('port'), () => {
+app.get('/', (req, res) => {
+    log.info(req, 'request');
+    log.info(res, 'response');
+});
+
+https.createServer(app).listen(config.get('port'), () => {
   log.info('Express app handler listen on port ' + config.get('port'));
 });
 
-const input = path.join(__dirname, process.argv.slice(-2)[0]);
-const fileStream = fs.createReadStream(input);
+const input = path.normalize(path.join(__dirname, process.argv.slice(-2)[0]));
+let time = Date.now();
 
-fileStream.on('close', () => {
-    fileStream.destroy();
-});
+fs.stat(input, function (err, stats) {
+    if (err) {
+        log.error(err);
+    } else {
+        if (stats.isFile(input)) {
+            const fileStream = fs.createReadStream(input, {encoding: 'utf-8'});
 
-fileStream.on('error', (e) => {
-    console.log(e, 'this is error');
-});
+            fileStream.on('close', () => {
+                log.info(`${new Date(Date.now())} file have been closed`);
+                log.info(`File reading took ${Date.now() - time} milliseconds`);
+                fileStream.destroy();
+            });
 
-fileStream.on('readable', () => {
-    const readable = fileStream.read();
-    readable ? console.log(`readable: ${readable.length}`) : console.log('nothing here');
+            fileStream.on('error', (err) => {
+                if (err.code === 'ENOENT') {
+                    log.error('no such file or directory');
+                } else {
+                    log.error(err);
+                }
+            });
+
+            fileStream.on('open', () => {
+                log.info(`${new Date(Date.now())} file have been opened`);
+                time = Date.now();
+            });
+
+            fileStream.on('readable' ,async () => {
+                const data = fileStream.read();
+
+                if (data) {
+                    getInfo(data);
+                } else {
+                    log.error('nothing here, why did stream read it ?!', typeof data);
+                }
+            });
+
+            fileStream.on('end', () => log.debug('the end'));
+        } else {
+            log.error('no such file or directory');
+        }
+    }
 });
