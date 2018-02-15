@@ -6,11 +6,12 @@ const readPrompt = require('./readPrompt');
 
 const handleFile = (fileName, time) => {
     let deltaTime = time;
+    let data = '';
 
     fs.stat(fileName, function (err, stats) {
         if (err) {
             if (err.code === 'ENOENT') {
-                log.error('no such file or directory');
+                log.error('No such file or directory');
                 readPrompt();
             } else {
                 log.error(err);
@@ -19,6 +20,15 @@ const handleFile = (fileName, time) => {
 
             if (stats.isFile(fileName)) {
                 const fileStream = fs.createReadStream(fileName, {encoding: 'utf-8'});
+
+                fileStream.on('open', () => {
+                    log.info(`${fileName} file have been opened`);
+                    deltaTime = Date.now();
+                });
+
+                fileStream.on('data', (chunk) => {
+                    data += chunk;
+                });
 
                 fileStream.on('close', () => {
                     log.info(`${new Date(Date.now())} file have been closed`);
@@ -34,24 +44,13 @@ const handleFile = (fileName, time) => {
                     }
                 });
 
-                fileStream.on('open', () => {
-                    log.info(`${new Date(Date.now())} file have been opened`);
-                    deltaTime = Date.now();
+                fileStream.on('end', () => {
+                    log.info(`File ${fileName} have been read and now will start processing...`);
+                    handleDataList(data);
                 });
-
-                fileStream.on('readable', () => {
-                    const data = fileStream.read();
-
-                    if (data) {
-                        handleDataList(data);
-                    } else {
-                        log.error('nothing here, why did stream read it ?!', typeof data);
-                    }
-                });
-
-                fileStream.on('end', () => log.info(`File ${fileName} have been read and now in processing...`));
             } else {
                 log.error(`${fileName} is not a file`);
+                readPrompt();
             }
 
         }

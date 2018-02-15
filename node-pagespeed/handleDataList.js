@@ -16,12 +16,11 @@ const getInfo = async url => {
 };
 
 const handleDataList = (data) => {
-    log.debug(`readable: ${typeof data}`);
     const arrURL = data.trim().split('\r\n');
 
     series(arrURL.map(URL => async cb => {
         if (URL) {
-            log.info(URL, ' - this is an URL');
+            log.info(URL, ' - this is an URL will be fetched');
             const APIresponse = await getInfo(getReqUrl(URL));
             log.info('APIresponse');
             log.info(APIresponse, 'APIresponse');
