@@ -20,6 +20,8 @@ const handleFile = (fileName, time) => {
 
             if (stats.isFile(fileName)) {
                 const fileStream = fs.createReadStream(fileName, {encoding: 'utf-8'});
+                const successfulOutput = path.join(__dirname, new Date(time).toString(), 'successful.md')
+                const successfulStream = fs.createWriteStream(successfulOutput);
 
                 fileStream.on('open', () => {
                     log.info(`${fileName} file have been opened`);
@@ -31,7 +33,7 @@ const handleFile = (fileName, time) => {
                 });
 
                 fileStream.on('close', () => {
-                    log.info(`${new Date(Date.now())} file have been closed`);
+                    log.info(`${fileName} file have been closed`);
                     log.info(`File reading took ${Date.now() - deltaTime} milliseconds`);
                     fileStream.destroy();
                 });
@@ -46,7 +48,7 @@ const handleFile = (fileName, time) => {
 
                 fileStream.on('end', () => {
                     log.info(`File ${fileName} have been read and now will start processing...`);
-                    handleDataList(data);
+                    handleDataList(data, successfulStream);
                 });
             } else {
                 log.error(`${fileName} is not a file`);

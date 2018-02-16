@@ -7,24 +7,23 @@ const getReqUrl = (URL) => `https://www.googleapis.com/pagespeedonline/v4/runPag
 const getInfo = async url => {
     try {
         const response = await fetch(url);
-        const json = await response.json();
-        return json;
+        // const json = await response.json();
+        return response;
     } catch (error) {
         log.error(`Error, when have tried to fetch ${url}`);
         log.error(error);
     }
 };
 
-const handleDataList = (data) => {
+const handleDataList = (data, successfulStream) => {
     const arrURL = data.trim().split('\r\n');
 
     series(arrURL.map(URL => async cb => {
         if (URL) {
             log.info(URL, ' - this is an URL will be fetched');
             const APIresponse = await getInfo(getReqUrl(URL));
-            log.info('APIresponse');
-            log.info(APIresponse, 'APIresponse');
-            return APIresponse;
+            successfulStream.write(`${APIresponse}\n`);
+            return URL;
         } else {
             log.error('no element');
         }
