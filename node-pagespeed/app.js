@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const log = require('./libs/log')(module);
 const errorHandler = require('errorhandler');
 const handleFile = require('./handleFile');
-const createOutputDir = require('./createOutputDir');
+const createOutputDir = require('./services/createOutputDir');
 
 const app = express();
 
@@ -27,15 +27,15 @@ app.use((err, req, res, next) => {
 
 process.on('SIGINT', function() {
   log.info('\nGracefully shutting down from SIGINT (Ctrl-C)');
-  // some other closing procedures go here
-  process.exit(1);
+  process.exit(0);
 });
 
 https.createServer(app).listen(config.get('port'), () => {
     log.info('Express app handler listen on port ' + config.get('port'));
 });
 
+
 const time = Date.now();
-const input = path.normalize(path.join(__dirname, process.argv.slice(-2)[0]));
+const input = path.normalize(path.join(__dirname, process.argv.slice(-1).toString()));
 createOutputDir(new Date(time));
 handleFile(input, time);

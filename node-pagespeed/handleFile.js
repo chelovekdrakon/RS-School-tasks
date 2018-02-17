@@ -1,13 +1,11 @@
-const handleDataList = require('./handleDataList');
+const handleFileData = require('./handleFileData');
 const log = require('./libs/log')(module);
 const fs = require('fs');
-const path = require('path');
-const readPrompt = require('./readPrompt');
+const readPrompt = require('./services/readPrompt');
+const createStreams = require('./services/createStreams');
+const getFileData = require('./services/getFileData');
 
 const handleFile = (fileName, time) => {
-    let deltaTime = time;
-    let data = '';
-
     fs.stat(fileName, function (err, stats) {
         if (err) {
             if (err.code === 'ENOENT') {
@@ -17,44 +15,18 @@ const handleFile = (fileName, time) => {
                 log.error(err);
             }
         } else {
-
             if (stats.isFile(fileName)) {
-                const fileStream = fs.createReadStream(fileName, {encoding: 'utf-8'});
-                const successfulOutput = path.join(__dirname, new Date(time).toString(), 'successful.md')
-                const successfulStream = fs.createWriteStream(successfulOutput);
-
-                fileStream.on('open', () => {
-                    log.info(`${fileName} file have been opened`);
-                    deltaTime = Date.now();
-                });
-
-                fileStream.on('data', (chunk) => {
-                    data += chunk;
-                });
-
-                fileStream.on('close', () => {
-                    log.info(`${fileName} file have been closed`);
-                    log.info(`File reading took ${Date.now() - deltaTime} milliseconds`);
-                    fileStream.destroy();
-                });
-
-                fileStream.on('error', (err) => {
-                    if (err.code === 'ENOENT') {
-                        log.error('no such file or directory');
-                    } else {
-                        log.error(err);
-                    }
-                });
-
-                fileStream.on('end', () => {
-                    log.info(`File ${fileName} have been read and now will start processing...`);
-                    handleDataList(data, successfulStream);
+                getFileData(fileName).then(data => {
+                    const streams = createStreams(time);
+                    const arrURL = data.trim().split('\r\n');
+                    let daysToHandle = Math.ceil(arrURL.length / 25000);
+                    log.info(`File contains ${data.length} URL's, script evaluation will take ${daysToHandle}`)
+                    handleFileData(arrURL, time, streams, daysToHandle);
                 });
             } else {
                 log.error(`${fileName} is not a file`);
                 readPrompt();
             }
-
         }
     });
 }
